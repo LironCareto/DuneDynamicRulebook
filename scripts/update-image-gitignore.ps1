@@ -6,118 +6,97 @@ $ErrorActionPreference = 'Stop'
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $imgRoot  = [IO.Path]::GetFullPath((Join-Path $repoRoot 'img'))
-$gitDir   = Join-Path $repoRoot '.git'
-$rawDir   = Join-Path $repoRoot 'img\raw'
-
-$extensions = @('.html', '.xhtml', '.css', '.js', '.md')
 
 # Captures img/foo.png, ./img/foo.png, ../img/foo.png, etc.
 $pattern = '(?i)(?<path>(?:\.\.?[\\/])*(?:img)[\\/][^"''<>\s\)\]]+)'
 
-$used   = [System.Collections.Generic.HashSet[string]]::new(
+$used = [System.Collections.Generic.HashSet[string]]::new(
     [System.StringComparer]::Ordinal
 )
 
 $errors = [System.Collections.Generic.List[string]]::new()
 
-$sourceFiles = Get-ChildItem -Path $repoRoot -Recurse -File |
-    Where-Object {
-        $extensions -contains $_.Extension.ToLowerInvariant() -and
-        -not $_.FullName.StartsWith($gitDir, [StringComparison]::OrdinalIgnoreCase) -and
-        -not $_.FullName.StartsWith($rawDir, [StringComparison]::OrdinalIgnoreCase) -and
-        -not $_.FullName.Contains('.marker-preview\')
+# The actual rulebook is the only source of truth.
+$sourceFile = Get-Item -LiteralPath (Join-Path $repoRoot 'index.html')
+$content = [IO.File]::ReadAllText($sourceFile.FullName)
+
+foreach ($match in [regex]::Matches($content, $pattern)) {
+
+    $ref = $match.Groups['path'].Value
+    $ref = $ref -replace '[?#].*$', ''
+
+    $nativeRef = $ref -replace '/', '\'
+
+    try {
+        $resolved = [IO.Path]::GetFullPath(
+            (Join-Path $sourceFile.DirectoryName $nativeRef)
+        )
+    }
+    catch {
+        $errors.Add("$($sourceFile.FullName): invalid image path '$ref'")
+        continue
     }
 
-foreach ($file in $sourceFiles) {
+    # References must resolve inside the project's root img directory.
+    $imgPrefix = $imgRoot.TrimEnd('\') + '\'
 
-    $content = Get-Content .\index.html -Raw
-
-    $content = $content `
-        -replace 'img/RI-karama\.png', 'img/RI-karama-big.png' `
-        -replace 'img/CH-logo\.png', 'img/CH-logo-big.png' `
-        -replace 'img/ch-logo\.png', 'img/CH-logo-big.png' `
-        -replace 'img/MO-karama\.png', 'img/MO-karama-big.png'
-
-    Set-Content .\index.html $content
-
-    foreach ($match in [regex]::Matches($content, $pattern)) {
-
-        $ref = $match.Groups['path'].Value
-        $ref = $ref -replace '[?#].*$', ''
-
-        $nativeRef = $ref -replace '/', '\'
-
-        try {
-            $resolved = [IO.Path]::GetFullPath(
-                (Join-Path $file.DirectoryName $nativeRef)
-            )
-        }
-        catch {
-            $errors.Add("$($file.FullName): invalid image path '$ref'")
-            continue
-        }
-
-        # References must resolve inside the project's root img directory.
-        $imgPrefix = $imgRoot.TrimEnd('\') + '\'
-
-        if (-not $resolved.StartsWith(
-            $imgPrefix,
-            [StringComparison]::OrdinalIgnoreCase
-        )) {
-            $errors.Add(
-                "$($file.FullName): '$ref' does not resolve inside root img/"
-            )
-            continue
-        }
-
-        if (-not (Test-Path -LiteralPath $resolved -PathType Leaf)) {
-            $errors.Add(
-                "$($file.FullName): referenced image does not exist: '$ref'"
-            )
-            continue
-        }
-
-        $item = Get-Item -LiteralPath $resolved
-
-        $gitPath = $item.FullName.Substring($repoRoot.Length)
-        $gitPath = $gitPath -replace '^[\\/]+', ''
-        $gitPath = $gitPath -replace '\\', '/'
-
-        if ($gitPath.StartsWith(
-            'img/raw/',
-            [StringComparison]::OrdinalIgnoreCase
-        )) {
-            $errors.Add(
-                "$($file.FullName): '$ref' points into img/raw/, which is never versioned"
-            )
-            continue
-        }
-
-        # Catch case errors that work on Windows but would break on Linux/GitHub.
-        $refNormalized = $ref -replace '\\', '/'
-        $pos = $refNormalized.ToLowerInvariant().IndexOf('img/')
-
-        if ($pos -ge 0) {
-            $refImgPath = $refNormalized.Substring($pos)
-
-            if ($refImgPath -cne $gitPath) {
-                $errors.Add(
-                    "$($file.FullName): case/path mismatch '$refImgPath' -> actual '$gitPath'"
-                )
-                continue
-            }
-        }
-
-        [void]$used.Add($gitPath)
+    if (-not $resolved.StartsWith(
+        $imgPrefix,
+        [StringComparison]::OrdinalIgnoreCase
+    )) {
+        $errors.Add(
+            "$($sourceFile.FullName): '$ref' does not resolve inside root img/"
+        )
+        continue
     }
+
+    if (-not (Test-Path -LiteralPath $resolved -PathType Leaf)) {
+        $errors.Add(
+            "$($sourceFile.FullName): referenced image does not exist: '$ref'"
+        )
+        continue
+    }
+
+    $item = Get-Item -LiteralPath $resolved
+
+    $gitPath = $item.FullName.Substring($repoRoot.Length)
+    $gitPath = $gitPath -replace '^[\\/]+', ''
+    $gitPath = $gitPath -replace '\\', '/'
+
+    if ($gitPath.StartsWith(
+        'img/raw/',
+        [StringComparison]::OrdinalIgnoreCase
+    )) {
+        $errors.Add(
+            "$($sourceFile.FullName): '$ref' points into img/raw/, which is never versioned"
+        )
+        continue
+    }
+
+    # Catch case errors that work on Windows but would break on Linux/GitHub.
+    $refNormalized = $ref -replace '\\', '/'
+    $pos = $refNormalized.ToLowerInvariant().IndexOf('img/')
+
+    if ($pos -ge 0) {
+        $refImgPath = $refNormalized.Substring($pos)
+
+        if ($refImgPath -cne $gitPath) {
+            $errors.Add(
+                "$($sourceFile.FullName): case/path mismatch '$refImgPath' -> actual '$gitPath'"
+            )
+            continue
+        }
+    }
+
+    [void]$used.Add($gitPath)
 }
 
 if ($errors.Count -gt 0) {
     Write-Host ""
     Write-Host "BROKEN IMAGE REFERENCES:" -ForegroundColor Red
 
-    foreach ($error in $errors) {
-        Write-Host "  - $error" -ForegroundColor Red
+    foreach ($err in $errors) {
+        Write-Host "  - $err" -ForegroundColor Red
     }
 
     Write-Host ""
