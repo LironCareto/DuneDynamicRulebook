@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus+SC&amp;display=swap" />   
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <title>Dune Advanced Rulebook</title>
+    <style>
+        .outlined,
+        .outlined strong {
+        color: transparent;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 0.75px #000;
+            font-family: "Fira Sans", sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            paint-order: stroke fill;
+        }
+        .selector-option {
+            white-space: nowrap;
+        }
+        .inline {
+            height: 1.4em;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 0.25em;
+        }
+        body {
+            --footer-height: 3.5rem;
+            padding-bottom: calc(var(--footer-height) + 0.5rem);
+            font-family: "Fira Sans", serif;
+        }
+
+        h1,
+        h2 {
+            position: relative;
+            box-sizing: border-box;
+            min-height: 2.1rem;
+            margin: 1.25rem calc(50% - 50vw) 0.75rem;
+            padding: 0.35rem 0.75rem;
+            background: #263f5d;
+            color: #fff;
+            font-family: "Copperplate Gothic Bold","Marcellus SC", serif;
+            font-size: 1.05rem;
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
+            line-height: 1.3;
+            text-shadow: 1px 1px 0 #172a40;
+        }
+
+        h1.heading-with-icon,
+        h2.heading-with-icon {
+            padding-left: 3.85rem;
+        }
+
+        .faction-symbols-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .faction-symbols-icons {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .faction-symbols-icons img {
+            display: block;
+            width: 1.15rem;
+            height: 1.15rem;
+            object-fit: contain;
+        }
+
+        .faction-marker {
+            display: inline-block;
+            width: 1.1rem;
+            height: 1.1rem;
+            margin: 0 0.08em;
+            vertical-align: -0.22em;
+            object-fit: contain;
+        }
+
+        h3 {
+            font-family: "Copperplate Gothic Bold","Marcellus SC", serif;
+        }
+
+        h4 {
+            font-family: "Copperplate Gothic Bold","Marcellus SC", serif;
+            font-size: 0.8rem;
+            margin-bottom: 0.55rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid #d5d5d5;
+        }
+
+        .heading-icon {
+            position: absolute;
+            top: 50%;
+            left: 0.6rem;
+            width: 3rem;
+            height: 3rem;
+            transform: translateY(-50%);
+        }
+
+        #rulebook-content {
+            column-count: 1;
+        }
+
+        #rulebook-content h2,
+        #rulebook-content h3,
+        #rulebook-content h4 {
+            break-after: avoid-column;
+        }
+
+        #rulebook-content h1 {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        #rulebook-content p,
+        #rulebook-content ul,
+        #rulebook-content ol,
+        #rulebook-content table,
+        #rulebook-content section {
+            break-inside: avoid-column;
+        }
+
+        @media (orientation: landscape) and (min-width: 70rem) {
+            #rulebook-content {
+                column-count: 2;
+                column-gap: 3rem;
+            }
+
+            #rulebook-content h1 {
+                column-span: all;
+            }
+
+            .karama-prevention-table {
+                column-span: all;
+            }
+        }
+        :is(.AT,.BG,.CH,.EZ,.EM,.FR,.HK,.IX,.MO,.RI,.SG,.TX) img {
+            height: 1.4em;
+            width: auto;
+            vertical-align: -0.15em;
+            margin-right: 0.25em;
+        }
+        .phase-callout {
+            max-width: 34rem;
+            margin: 1rem 0;
+            background: #e9e3d0;
+            color: #070707;
+        }
+
+        .phase-callout h3 {
+            position: relative;
+            margin: 0;
+            padding: 0.35rem 3rem;
+            background: #3c5d8d;
+            color: #fff;
+            font-family: Georgia, serif;
+            font-size: 1rem;
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
+            text-align: center;
+            text-shadow: 1px 1px 0 #1d3455;
+        }
+
+        .phase-callout h3::before,
+        .phase-callout h3::after {
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+            display: block;
+            width: 1.35rem;
+            height: 1.35rem;
+            background: var(--phase-icon) center / contain no-repeat;
+            content: "";
+            transform: translateY(-50%);
+        }
+
+        .phase-callout h3::before {
+            left: 1.1rem;
+        }
+
+        .phase-callout h3::after {
+            right: 1.1rem;
+        }
+
+        .phase-callout p {
+            margin: 0;
+            padding: 0.55rem 0.65rem 0.65rem;
+            font-size: 0.9rem;
+            font-weight: 100;
+            line-height: 1.15;
+        }
+
+        .first-storm {
+            --phase-icon: url("img/phase-storm-gold.png");
+        }
+
+        .first-spice-blow {
+            --phase-icon: url("img/phase-spice-gold.png");
+        }
+
+        .special-karama-powers {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.75rem 0;
+            color: #111;
+            font-size: 0.9rem;
+        }
+
+        .special-karama-powers caption {
+            padding: 0.45rem 0.55rem;
+            background: #3c5d8d;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .special-karama-powers caption small {
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .special-karama-powers th,
+        .special-karama-powers td {
+            border: 1px solid #aaa;
+            padding: 0.45rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .special-karama-powers th {
+            width: 50%;
+            background: #cabe92;
+            font-size: 0.95rem;
+        }
+
+        .special-karama-powers tbody tr:nth-child(odd) td:first-child {
+            background: #f0e3b8;
+        }
+
+        .special-karama-powers tbody tr:nth-child(odd) td:last-child {
+            background: #f4f4f4;
+        }
+
+        .special-karama-powers tbody tr:nth-child(even) td:first-child {
+            background: #faf4df;
+        }
+
+        .special-karama-powers tbody tr:nth-child(even) td:last-child {
+            background: #fff;
+        }
+
+        .special-karama-icon {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.45rem;
+            vertical-align: middle;
+        }
+
+        .karama-prevention-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.75rem 0 1.25rem;
+            color: #111;
+            font-size: 0.9rem;
+        }
+
+        .karama-prevention-table th,
+        .karama-prevention-table td {
+            border: 1px solid #b9b9b9;
+            padding: 0.35rem 0.45rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .karama-prevention-table thead th {
+            position: sticky;
+            top: 2.1rem;
+            z-index: 4;
+            background: #3c5d8d;
+            color: #fff;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .karama-prevention-table .karama-faction-row th {
+            padding: 0.3rem 0.45rem;
+            background: #f0e3b8;
+            font-size: 1rem;
+            vertical-align: middle;
+        }
+
+        .karama-prevention-table .karama-advantage-row:nth-child(odd) td {
+            background: #f4f4f4;
+        }
+
+        .karama-faction-icon {
+            width: 1.35rem;
+            height: 1.35rem;
+            margin-right: 0.3rem;
+            vertical-align: middle;
+        }
+
+        .karama-header-icon {
+            width: 1rem;
+            height: 1rem;
+            margin: 0 0.15rem;
+            vertical-align: -0.15rem;
+        }
+
+        .rulebook-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            box-sizing: border-box;
+            height: var(--footer-height);
+            margin: 0;
+            padding: 0.35rem 1rem;
+            border-top: 0.7rem solid #ead797;
+            background: #baac79;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            color: #342214;
+            font-family: Georgia, serif;
+            font-size: 0.8rem;
+            font-variant: small-caps;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+        }
+
+        .footer-fremen-art {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            z-index: 11;
+            width: clamp(10rem, 23vw, 16rem);
+            height: auto;
+            pointer-events: none;
+        }
+
+        .footer-worm-art {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 11;
+            width: clamp(8rem, 15vw, 12rem);
+            height: auto;
+            pointer-events: none;
+        }
+
+        .tech-token-income-table {
+            max-width: 38rem;
+            border-collapse: collapse;
+            margin: 0.75rem 0;
+            color: #111;
+            font-size: 0.9rem;
+        }
+
+        .tech-token-income-table td {
+            padding: 0.35rem 0;
+            vertical-align: top;
+        }
+
+        .tech-token-income-table td:first-child {
+            width: 3.75rem;
+            padding-right: 0.55rem;
+        }
+
+        .tech-token-income-table img {
+            display: block;
+            width: 3.25rem;
+            height: 3.25rem;
+        }
+
+        .tech-token-income-table strong {
+            display: block;
+            margin-bottom: 0.15rem;
+            text-decoration: underline;
+        }
+
+        .map-strongholds {
+            column-span: all;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 0.4rem;
+            margin: 0.9rem 0 1.15rem;
+            padding: 0.55rem 0.7rem;
+            background: #f3f3f3;
+        }
+
+        .map-strongholds img {
+            display: block;
+            box-sizing: border-box;
+            width: auto;
+            max-width: 19%;
+            height: clamp(5.25rem, 11vw, 8.25rem);
+            object-fit: contain;
+        }
+
+        .first-player-order {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(9rem, 1.25fr);
+            align-items: center;
+            gap: 1rem;
+            margin: 0.85rem 0 1rem;
+            break-inside: avoid;
+        }
+
+        .first-player-order__text h3 {
+            margin: 0;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #d5d5d5;
+            font-size: 0.7rem;
+            font-variant: small-caps;
+            letter-spacing: 0.06em;
+        }
+
+        .first-player-order__text p {
+            margin: 0.5rem 0 0;
+        }
+
+        .first-player-order img {
+            display: block;
+            width: 100%;
+            max-width: 18rem;
+            margin: auto;
+        }
+
+        .faction-sheet {
+            column-span: all;
+            box-sizing: border-box;
+            margin: 1.5rem 0;
+            padding: 0.7rem;
+            background: #fff;
+            color: #111;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.2;
+        }
+
+        .faction-sheet__header {
+            display: grid;
+            grid-template-columns: 4rem minmax(8rem, 1fr) minmax(11rem, 1.45fr) minmax(13rem, 1.6fr) 4.5rem;
+            gap: 0.55rem;
+            align-items: center;
+            padding: 0.35rem;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .faction-sheet__header::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 0 -0.35rem;
+            z-index: 0;
+            border-radius: 3.2rem 0 0 3.2rem;
+            background: #f0e3b8;
+        }
+
+        .faction-sheet__header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .faction-sheet__logo {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .faction-sheet__title h2 {
+            min-height: 0;
+            margin: 0;
+            padding: 0;
+            background: none;
+            color: #111;
+            font-family: Arial, sans-serif;
+            font-size: 1.1rem;
+            font-variant: small-caps;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            line-height: 1;
+            text-shadow: none;
+        }
+
+        .faction-sheet__title p,
+        .faction-sheet__start p,
+        .faction-sheet__revival p {
+            margin: 0.35rem 0 0;
+        }
+
+        .faction-sheet__leaders {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .faction-sheet__leaders img {
+            width: 2.4rem;
+            height: 2.4rem;
+            margin-left: -0.35rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .faction-sheet__leaders img:first-child {
+            margin-left: 0;
+        }
+
+        .faction-sheet__leaders .faction-sheet__leader-primary {
+            width: 4.2rem;
+            height: 4.2rem;
+            margin-right: -0.25rem;
+            z-index: 2;
+        }
+
+        .faction-sheet__leader-cluster {
+            position: relative;
+            width: 9.75rem;
+            height: 4.25rem;
+        }
+
+        .faction-sheet__leaders .faction-sheet__leader-cluster img {
+            position: absolute;
+            width: 2.45rem;
+            height: 2.45rem;
+            margin-left: 0;
+            transform: none;
+        }
+
+        .faction-sheet__leader-cluster img:nth-child(1) {
+            top: 0;
+            left: 0;
+        }
+
+        .faction-sheet__leader-cluster img:nth-child(2) {
+            top: 0;
+            left: 2.85rem;
+        }
+
+        .faction-sheet__leader-cluster img:nth-child(3) {
+            top: 0;
+            left: 5.7rem;
+        }
+
+        .faction-sheet__leader-cluster img:nth-child(4) {
+            top: 1.72rem;
+            left: 1.43rem;
+        }
+
+        .faction-sheet__leader-cluster img:nth-child(5) {
+            top: 1.72rem;
+            left: 4.28rem;
+        }
+
+        .faction-sheet__leader-cluster img:nth-child(6) {
+            top: 1.72rem;
+            left: 7.13rem;
+        }
+
+        .faction-sheet__start strong,
+        .faction-sheet__revival strong {
+            font-size: 0.7rem;
+        }
+
+        .faction-sheet__revival {
+            text-align: center;
+        }
+
+        .faction-sheet__revival img {
+            width: 2.6rem;
+            height: 2.6rem;
+        }
+
+        .faction-sheet__body {
+            padding: 0.55rem 0.35rem;
+            column-count: 2;
+            column-gap: 2.5rem;
+        }
+
+        .faction-sheet__body > * {
+            break-inside: avoid;
+        }
+
+        .faction-sheet__body h3 {
+            margin: 0.75rem 0 0.4rem;
+            padding: 0.2rem 0.35rem;
+            background: #d4bd7a;
+            font-size: 0.7rem;
+            font-variant: small-caps;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .faction-sheet__body p,
+        .faction-sheet__body li {
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        .faction-sheet__bar {
+            margin: 0 0 0.45rem;
+            padding: 0.2rem 0.35rem;
+            background: #d4bd7a;
+            font-size: 0.7rem;
+            font-variant: small-caps;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .faction-sheet__advantage {
+            position: relative;
+            margin: 0 0 0.8rem;
+            padding-left: 1.35rem;
+        }
+
+        .faction-sheet__advantage-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .faction-sheet__advantage p,
+        .faction-sheet__side p {
+            margin: 0 0 0.4rem;
+        }
+
+        .faction-sheet__advantage ul {
+            margin: 0.35rem 0 0.35rem 1rem;
+            padding: 0;
+        }
+
+        .faction-sheet__advantage li {
+            margin-bottom: 0.35rem;
+        }
+
+        .faction-sheet__footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            min-height: 2rem;
+            padding: 0.25rem 0.5rem;
+            background: #c3b177;
+        }
+
+        .faction-sheet__footer img {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.35rem;
+        }
+
+        @media (max-width: 50rem) {
+            .faction-sheet__header,
+            .faction-sheet__body {
+                grid-template-columns: 1fr;
+            }
+
+            .faction-sheet__header {
+                text-align: center;
+            }
+
+            .faction-sheet__logo {
+                margin: auto;
+            }
+
+            .faction-sheet__body {
+                column-count: 1;
+            }
+
+            .first-player-order {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<section id="faction-selector">
+<h1>DUNE Dynamic Rulebook</h1>
+<h2>Factions in play</h2>
+<label class="selector-option"><input type="checkbox" data-class="AT"> ATreides</label> <label class="selector-option"><input type="checkbox" data-class="BG"> Bene Gesserit</label> <label class="selector-option"><input type="checkbox" data-class="CH"> CHOAM</label> <label class="selector-option"><input type="checkbox" data-class="EZ"> Ecaz</label> <label class="selector-option"><input type="checkbox" data-class="EM"> Emperor</label> <label class="selector-option"><input type="checkbox" data-class="FR"> Fremen</label> <label class="selector-option"><input type="checkbox" data-class="HK"> Harkonnen</label> <label class="selector-option"><input type="checkbox" data-class="IX"> Ixians</label> <label class="selector-option"><input type="checkbox" data-class="MO"> Moritani</label> <label class="selector-option"><input type="checkbox" data-class="RI"> Richese</label> <label class="selector-option"><input type="checkbox" data-class="SG"> Spacing Guild</label> <label class="selector-option"><input type="checkbox" data-class="TX"> Tleilaxu</label></section>
+<section id="module-selector">
+<h2>Variants</h2>
+<label class="selector-option"><input type="checkbox" data-module="tech-tokens"> Tech Tokens</label> <label class="selector-option"><input type="checkbox" data-module="leader-skill-cards"> Leader Skill Cards</label> <label class="selector-option"><input type="checkbox" data-module="stronghold-cards"> Stronghold Cards</label> <label class="selector-option"><input type="checkbox" data-module="homeworlds"> Homeworlds</label> <label class="selector-option"><input type="checkbox" data-module="nexus-cards"> Nexus Cards</label> <label class="selector-option"><input type="checkbox" data-module="discovery-tokens"> Discovery Tokens</label></section>
+<main id="rulebook-content">
+<p>AT - ATreides<br>BG - Bene Gesserit<br>ch - CHOAM<br>EZ - Ecaz<br>EM - Emperor<br>FR - Fremen<br>HK - Harkonnen<br>IX - Ixians<br>MO - Moritani<br>RI - Richese<br>SG - Spacing Guild<br>TX - Tleilaxu</p>
+<h2>Editor's Note</h2>
+<p>The purpose of this document is to act as an <strong><span style="text-decoration: underline;">unofficial </span></strong>comprehensive listing of the<br>Advanced Game rules and FAQ for the Gale Force Nine edition of Dune, including<br>the Ixians &amp; Tleilaxu, CHOAM &amp; Richese, and Ecaz &amp; Moritani expansions. In<br>addition, revisions to the original language have been made for clarity and<br>consistency. Any unofficial rulings (additions to the rules as written or departures<br>from them) have been marked in <span class="outlined">outlined text</span>. I expect some will disagree with<br>these rulings; I encourage everyone to play according to the rules that make the<br>game the most fun for your group.</p>
+<p>These revised rules were rewritten and edited by Van Willis with help from Brad<br>Johnson based on the original work; layout/graphics work was done by murphzero<br>based on the original work. No permission to publish this document has been<br>obtained. This is not to be seen as a challenge to copyright, but rather as an<br>additional reference for owners of the game.</p>
+<h2 class="faction-symbols-heading"><span>Faction Symbols</span><span class="faction-symbols-icons"><img src="img/AT-logo.png" alt="ATreides"><img src="img/BG-logo.png" alt="Bene Gesserit"><img src="img/CH-logo-big.png" alt="CHOAM"><img src="img/EZ-logo-big.png" alt="Ecaz"><img src="img/EM-logo.png" alt="Emperor"><img src="img/FR-logo.png" alt="Fremen"><img src="img/HK-logo.png" alt="Harkonnen"><img src="img/IX-logo.png" alt="Ixians"><img src="img/MO-logo-big.png" alt="Moritani"><img src="img/RI-logo-big.png" alt="Richese"><img src="img/SG-logo.png" alt="Spacing Guild"><img src="img/TX-logo.png" alt="Tleilaxu"></span></h2>
+<p>Faction symbols have been included throughout the text to help identify where<br>faction advantages affect the rules as written. These advantages are summarized in<br>the Faction Advantage Summary boxes (like the one in the lower right of this page),<br>but their detailed rules can be found next to their matching symbol in the Faction<br>Player Sheets section starting on page 19.</p>
+<p>Faction symbols marked with <img class="inline" src="img/karama.png"> indicate they can be prevented with use of a<br>Karama Card. If only specific parts of an ability can be prevented by Karama or you<br>must choose which part of an ability is prevented by a Karama Card, this is<br>indicated by <img class="inline" src="img/karama.png"> following the sentence or phrase describing that ability. All Karama<br>annotation is meant to serve as an aid and assumes familiarity with the rules for<br>Karama, detailed on page 14.</p>
+<h2>Object of the game</h2>
+<p>Each faction has a set of unique economic, military, strategic, or treacherous<br>advantages. The object of the game is to use these advantages to gain control of<br>Dune. The winner is the player (or Alliance) occupying at least 3 (4) strongholds<br>with at least one of their forces during the Mentat Pause Phase.</p>
+<p><span class="outlined">If multiple unallied players occupy a game-winning number of strongholds, the<br>unallied player occupying the most strongholds wins.</span> If multiple players/Alliances<br>have a game-winning number of strongholds, those players/Alliances share the win<br>unless they decide as a group during the Mentat Pause Phase to play another full<br>turn, and if they wish, to increase the number of strongholds necessary to win.</p>
+<p><span class="BG">BG If the faction Bene Gesserit predicted wins in the turn predicted, Bene Gesserit win alone even if they were part of an alliance.</span></p>
+<p><span class="FR">FR If no faction has won by the end of Turn 10 and 1) Fremen forces (&plusmn; coexisting Ecaz forces) or no one occupy<br><strong>Sietch Tabr</strong> and <strong>Habbanya Sietch</strong> and 2) neither Harkonnen, ATreides,<br>Emperor, nor Richese occupies <strong>Tuek&rsquo;s Sietch</strong> (even if they are Fremen ally), Fremenwin the game.</span></p>
+<p><span class="SG">SG If no faction has been able<br>to win the game by the end of play, you have prevented control of Dune and<br>automatically win the game.</span></p>
+<div class="map-strongholds"><img src="img/map-arrakeen.png" alt="Arrakeen"><img src="img/map-carthag.png" alt="Carthag"><img src="img/map-habanya-sietch.png" alt="Habbanya Sietch"><img src="img/map-sietch-tabr.png" alt="Sietch Tabr"><img src="img/map-tueks-sietch.png" alt="Tuek's Sietch"></div>
+<h2>Setup</h2>
+<p>Place all Spice Tokens in the Spice Bank</p>
+<p>Shuffle the Spice Deck and Treachery Deck and place them face down next to the game board. Played cards will be piled up face up next to their respective decks as discards and rechuffled to restock the Spice Deck and Treachery Deck as necessary.</p>
+<p>Players now choose factions by either</p>
+<ol>
+<li>Using the faction cards from the Prediction Deck to randomly determine which faction each player will play. Shuiffle the cards and deal 1 card to each player.</li>
+<li>Randomly drawing turn prediction cards from the Prediction Deck and selecting factions in descending card order, starting with the highest card.</li>
+</ol>
+<p>If desired, players may swap factions with each other.</p>
+<h4 style="padding-left: 40px;">Two- &amp; Three-player games</h4>
+<p style="padding-left: 40px;">For a three-player game, recommended factions are ATreides, Harkonnen and Fremen. For a two-player game, try ATreides vs. Harkonnen, or play 2 factions each (select factions normally as described above). In either case, the number of strongholds needed to win is increased to 4.</p>
+<h4 style="padding-left: 40px;">Four- &amp; Five-player games</h4>
+<p style="padding-left: 40px;">For four players, consider leaving out both the Spacing Guild and Bene Gesserit; for five-player games try playing without Bene Gesserit.</p>
+<p>Players take their Player Shields and Player Sheets and set up their faction as follows:</p>
+<h3>1. Positions</h3>
+<p>Players Place their Player Marker on the player circle closest to their Player Shield and seat at the table. <span class="BG">BG predict one faction and turn to win.</span></p>
+<h3>2. Traitors</h3>
+<p>Remove the cards for all factions not in play from the Traitor Deck. Shuffle the cards thoroughly. <span class="EZ">EZ reveal 1 Ecaz Traitor Card randomy before dealing Traitor Cards.</span> Then deal each player 4 cards <span class="TX">except Tleilaxu</span>.</p>
+<p>Each player then secretly selects any 1 card to keep by placing their chosen card face down behind their Player Shield, returning the other cards face down to the bottom of the deck. <span class="HK">HK keep all 4 Traitor Cards dealt.</span></p>
+<p><span class="TX">TX After the non chosen Traitor Cards have been returned to the bottom of the deck, Tleilaxu receive the top 3 cards from the Traitor Deck.</span></p>
+<h3>3. Spice</h3>
+<p>Give each player spice from the Spice Bank equal to the number indicated by their Player Sheet. All spice holdings should be kept behind Player Shields.</p>
+<h3>4. Forces</h3>
+<p>Place each player's forces on the board as indicated by their Player Sheet. All remaining forces are paced in your reserves next to your Player Shield. <span class="FR">FR Distribute 10 forces between <em>Sietch Tabr</em>, <em>False Wall South</em>, and/or <em>False Wall West</em>, at your choice.</span> <span class="BG">BG <span class="FR">After Fremen placement, s</span><span class="no-FR">S</span>tart with 1 advisor in any territory.</span></p>
+<h3>5. Treachery</h3>
+<p>Deal 1 card from the Treackery Deck face down to each player<span class="HK">, deal 1 extra card to Harkonnen</span>. <span class="IX">IX Choose <span class="faction-count">#</span> Treachery Cards from initial deal, shuffle and deal remaining cards to other players<span class="HK">, giving 2 to Harkonnen</span>.</span></p>
+<h3>6. Game Turn Counter</h3>
+<p>Place the Game Turn Counter at 1, on the Turn Track.</p>
+<p><em><strong>Note: </strong>Faction special advantage may contradict the rules. A faction's particular advantages always take precedence over the rules.</em></p>
+<h2>Sequence of Play</h2>
+<p>DUNE is played over the course of up to 10 turns, each comprised of nine specific phases. Each turn must be completed in the excact sequence presented below. Each phase indicates which factions have special advantages.</p>
+<h3>1. Storm Phase FR IX RI</h3>
+<p>The storm marker moves. The faction whose Player Marker the storm next approaches will be te First Player for this turn.</p>
+<h3>2. Spice Blow and Nexus Phase FR RI</h3>
+<p>Turn over the top card of the Spice Deck and place the amount of spice shown on the card in the indicated sector of the highlighted territory. If Shai-Hulud appears a Nexus occurs, and players have the opportunity to make and break Alliances.</p>
+<h3>3. CHOAM Charity Phase BG CH</h3>
+<p>Players with 0 or 1 spice may claim CHOAM Charity.</p>
+<h3>4. Bidding Phase AT ch EM HK IX RI</h3>
+<p>Players bid spice to acquire Treachery Cards.</p>
+<h3>5. Revival Phase AT ch EZ EM FR IX TX</h3>
+<p>All players are allowed to reclaim forces and leaders from Tleilaxu Tanks.</p>
+<h3>6. Shipment and Movement Phase AT BG EZ FR IX MO RI SG</h3>
+<p>Starting with the <em>First Player </em>and proceeding <em>counterclockwise</em>, each player in turn ships forces to or from the planet and then moves their forces on the game board.</p>
+<h3>7. Battle Phase BG AT ch EZ EM FR HK IX MO RI TX</h3>
+<p>Players must resolve battles in every territory that is occupied by forces from two or more factions.</p>
+<h3>8. Spice Collection Phase BG EZ IX RI</h3>
+<p>Forces in the sewctor of a territory containing spice may collect that spice.</p>
+<h3>9. Mentat Pause Phase BG ch FR MO SG TX</h3>
+<p>Check to see if any player or Alliance has won the game. If there are no winners, move the Game Turn Counter to the next position on the Turn Track to begin the next turn.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-storm-grey.png" alt="">Phase 1: Storm Phase</h1>
+<section class="phase-callout first-storm">
+<h3>First Storm</h3>
+<p>During the Storm Phase of the first turn, place the Storm Marker at a randomlocation along the map edge using the following procedure: the two players whosePlayer Markers are nearest on either side of the Storm Start Sector secretly dial a number from 0 to 20 on the Battle Wheels. The two numbers are simultaneouslyrevealed and totaled, and the Storm Marker moved from the Storm Start Sectorcounterclockwise around the map the sum total of sectors.</p>
+<p><span class="IX">IX Then, Ixians place the HMS in any sector of any non-stronghold territory.</span></p>
+</section>
+<h4>Storm Movement</h4>
+<p><span class="IX">IX Before storm is revealed, may move HMS up to 3 territories, collecting 2 spice/force.</span></p>
+<p>&lt;&dagger;&gt;Beginning in Turn 2 (see First Storm at right), storm movement is determined by <span class="outlined">drawing a random card from the Storm Deck.</span> Move the storm counterclockwise the number of sectors indicated on the Storm Card. Shuffle the last revealed Storm Card into the Storm Deck before determining storm movement.</p>
+<p>FR look at the next Storm Card</p>
+<h4>Damage</h4>
+<p>Any forces in a sector of sand territory (except the Imperial Basin) over which thestorm passes or stops are killed. Place these forces in the Tleilaxu Tanks. Forcesthat are not in a sand territory find protection from the storm. In addition, anyspice in a sector of sand territory over which the storm passes or stops is removedto the Spice Bank.</p>
+<p><span class="FR">FR losses from storm movement are halved (rounded up).</span></p>
+<p><span class="RI">RI A No-Field Token must be revealed when caught in a storm.</span></p>
+<h4>Obstruction</h4>
+<p>Forces cannot move into, out of, or through a sector in storm. Forces do not battleif any of the forces are in storm or if forces are separated by the storm. If twoplayers&rsquo; forces occupy a stronghold under storm, their occupation does not counttoward a win.</p>
+<section class="first-player-order">
+<div class="first-player-order__text">
+<h4>First Player</h4>
+<p>The player who'se Player Marker the storm next approaches is the <em>First Player</em> for this turn.</p>
+</div>
+<img src="img/player-order.png" alt="Player order around the map"></section>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-spice-grey.png" alt="">Phase 2: Spice Blow and Nexus</h1>
+<section class="phase-callout first-spice-blow">
+<h3>First Spice Blow</h3>
+<p>During the first turn&rsquo;s Spice Blow Phase only, all Shai-Hulud cards turned overare ignored and set aside, then reshuffled back into the Spice Deck after thisphase.</p>
+</section>
+<p>Each Spice Blow and Nexus Phase, 2 Spice Cards are revealed and discarded to<br>separate discard piles, A and B as follows:</p>
+<h3>Spice Blow A</h3>
+<p>Reveal the top card of the Spice Deck.</p>
+<h4 style="padding-left: 40px;">Territory Card</h4>
+<p style="padding-left: 40px;">If the revealed card is a Territory Card, this indicates where a<br>Spice Blow appears. The amount of spice indicated on the<br>card is taken from the Spice Bank and placed onto the<br>corresponding territory in the sector containing the Spice<br>Blow icon. Place the card face up on Spice Deck discard pile<br>A (if the Spice Blow icon is currently in storm, no spice is<br>placed).</p>
+<h4 style="padding-left: 40px;">Shai-Hulud Card</h4>
+<p style="padding-left: 40px;">A sandworm is sighted.</p>
+<p style="padding-left: 40px;"><span class="FR"><img class="inline" src="img/FR-special-karama.png"> Fremen can place sandworm in any sand territory.</span></p>
+<p style="padding-left: 40px;">The Sandworm appears in the territory of the face-up card at the top of the discard pile of the Spice Deck.</p>
+<p style="padding-left: 40px;">Then the following occurs.</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>All spice and forces in the territory shown on the<br>card now face up in discard pile A are removed to<br>the Spice Bank and Tleilaxu Tanks, respectively.<br>Place the Shai-Hulud card face up on Spice Deck<br>discard pile A. <span class="FR"><img src="img/FR-karama.png"> Fremen forces are not devoured. They can ride the worm to any sector of any territory <span class="IX">(including HMS), </span>subject to storm and occupancy rules. Fremen can also protect their allies from sandworm.</span><span class="RI"> RI A No-Field token must be revealed when caught by a worm.</span></li>
+<li>Reveal the top card of the Spice Deck. If it is a Shai-Hulud it is<br>immediately discarded to Spice Deck discard pile A, and another card is<br>revealed. This continues until a Territory Card appears and is resolved. The<br>Territory Card is then placed face up on Spice Deck discard pile A. <span class="FR"><img src="img/FR-karama.png"> May choose territories when consecutive sandworms appear.</span></li>
+<li>Resolve a Nexus. During a Nexus, all players have a chance to make or<br>break Alliances. Once players have had a chance to do so, play continues<br>(see Alliances on page 13).</li>
+</ul>
+</li>
+</ul>
+<h3>Spice Blow B</h3>
+<p>Reveal the top card of the Spice Deck and repeat the above procedures using<br>Spice Deck discard pile B.</p>
+<h2 class="heading-with-icon"><img class="heading-icon" src="img/phase-charity-grey.png" alt="">Phase 3: CHOAM Charity</h2>
+<p><img src="img/CH-karama.png"> CHOAM Collect <span class="two-times-faction-count">0</span> spice; other factions collect CHOAM Charity from CHOAM.</p>
+<p>Beginning with the First Player and proceeding in counterclockwise order, each player with 0 or 1 spice may reveal the spice behind their Player Shield to collect spice from no-ch the Spice Bank ch CHOAM, to bring their total to 2 by calling out &ldquo;CHOAM Charity.&rdquo;</p>
+<p><img src="img/BG-karama.png"> Bene Gesserit always receive 2 spice of CHOAM charity.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-bidding-grey.png" alt="">Phase 4: Bidding</h1>
+<p><img src="img/RI-karama-big.png"> Richese may auction one Treachery Card from hand using a normal, Once-Around, or Silent-Auction.</p>
+<h3>Declaration</h3>
+<p>HK spkr During the bidding phase, Harkonnen can exchange up to 4 cards with any other player, replacing them with cards from their hand.</p>
+<p>Before bidding starts, all players declare how many Treachery Cards they hold. The default hand limit is 4. <span class="CH">ch can hold 5.</span> HK can hold 8.</p>
+<h3>Dealer</h3>
+<p>Deal cards from the Treachery Deck face down in a row, 1 card for each player<br>whose hand is not full. <span class="IX"><img src="img/IX-karama.png"> Draw one extra card, review all, place one on top or bottom of the Treackery Deck, and shuffle the others face down for bidding.</span></p>
+<h3>Auction</h3>
+<p><img src="img/IX-karama.png"> Once per phase Ixians replace card up for bid with one from hand (before ATreides see them).</p>
+<p><img src="img/AT-karama.png"> ATreides look at each card before it is bid on and can take notes.</p>
+<ul>
+<li>The First Player starts the bidding; if the First Player&rsquo;s hand is full (HK Harkonnen hand limit is 8. <span class="CH"><img src="img/CH-logo-big.png"> CHOAM hand limit is 5.</span>), the nextplayer to the right whose hand is not full opens the bidding.</li>
+<li>You must bid 1 or more spice or pass. If your hand is full, you cannot bid and<br>must pass. After your bid, bidding proceeds to the right. The next bidder may<br>raise the bid or pass and so on around the table until all players but one have<br>consecutively passed. You may bid on a card you previously passed on. The topbidding<br>player pays the number of spice they bid to the <span class="no-EM">Spice Bank</span><span class="EM"><img src="img/EM-karama.png"> Emperor</span>, and takes the<br>card. <span class="IX"><img src="img/IX-karama.png"> The <strong>ally </strong>of Ixians can look at the purchased card and discard it to draw 1 from the Treachery Deck.</span></li>
+</ul>
+<h4 style="padding-left: 40px;">Bid limit</h4>
+<p style="padding-left: 40px;">You cannot bid more spice than you have.</p>
+<h4 style="padding-left: 40px;">Next Starting Bidder</h4>
+<p style="padding-left: 40px;">In subsequent bidding during this phase, the first player who can bid, to the<br>right of the player who opened the bid for the previous card, begins the<br>bidding for the next card. In this way, every player who can bid gets a chance<br>to open the bidding for a Treachery Card.</p>
+<h4 style="padding-left: 40px;">End of Bidding</h4>
+<p style="padding-left: 40px;">Continue bidding for Treachery Cards until all cards available for bid have been auctioned off or a card is not bid on by anyone. If everyone passes on a card, return all remaining cards to the top of the Treachery Deck in their original order; the Bidding Phase is over.</p>
+<h4 style="padding-left: 40px;">Time Limit</h4>
+<p style="padding-left: 40px;">Each player must bid within 10 seconds of the previous player or they are assumed to have passed.</p>
+<h3>Transparency</h3>
+<p>The number (not the type) of Treachery Cards each player holds must always be open to everyone during the Bidding Phase.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-revival-grey.png" alt="">Phase 5: Revival</h1>
+<h3>Forces Revival</h3>
+<p><span class="HK">HK spkr During Revival Phase, Harkonnen can prevent one player from reviving forces and/or leaders.</span></p>
+<p>Starting with the First Player and proceeding in counterclockwise order, all players may revive up to 3 forces from the Tleilaxu Tanks:</p>
+<h4 style="padding-left: 40px;">Free</h4>
+<p style="padding-left: 40px;">You may revive the number of forces indicated on your Player Sheet for free. <span class="EM">EM can only revive 1 sardaurkar per turn.</span> FR Fremen can only revive 1 fedaykin per turn. <span class="FR"><img src="img/FR-karama.png"> Fremen may grant an ally 3 free revivals.</span><span class="TX"><img src="img/TX-karama.png"> Tleilaxu receive 1 spice from the Spice Bank for each faction using free revival, or a Ghola Card.</span><span class="TX"><img src="img/TX-karama.png"> Tleilaxu may increase other faction revival limits to 5 for a price asked.</span></p>
+<h4 style="padding-left: 40px;">For Spice</h4>
+<p style="padding-left: 40px;">Additional forces may be revived at a cost of 2 spice per force IX , Cyborgs cost 3 Spice to revive TX , Tleilaxu <strong>allies </strong>revive for &frac12; the price rounded up. All spice expended for force revival is no-TX placed in the Spice Bank TX paid to Tleilaxu. ch CHOAM revive for 1 spice per force with no limit in the number of revivals.</p>
+<h4 style="padding-left: 40px;">Limit</h4>
+<p style="padding-left: 40px;">A player can never revive more than a total of 3 forces per turn (including free revivals). <span class="CH">ch CHOAM has no limit.</span> EM Emperor may pay for 3 extra revivals on top of the regular 3. <span class="EM">EM spkr Emperor can revive up to 3 additional forces, or one leader for free.</span></p>
+<h4 style="padding-left: 40px;">To Reserves</h4>
+<p style="padding-left: 40px;">Revived forces are placed in your reserves</p>
+<h3>Leader Revival</h3>
+<p>In addition to force revivals, if all of your leaders are in the Tleilaxu Tanks or you have no leaders in your leader pool, you may revive 1 leader per turn until all of your killed leaders have been revived. <span class="AT">AT Can revive Kwisatz Haderach token before all leaders die.</span> Doesn't affect other leader revival. <span class="CH"><img src="img/CH-logo-big.png"> The Auditor is eligible to be revived every turn.</span> EZ Ecaz may always revive Duke Vidal for 5 spice, no matter how many of your leaders are in the Tleilaxu Tanks. <span class="TX"><img src="img/TX-karama.png"> Each faction can request Tleilaxu to revive 1 leader per phase at a price set by Tleilaxu.</span><span class="TX"><img src="img/TX-karama.png"> Tleilaxu may revive other factions' dead leaders and add them to their leader pool to a maximum pool size of 5.</span></p>
+<h3>Fighting Strength</h3>
+<p>To revive a leader, you must pay that leader&rsquo;s fighting strength in spice to <span class="no-TX">the Spice Bank</span><span class="TX"><img src="img/TX-karama.png">Tleilaxu</span>.</p>
+<p><img src="img/TX-logo.png"> Zoal revival cost is 3</p>
+<p>A revived leader can be played normally and is still subject to being a traitor.</p>
+<h3>Dead Again</h3>
+<p>If a revived leader is killed again, place it face down in the Tleilaxu Tanks. You cannot revive this leader again until all of your other revivable leaders have been revived, killed, and sent to the Tleilaxu Tanks again.</p>
+<p><span class="EZ">EZ Ecaz can pay spice to place AMbassador tokens in strongholds.</span></p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-shipment-grey.png" alt="">Phase 6: Shipment and Movement</h1>
+<p><span class="AT"><img src="img/AT-karama.png"> ATreides look at the next Spice Card.</span></p>
+<p>The First Player conducts their Force Shipment and then their Force Movement. Play proceeds to the right until all players have completed the phase. <span class="BG"><img src="img/BG-karama.png"> May flip advisors to fighters after Spice Blow &amp; Nexus Phase but before anyone ships.</span> IX spkr May move HMS up to 2 territories during their shipment and movement. <span class="SG"><img src="img/SG-karama.png"> May ship and move out of turn.</span></p>
+<h2>Forces Shipment</h2>
+<h3>Shipment of Reserves</h3>
+<p>You may make one Force Shipment of any number of forces from your reserves to any sector of any one territory on the map. <span class="BG"> BG may ship one advisor with each other player's off-planet shipperment. </span> <span class="EZ"> EZ may trigger Ambassador token effect for you or your ally, when non-matching non-ally ships or moves to its stronghold. EZ may enter and occupy the same territory as your ally. </span> <span class="FR"> FR may ship into storm at &frac12; loss (rounded up). FR must ship on-planet (for free) to any territory within 2 territories of <em>The Great Flat</em> (subject to storm and occupancy). </span> <span class="MO"> MO when non-ally ships or moves to a stronghold with a Terror token, you may reveal the Terror token or offer to enter into an Alliance. <img class="inline" src="img/karama.png"> </span> <span class="RI">RI may instead ship 1 No-Field Token from behind your player screen. <img class="inline" src="img/karama.png"> Ally may instead ship using 1 No-Field Token from behind your player screen, revealed immediately. <img class="inline" src="img/karama.png"> <img src="img/SG-karama.png"> May instead cross-ship or ship to reserves. <img src="img/SG-karama.png"> Allies may cross ship and pay &frac12; price (rounded up) for all shipments. SG spkr May stop one off-planet shipment.</span></p>
+<h4>Payment</h4>
+<p><span>You must pay spice <span class="no-SG">no-SG to the Spice Bank</span><span class="SG">SG to the Spacing Guild</span>, for your Force Shipment. The cost of shipping is 1 spice per force shipped into any stronghold and 2 spice per force shipped into any other territory. <img src="img/SG-karama.png"> May ship one advisor with each other player's off-planet shipment. <img src="img/SG-karama.png"> Ship for &frac12; the price (rounded up).</span></p>
+<h4>Exceptions</h4>
+<p><strong>Storm: </strong>You cannot ship into a sector in storm. <img src="img/FR-karama.png"> May ship into storm at &frac12; loss (rounded up)</p>
+<p><strong>Strongholds:</strong> You cannot ship into a stronghold already occupied by two other players. BG Advisors do not grant ornithopter access nor count against the 2-faction limit.</p>
+<p><strong>One-Way: </strong>You cannot ship forces from the board back to your reserves. <img src="img/SG-karama.png"> <span class="RI">May instead cross-ship or ship to reserves. </span></p>
+<h2>Forces Movement</h2>
+<p>You may make one Force Movement per turn. For your Force Movement you may move, as a group, any number of your forces from one territory to any sector of any one adjacent territory. Forces are free to move into, out of, or through any territory occupied by any number of forces with certain restrictions and an advantage mentioned below. <span class="BG"><img src="img/BG-karama.png"> May flip fighters to advisors when another faction enters the territory.</span> EZ May trigger Ambassador token effect for themselves or ally. <span class="EZ">EZ May enter and occupy the same territory as their ally.</span> <img src="img/FR-karama.png"> May move up to 2 territories. <span class="MO"><img src="img/MO-karama-big.png"> When non-ally ships or moves to a stronghold with a Terror token, you may reveal the Terror token <img class="inline" src="img/karama.png"> or offer to enter into an Alliance.</span> <img class="inline" src="img/karama.png"></p>
+<h3>Ornithopters</h3>
+<p>If you start a Force Movement (including a Hajr Force Movement) with one or more forces in either <strong><em>Arrakeen</em></strong>, <strong><em>Carthag</em></strong>, or both, you have access to ornithopters and may move your forces up to <strong>three </strong>territories distance; the forces moved do not have to be in <em>Arrakeen </em>or <em>Carthag </em>to make a three-territory move. For example, a player with one or more forces in <em>Arrakeen </em>would be able to move forces starting in <em>Tuek's Sietch </em>through <em>Pasty Mesa </em>and <em>Shield Wall </em>to the <em>Imperial Basin</em>. BG Advisors do not grant ornithopter access.</p>
+<h3>Sectors</h3>
+<p>Sectors have no effect on movement distance. Forces can move through a territory ignoring all sectors. However, moving forces to a different sector in the same territory is not free and can only be done as your Force Movement.</p>
+<h3>Storm</h3>
+<p>As described in the Storm Phase, no force may move into, out of, or through a sector in storm. Many territories span several sectors, allowing you to move into and out of a territory that is partly in storm, so long as the move does not pass through the sector in storm.</p>
+<ul>
+<li>The <em>Polar Sink </em>is never in storm.</li>
+</ul>
+<h3>Stronghold Blocking</h3>
+<p>As with Force Shipment, forces cannot be moved into or through a stronghold if forces of two other players are already there. <span class="BG">BG Advisors do not count against the strongold 2-faction limit.</span> <img src="img/MO-karama-big.png"> May add Duke Vidal to your leader pool at end of phase if conditions are met.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-battle-grey.png" alt="">Phase 7: Battle</h1>
+<h2>Battle Determination</h2>
+<p>Wherever two or more players' forces occupy the same territory, battles must occur between those players. Advisors do not trigger or participate in battles. <span class="EZ">EZ Ecaz forces coexist peacefully with their ally.</span></p>
+<p>Battles continue until no more than one player's forces remain in each territory on the map with two exceptions:</p>
+<ul>
+<li>Players cannot battle one another in a territory if any of the forces are in storm or if forces are separated by the storm. Their forces remain in the same territory at the end of the phase. If two unallied players' forces occupy a stronghold under storm, their occupation does not count toward a win.</li>
+</ul>
+<ul>
+<li>Players cannot battle in the Polar Sink. It is a free haven for everyone.</li>
+</ul>
+<h4>First Player</h4>
+<p>When resolving battles, the <em>First Player</em> is named the aggressor until all of their battles, if any, have been fought. The aggressor chooses the order in which they wish to fight their battles. Then the player to their immediate right becomes the aggressor and so on, until all battles are resolved.</p>
+<p>If three or more players are in the same territory, the aggressor picks who they will battle first, second, etc. for as long as they survive.</p>
+<h3>Battle Plan</h3>
+<p><span>To resolve a battle, each player secretly formulates a <strong>Battle Plan</strong>. A Battle Plan includes the total strength you are committing to the battle and, if possible, it must also include a leader or cheap hero. Additionally, it may include Treachery Cards at the player's discretion. </span></p>
+<ul>
+<li><span><img src="img/BG-karama.png"> Force opponent to play or not play a specific card or type of card in their, or their ally's battle<span class="AT">AT (before ATreides prescience)</span>. </span></li>
+<li><span><img src="img/AT-karama.png"> ATreides can use Prescience to force reveal one Battle Plan element for th<img src="img/em-karama.png"> or their ally <img class="inline" src="img/karama.png"></span><span class="RI"> and not the number dialed against No-Field token. AT spkr ATreides may force their opponent reveal the entire battle plan.</span></li>
+<li><span class="RI"><img src="img/EZ-karama.png"> Ecaz coexisting forces battle jointly with their ally in their ally's battles.</span></li>
+<li><span class="RI">EZ spkr Ecaz may add different leader discs to their number deialed if played no weapon or defense.</span></li>
+</ul>
+<h4>Battle Wheel</h4>
+<p>Pick up a Battle Wheel and secretly dial a number from zero to the maximum strength you have in the disputed territory. Regardless of the battle's outcome, you will lose a number of forces whose strength equals the number dialed on your Battle Wheel. One-half increments can be indicated by lining up the line between the numbers with the line under the window of the Battle Wheel. The strength of your forces is determined as follows:</p>
+<ul>
+<li>Each force used in a battle has a default strength of 0.5. Strength is doubled for each force you spend 1 spice to support. <span class="EM"><img src="img/EM-karama.png"> Sardaukar are 2&times; strength.</span> <img src="img/FR-karama.png"> Forces do not need spice for full strength. <span class="FR"><img src="img/FR-karama.png"> Fedaykin are 2&times; stregth.</span> IX Cyborgs are 2&times; strength. Suboids are always 0.5 strength (can't be boosted with spice).</li>
+<li>When creating a Battle Plan, you must add the amount of spice you are using to support your forces to your Battle Wheel. Win or lose, spice used in your Battle Plan goes to the Spice Bank. <span class="CH"><img src="img/CH-karama.png"> Other factions pay &frac12; of their spice support to CHOAM.</span> <img class="inline" src="img/karama.png"> CHOAM may pay for some or all of their ally's spice support (to the Spice Bank). <img class="inline" src="img/karama.png"></li>
+</ul>
+<h4>Leaders</h4>
+<p>Select one Leader Disc and place it face up in the slot on your Battle Wheel. You may alternately play a Cheap Hero Card in lieu of a Leader Disc. <span class="AT"><img src="img/AT-karama.png"> Kwisatz Haderach token adds +2 to leader strength &amp; accompanied leader cannot turn traitor.</span></p>
+<ul>
+<li>If possible, you must always play a leader or cheap hero as part of your Battle Plan.</li>
+</ul>
+<ul>
+<li>If you cannot play a leader and are not playing a Cheap Hero Card, you must announce so prior to revealing battle plans; you cannot play any Treachery Cards as part of your Battle Plan.</li>
+</ul>
+<ul>
+<li>A cheap hero contributes 0 fighting strength to a battle; however, they allow you to retain the option of playing Treachery Cards.</li>
+<li>Leaders that survive battles may fight more than once in a single territory if needed, but no leader may fight in more than one territory during the same phase. To remind you of this, leave the leader disc of any leader who survives a battle in the territory the battle was fought in until the end of the phase. This leader is subject to any subsequent battle results that affect the entire territory (i.e., a lasgun/shield explosion).</li>
+</ul>
+<h4>Treachery Cards</h4>
+<p>Players with a leader or cheap hero may play a Weapon Treachery Card, Defense Treachery Card, both, or neither, by holding any played cards against their Battle Wheel. Alternately, up to 2 Worthless Cards may be played; 1 each in place of your Weapon and/or Defense.</p>
+<h4>Revealing Wheels</h4>
+<p>When both players are ready, Battle Plans are revealed simultaneously. <span class="RI">RI A No-Field Token participating in a battle must be revealed when the Battle Plans are revealed.</span></p>
+<h3>Battle Resolution</h3>
+<h4>Weapons</h4>
+<p>If your opponent played a Weapon Treachery Card and you did not play the proper Defense Treachery Card, your leader is killed, and their fighting strength does not count toward your total fighting strength. Both leaders can be killed and neither count in the battle. <span class="CH"><img src="img/CH-karama.png"> Auditor allows CHOAM to look at 1 or 2 random cards in opponent's hand.</span></p>
+<h5 style="padding-left: 40px;"><em>Killed Leaders</em></h5>
+<p style="padding-left: 40px;">Killed leaders are immediately placed in the Tleilaxu Tanks. The winner of the battle immediately receives spice from the Spice Bank equal to the total fighting strength of all leaders killed in the battle (including their own leader, if killed).</p>
+<h4>Winner</h4>
+<p>The winner is the player with the highest total fighting strength. Fighting strength is determined by totaling the number dialed on your Battle Wheel and your leader's fighting strength, if they were not killed.</p>
+<h5 style="padding-left: 40px;"><em>No Ties</em></h5>
+<p style="padding-left: 40px;">In the case of a tie, the aggressor wins.</p>
+<h3>Losing</h3>
+<p>The losing player loses all of their forces in the territory to the Tleilaxu Tanks and must discard every Treachery Card they used in their Battle Plan. Note that the loser does not lose their leader as a result of the battle's outcome; leaders are killed only by Weapon Treachery Cards. <span class="MO">MO After losing, amy assassinate leader if Traitor Card matches faction, even if it's not the same leader.</span> Their Ally may keep one Treachery Card they would normally lose. <span class="MO">MO spkr After losing, Moritani can force opponent to discard or keep played treachery cards.</span></p>
+<h3>Winning</h3>
+<p>The winning player loses a number of forces whose strength equals the number dialed on their Battle Wheel. These forces are placed in the Tleilaxu Tanks (you still win a battle if you lose all of your forces). If the card text allows, the winning player may keep or discard any of the cards they played. <span class="HK"><img src="img/HK-karama.png"> After Harkonnen win a battle, may capture or kill 1 random leader from the loser.</span></p>
+<p>When the battle winner takes losses, they may do so in any manner as long as it agrees with the strength dialed and the spice expended. <span class="IX"><img src="img/IX-karama.png"> After a battle, surviving Suboids can be exchanged for Cyborgs lost in that battle.</span></p>
+<p>For example, the Emperor player has 1 Sardaukar (worth 2 forces) and 5 ordinary forces in a territory in battle. The Emperor dialed a strength of 3 and expended 1 spice.</p>
+<p>The Emperor player wins the battle, and they may choose to lose 1 Sardaukar force at full strength (2) and 2 ordinary forces at half strength (&frac12; + &frac12;) or they may lose 1 ordinary force at full strength (1) and 4 ordinary forces at half strength (&frac12; + &frac12; + &frac12; + &frac12;).</p>
+<p>In one case, 1 Sardaukar and 2 ordinary forces are lost. In the other case, 5 ordinary forces are lost. Either choice fulfills the Emperor player's spice/strength requirement.</p>
+<h3>Traitors</h3>
+<p>If you are in a battle and your opponent uses a leader that matches a Traitor Card you control, you may optionally call out "Traitor!" and pause the game. <span class="HK"><img src="img/HK-karama.png"> May reveal traitors against their ally's opponent.</span> TX May reveal Face Dancer matching leader who won any battle, to replace winners forces with Tleilaxu forces and kill the Face Dancer leader.</p>
+<h4>The Traitor Card is revealed.</h4>
+<h5 style="padding-left: 40px;">The Player Who Revealed the Traitor Card</h5>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Immediately wins the battle.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Does not lose the forces or spice committed in their Battle Plan (even if a lasgun and shield are revealed).</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Places the traitorous leader in the Tleilaxu Tanks and receives the traitorous leader's fighting strength in spice from the Spice Bank.</li>
+</ul>
+</li>
+</ul>
+<h5 style="padding-left: 40px;">The Player Whose Traitor Was Revealed</h5>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Loses all of their forces in the territory to the Tleilaxu Tanks.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Loses all spice committed.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Discards all of the cards they played.</li>
+</ul>
+</li>
+</ul>
+<h5 style="padding-left: 40px;">Two Traitors</h5>
+<p style="padding-left: 40px;">If both players reveal a Traitor Card, both players' forces in the territory, their cards played, and their leaders, are lost. Neither player gets any spice.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-collection-grey.png" alt="">Phase 8: Spice Collection</h1>
+<p>During every Spice Collection Phase, the current occupants of <em>Carthag </em>and <em>Arrakeen </em>collect 2 spice and the current occupant of <em>Tuek's Sietch </em>collects 1 spice. If you occupy more than one of these strongholds, collect spice for each that you occupy. <span class="EZ"><img src="img/EZ-karama.png"> Ecaz and their ally collect full spice for strongholds where they coexist.</span></p>
+<p>If you have forces in the sector of a territory containing spice you may now collect that spice. This is done by taking 3 spice per force if you occupy <em>Carthag </em>or <em>Arrakeen </em>or 2 spice per force if you do not occupy <em>Carthag </em>or <em>Arrakeen</em>. BG Advisors cannot collect spice. EZ Split spice from desert territories where they coexist with an ally, unless they agree otherwise. IX Cyborgs collect 3 spice each. RI An unrevealed No-Field Token counts as 1 force for spice collection.</p>
+<p>Uncollected spice remains where it is for future turns.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-mentat-grey.png" alt="">Phase 9: Mentat Pause</h1>
+<p><span class="BG">BG If the faction they predicted win in the turn predicted, Bene Gesserit win the game alone.</span></p>
+<p><span class="CH"><img src="img/CH-karama.png"> CHOAM may place Inflation Token on CHOAM Charity space of Phase Track.</span></p>
+<p><span class="FR">FR Special victory condition.</span></p>
+<p><span class="MO"><img src="img/MO-karama-big.png"> May place or move 1 Terror token.</span></p>
+<p><span class="SG">SG Special victory condition.</span></p>
+<p><span class="TX"><img src="img/TX-karama.png"> May discard 1 unrevealed Face Dancer to draw a new one.</span></p>
+<p>Each player collects all of the spice in front of their Player Shield.</p>
+<p>If an unallied player occupies at least 3 strongholds with at least one of their forces, that player wins the game. <span class="outlined">If multiple unallied players occupy a game-winning number of strongholds, the unallied player occupying the most strongholds wins.</span></p>
+<p>Note: If two unallied players' forces occupy a stronghold under storm, their occupation does not count toward win.</p>
+<p>If an Alliance occupies a total of at least 4 strongholds with one or more forces during the Mentat Pause Phase, that Alliance wins the game. If multiple players/ Alliances have a game-winning number of strongholds, those players/Alliances share the win unless they decide as a group during the Mentat Pause Phase to play another full turn, and if they wish, to increase the number of strongholds necessary to win.</p>
+<p><span class="EZ">EZ If Ecaz and their ally coexist in at least 3 strongholds at the end of the Mentat Phase, thei win.</span></p>
+<p>If there are no winners, move the Game Turn Counter to the next position on the Turn Track to begin the next turn.</p>
+<p>For example, if the ATreides are in an Alliance with the Fremen, and the Fremen occupy <em>Sietch Tabr</em> and <em>Carthag </em>and the ATreides occupy <em>Tuek's Sietch </em>and <em>Arrakeen </em>during the Mentat Pause Phase, and no other player/Alliance occupies a game-winning number of strongholds, The ATreides and Fremen win the game together.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/phase-nexus.png" alt="">Alliances (Nexus)</h1>
+<p>A Nexus occurs when a Shai-Hulud card is turned over during the Spice Blow and Nexus Phase after the first turn. During a Nexus, all players have a chance to make and/or break Alliances. Once players have had a chance to do so, play continues.</p>
+<h3>Forming an Alliance</h3>
+<h4>Basics</h4>
+<p>No more than two players may be in an Alliance. The win condition for Alliances is occupying 4 strongholds.</p>
+<h4>Discussion</h4>
+<p><span class="outlined">For up to five minutes</span>, players may discuss among themselves the advantages and disadvantages of allying, and with whom.</p>
+<h4>Transparency</h4>
+<p>The members of an Alliance must be revealed to all. Alliances cannot be secret. Swap Alliance Cards as a reminder of who is in an Alliance.</p>
+<h4>Limits</h4>
+<p>Several Alliances can be formed during a Nexus, but no player can be a member of more than one Alliance. Once all players have had a chance to ally, no further Alliances can be made or broken until the next Nexus.</p>
+<h3>Breaking An Alliance</h3>
+<h4>Breaking</h4>
+<p>Any player may break an Alliance during a Nexus by announcing that they are breaking from an Alliance.</p>
+<h4>Forming Another</h4>
+<p>Players who break from an Alliance have an opportunity to immediately form a new Alliance.</p>
+<h3>How an Alliance Functions</h3>
+<h4>Winning</h4>
+<p>If an Alliance occupies a total of at least 4 strongholds with one or more forces during the Mentat Pause Phase, that Alliance wins the game.</p>
+<h4>Constraint</h4>
+<p>Allies may never battle one another. If forces of allied factions are present in the same territory (except the <em>Polar Sink</em>) at the end of <span class="outlined">either player's</span> shipment and movement, the forces in that territory from the player whose shipment and movement just concluded are lost to the Tleilaxu Tanks. BG Advisors do not trigger the alliance constraint.</p>
+<h4>Bidding</h4>
+<p>During the Bidding Phase, allies may help pay for each other's Treachery Cards. To do so, they contribute to the card's purchase by paying spice up to, but not more than, the card's purchase price. You cannot bid more than the total of the spice you have plus the spice that your ally is willing to give to help pay for a card. <span class="EM"><img src="img/EM-karama.png"> Unless transferred directly to the purchasing player using the Emperor's alliance ability, any spice the Emperor pays for their ally's Treachery Card purchase goes to the Spice Bank.</span> RI Any spice Richese pays toward their ally's purchase in a Richese Treachery Card or Black Market auction goes to the <span class="EM">EM Emperor</span><span class="no-EM">Spice Bank</span>.</p>
+<h4>Shipment</h4>
+<p>During the Shipment and Movement Phase, allies may help pay for each other's shipments. To do so, they contribute to the shipment's payment by paying spice up to, but not more than, the shipment's cost. Any spice the Spacing Guild pays for their ally's shipment goes to the Spice Bank.</p>
+<h4>Alliance Abilities</h4>
+<p>Allies may assist one another as specified on their Player Sheets.</p>
+<h2>Secrecy</h2>
+<p>Unless indicated by a card effect or faction advantage, any player may share any information they choose with any other player at any time, either publicly or privately. Players are never required to keep their cards, spice holdings, or the traitors they selected secret. They also are not obligated to reveal this information either.</p>
+<p>All spice holdings should be kept behind Player Shields. The number of Treachery Cards held must be kept open during the Bidding Phase but can be kept secret at all other times. Discard piles are not public information and may not be searched unless an effect allows you to do so (e.g., Nullentropy Box).</p>
+<h2>Bribery</h2>
+<p>Players who are not members of the same Alliance can make any kind of verbal deals or bribes between one another. Once made, these deals and bribes must be stated aloud and must be honored. A player cannot renege on a deal or bribe. If part of a deal becomes impossible to honor, then that part of the deal is void. All parties of a deal may agree to nullify the deal at any time.</p>
+<p>A deal or bribe cannot involve the transfer or gift of Treachery Cards, leaders, forces, or faction advantages. This leaves secret information, future actions, and, of course, spice. Spice transferred as part of a deal or bribe is placed in FRONT of the recipient's Player Shield. Players may collect spice from in front of their Player Shield and add it to their normal spice only at the start of each turn's Mentat Pause phase. <span class="EM"><img src="img/EM-karama.png"> Emperor may transfer any amount of spice to allies at any time for any reason.</span></p>
+<p>A player cannot make a deal or bribe that would contravene the rules or the player's faction advantages. These are the only limitations.</p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/icon-karama-cards.png" alt="">Karama Cards</h1>
+<p><span class="outlined">Karama Cards are Treachery Cards that allow you to gain a one-time special advantage or to prevent one use of an opponent's faction advantage. <span class="BG">BG May use worthless Cards as Karama Cards. &lt;&gt;Revised Karama Card text and clarifications are included below (aligned to the CHOAM expansion replacement card):</span></span></p>
+<p style="padding-left: 40px;">After game setup and factions have completed their "AT Start" actions, use this card to stop one use of a faction advantage (including alliance abilities) when a player attempts to use it. When used on faction advantages during a battle this must be played before Battle Plans are revealed.</p>
+<p style="padding-left: 40px;">Or, this card may be used to do one of the following when appropriate:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Purchase any player's Force Shipment at Guild rates (&frac12; normal), paid to the Spice Bank.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Bid more spice than you have (without revealing this card) and/or purchase a Treachery Card without paying spice for it (cannot be used for Richese Auctions or if your hand is full).</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Use your faction's Special Karama Power (limit once per game).</li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">Cannot be used to stop a Special Victory Condition or Special Karama Power. Discard after use.</p>
+<p><span class="outlined">Use of a Karama Card to prevent the use of faction advantages that are not restricted to a specific timing or resource prevents their use for that specific effect rather than for a single instance (e.g., the Emperor sharing spice with their ally for bidding on a specific Treachery Card or for supporting troops in a specific battle).</span></p>
+<p><span class="outlined">If a Karama Card is used to stop one of your faction advantages, you may modify your action as long as the modification abides by the effects of the Karama Card (e.g., as the Fremen, you may change your movement after a Karama Card prevents you from moving two territories as long as your new move is to an adjacent territory).</span></p>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/icon-karama-cards.png" alt="">Faction Advantages Prevented by Karama</h1>
+<table class="karama-prevention-table">
+<thead>
+<tr>
+<th colspan="2">Faction advantages that may be prevented by <em>Karama</em> are included in the following table and are marked with <img class="karama-header-icon" src="img/icon-karama-white.png" alt=""> throughout the rules.</th>
+</tr>
+</thead>
+<tbody class="AT">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/AT-special-karama.png" alt="">ATreides</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent ATreides from looking at a card up for bidding.</td>
+<td>Prevent ATreides (or ally) from knowing one part of a battle plan.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent ATreides from looking at a Spice Card.</td>
+<td>Prevent ATreides from using the Kwisatz Haderach token in any one battle.</td>
+</tr>
+</tbody>
+<tbody class="BG">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/BG-logo.png" alt="">Bene Gesserit</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Bene Gesserit from using a Worthless Card as a Karama; the Worthless Card must be discarded.</td>
+<td>Prevent Bene Gesserit from shipping a Spiritual Advisor.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Bene Gesserit from collecting CHOAM Charity when holding 2+ spice.</td>
+<td>Prevent Bene Gesserit (or ally) from using the Voice in any one battle.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Bene Gesserit from flipping one group of tokens to or from advisors.</td>
+<td></td>
+</tr>
+</tbody>
+<tbody class="CH">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/CH-special-karama.png" alt="">CHOAM</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent CHOAM from discarding one Worthless Card/set of duplicates for spice.</td>
+<td>Prevent CHOAM from receiving payment for spice support in any one battle.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent CHOAM from discarding a Worthless Card for its special effect.</td>
+<td>Prevent an audit by the Auditor in any one battle.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent CHOAM from collecting 2 spice/faction and paying out CHOAM Charity.</td>
+<td>Prevent CHOAM from placing their Inflation Token this turn.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Limit CHOAM&rsquo;s force revival to 3 (or 5 if Tleilaxu allows), paid at full price.</td>
+<td>Prevent CHOAM from trading a Treachery Card with their ally.</td>
+</tr>
+</tbody>
+<tbody class="EZ">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/EZ-special-karama.png" alt="">Ecaz</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Ecaz from placing any Ambassadors this turn.</td>
+<td>Prevent Ecaz (but not their ally) from collecting spice for co-occupying strongholds.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Force the lead faction in a co-occupied battle to dial their own forces, and their ally&rsquo;s forces to count as zero.</td>
+<td></td>
+</tr>
+</tbody>
+<tbody class="EM">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/EM-special-karama.png" alt="">Emperor</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Emperor giving spice to an ally for one specific effect.</td>
+<td>Prevent Emperor from reviving 3 extra forces for their ally.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Emperor from receiving payment for one Treachery Card.</td>
+<td>Force all Sardaukar to be treated as normal forces in any one battle.</td>
+</tr>
+</tbody>
+<tbody class="FR">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/FR-special-karama.png" alt="">Fremen</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Fremen from viewing the next storm movement card.</td>
+<td>Prevent Fremen from granting ally 3 free revivals.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Force one group of Fremen forces to take full losses from storm movement.</td>
+<td>Prevent Fremen from shipping into storm at half losses.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Cause the Fremen to be eaten by a sandworm instead of being able to ride it.</td>
+<td>Limit Fremen movement to 1 territory (without ornithopters).</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Fremen protection of ally&rsquo;s forces from one sandworm.</td>
+<td>Force all Fedaykin to be treated as normal forces in any one battle.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Fremen from choosing placement of one sandworm.</td>
+<td>Force Fremen to expend spice to count forces at full strength in any one battle.</td>
+</tr>
+</tbody>
+<tbody class="HK">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/HK-special-karama.png" alt="">Harkonnen</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Harkonnen from gaining an extra card during bidding.</td>
+<td>Prevent Harkonnen from revealing a traitor in their ally&rsquo;s battle.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Harkonnen from capturing a leader after any one battle.</td>
+<td></td>
+</tr>
+</tbody>
+<tbody class="IX">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/IX-special-karama.png" alt="">Ixians</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Hidden Mobile Stronghold from moving and collecting spice.</td>
+<td>Limit Cyborg movement to 1 territory (without ornithopters).</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Ixians from looking at the Treachery Cards that will be part of the auction and drawing an extra card to place on top or bottom of the deck.</td>
+<td>Prevent Suboids from replacing Cyborgs after any one battle.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Ixian replacement of a Treachery Card during bidding.</td>
+<td>Note: Karama has no effect on Suboid strength.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Ixian ally from discarding a purchased Treachery Card.</td>
+<td></td>
+</tr>
+</tbody>
+<tbody class="MO">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/MO-special-karama.png" alt="">Moritani</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Moritani from placing or moving a Terror token this turn.</td>
+<td>Prevent Moritani from forming one Alliance during the Shipment and Movement Phase.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Moritani from acquiring Duke Vidal this turn.</td>
+<td></td>
+</tr>
+</tbody>
+<tbody class="RI">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/RI-special-karama.png" alt="">Richese</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Richese from conducting a Black Market auction this turn.</td>
+<td>Prevent Richese (or ally) from making one No-Field Token shipment.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Richese from auctioning a Richese Treachery Card this turn.</td>
+<td>Prevent Richese from giving their ally a Richese Treachery Card from hand.</td>
+</tr>
+</tbody>
+<tbody class="SG">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/SG-special-karama.png" alt="">Spacing Guild</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Spacing Guild from taking shipment and movement out of turn.</td>
+<td>Prevent Spacing Guild (or ally) from using half-price shipping rates once.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Spacing Guild from receiving payment for one shipment.</td>
+<td>Prevent Spacing Guild (or ally) from cross-shipping or shipping to reserves.</td>
+</tr>
+</tbody>
+<tbody class="TX">
+<tr class="karama-faction-row">
+<th colspan="2"><img class="karama-faction-icon" src="img/TX-special-karama.png" alt="">Tleilaxu</th>
+</tr>
+<tr class="karama-advantage-row">
+<td>Limit force revival to 3 for all players.</td>
+<td>Prevent early revival of one leader.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Force Tleilaxu (or ally) to pay full price for revival.</td>
+<td>Prevent Tleilaxu from gaining another player&rsquo;s specific leader as Ghola this turn.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent payment to Tleilaxu for one revival.</td>
+<td>Prevent Tleilaxu from replacing a Face Dancer card during the Mentat Pause Phase.</td>
+</tr>
+<tr class="karama-advantage-row">
+<td>Prevent Tleilaxu from receiving spice for players using free revival or a Ghola Card.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 class="heading-with-icon"><img class="heading-icon" src="img/icon-karama-cards.png" alt="">Special Karama Powers</h1>
+<table class="special-karama-powers"><caption>Special <em>Karama Powers</em> <small>(Once per game, may play a <em>Karama</em> card to activate a Special <em>Karama</em> Power)</small></caption>
+<thead>
+<tr>
+<th scope="col">Power</th>
+<th scope="col">Phase Played</th>
+</tr>
+</thead>
+<tbody>
+<tr class="AT">
+<td><img class="special-karama-icon" src="img/AT-special-karama.png" alt="">ATreides look at any one player's entire Battle Plan.</td>
+<td>Battle</td>
+</tr>
+<tr class="CH">
+<td><img class="special-karama-icon" src="img/CH-special-karama.png" alt="">CHOAM discard Treachery Cards from hand to gain 3 spice per card.</td>
+<td>AT any time</td>
+</tr>
+<tr class="EZ">
+<td><img class="special-karama-icon" src="img/EZ-special-karama.png" alt="">Ecaz add difference between your leader and opponent leader in battle if you don't play a weapon or defense.</td>
+<td>Battle</td>
+</tr>
+<tr class="EM">
+<td><img class="special-karama-icon" src="img/EM-special-karama.png" alt="">Emperor revive up to 3 forces or 1 leader for free.</td>
+<td>Revival</td>
+</tr>
+<tr class="FR">
+<td><img class="special-karama-icon" src="img/FR-special-karama.png" alt="">Fremen place sandworm token in any sand territory, triggering a Nexus.</td>
+<td>Spice Blow and Nexus</td>
+</tr>
+<tr class="HK">
+<td><img class="special-karama-icon" src="img/HK-special-karama.png" alt="">Harkonnen take &amp; return up to 4 Treachery Cards from another player.</td>
+<td>Bidding</td>
+</tr>
+<tr class="IX">
+<td><img class="special-karama-icon" src="img/IX-special-karama.png" alt="">Ixian move Hidden Mobile Stronghold 2 territories during their Shipment and Movement in addition to their Force Movement.</td>
+<td>Shipment and Movement</td>
+</tr>
+<tr class="MO">
+<td><img class="special-karama-icon" src="img/MO-special-karama.png" alt="">Moritani force your opponent to discard or keep any or all of the Treachery Cards they played.</td>
+<td>Battle</td>
+</tr>
+<tr class="RI">
+<td><img class="special-karama-icon" src="img/RI-special-karama.png" alt="">Richese pay 3 spice to secretly buy 1 Richese Treachery Card.</td>
+<td>AT any time</td>
+</tr>
+<tr class="SG">
+<td><img class="special-karama-icon" src="img/SG-special-karama.png" alt="">Spacing Guild stop one off-planet shipment of any one player.</td>
+<td>Shipment and Movement</td>
+</tr>
+<tr class="TX">
+<td><img class="special-karama-icon" src="img/TX-special-karama.png" alt="">Tleilaxu prevent a player from reviving forces and leaders.</td>
+<td>Revival</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Note: </strong>Bene Gesserit have no Special Karama Power.</em></p>
+<h1>Variants</h1>
+<p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include.</p>
+<h2>Tech Tokens</h2>
+<h3>Controlling Tech Tokens</h3>
+<p>Tech Tokens indicate that a faction controls a specific industry and are kept in front of Player Shields. If you defeat a faction in battle that has 1 or more Tech Tokens, you take the Tech Token of your choice from them.</p>
+<p>A single player controlling all 3 Tech Tokens counts as a Stronghold for winning the game (allies cannot share control of Tech Tokens).</p>
+<h4>Assigning Tech Tokens</h4>
+<p>AT the start of the game, the Tleilaxu control the Axlotl Tanks, the Ixians control Heighliners, and the Fremen control Spice Production. In games where any of these factions are not present, after placing the Storm in the first turn, each uncontrolled Tech Token is assigned randomly to the next faction in turn order without a Tech Token until all Tech Tokens are controlled and no player controls more than 1 Tech Token.</p>
+<h4>Tech Token Income</h4>
+<p>Each Tech Token that you control can potentially provide income from the Spice Bank. Any spice gained from Tech Tokens is placed on the Tech Token and then collected at the end of the current phase. Each Tech Token indicates in which phase the Tech Token is activated and which faction does not trigger that Tech Token's income.</p>
+<table class="tech-token-income-table">
+<tbody>
+<tr>
+<td><img src="img/tech-token-axolotl.png" alt=""></td>
+<td><strong>AXLOTL TANKS</strong>If at least one player, including you, takes free revival, you collect 1 spice for every Tech Token you control. However, if only the Tleilaxu player takes free revival, you do not collect spice.</td>
+</tr>
+<tr>
+<td><img src="img/tech-token-heighliners.png" alt=""></td>
+<td><strong>HEIGHLINERS</strong>If at least one player, including you, ships forces from off-planet, you collect 1 spice for every Tech Token you control. However, if only the Spacing Guild ships forces from off-planet, you do not collect spice.</td>
+</tr>
+<tr>
+<td><img src="img/tech-token-spice.png" alt=""></td>
+<td><strong>SPICE PRODUCTION</strong>If at least one player, including you, takes CHOAM Charity, you collect 1 spice for every Tech Token you control. However, if only the Bene Gesserit and/or CHOAM take CHOAM Charity using their faction advantages, you do not collect spice.</td>
+</tr>
+</tbody>
+</table>
+<h2>Leader Skill Cards</h2>
+<p>Leader Skill Cards provide one leader of each faction with a unique advantage.</p>
+<p>When using Leader Skill Cards, complete the Treachery step of setup after step 1, then deal two Leader Skill Cards to each faction. Each faction chooses one to keep, and shuffles the other back into the Leader Skill Deck. Play your Leader Skill Card face up in front of your Player Shield, and assign one of your Leader Discs to it by placing the disc face up next to it. Complete the remaining steps of setup normally starting with the Traitor step.</p>
+<p>Leader Skills grant a special bonus or ability for as long as the skilled leader is alive, and the card is face up in play (either in front of your Player Shield or used in a battle). If a skilled leader is captured, the skill goes with them, but they are placed behind the Harkonnen Player Shield. If a skilled leader is killed, shuffle the Leader Skill Card back into the Leader Skill Deck. Whenever you revive one of your leaders, if you have no Leader Skill Card, you may draw two Leader Skill Cards, choose one to play face up in front of your Player Shield, and assign the newly revived leader to that skill. Shuffle the unchosen Leader Skill back into the Leader Skill Deck.</p>
+<p>Leader Skills also provide advantages when the skilled leader is used in and survives a battle. When you choose a leader for a battle, you may either leave the skilled leader face up in front of your Player Shield, or take it and the Leader Skill Card behind your Player Shield. If you use a skilled leader in battle, include its Leader Skill Card in your Battle Plan. This is the only way that both parts of the skill can be in effect in a battle (if applicable). No part of a skill is available to you while a skilled leader and its associated Leader Skill Card are behind your Player Shield.</p>
+<p>After the Battle Phase, return skilled leaders in territories on the map and their associated Leader Skill Card in front of your Player Shield.</p>
+<p>A Leader Skill must be used before a faction ability (e.g., the Mentat skill before ATreides Prescience). Any skill that mentions a card type (e.g., Poison Weapon) requires that the card included in the Battle Plan is played as that card type to gain the skill bonus. Therefore, a card like Chemistry would have to be played as a poison weapon to gain the Master of Assassins skill bonus.</p>
+<h2>Advanced Stronghold Cards</h2>
+<p>These cards provide bonuses representing home-field advantage for the factions occupying strongholds. During the Mentat Pause Phase (not during game setup), each faction occupying a stronghold takes its corresponding Stronghold Card from the supply or the faction who previously held the card. If a stronghold is unoccupied, its Stronghold Card is placed in the supply.</p>
+<h2>Homeworlds</h2>
+<h2>Homeworld Tokens</h2>
+<p>Represent each faction's homeworld or domain and is where their reserves are kept. Homeworlds are not territories and so are not subject to faction advantages such as Ecaz's Occupy and Bene Gesserit's Intrusion.</p>
+<h3>Homeworld Cards</h3>
+<p>Depict abilities that are granted to each faction depending on the number of forces in their reserves:</p>
+<ul>
+<li>High threshold: As long as a faction maintains the minimum</li>
+</ul>
+<p>threshold of reserves, they gain the listed abilities. When reserves dip below the threshold, flip the card to its low threshold side.</p>
+<ul>
+<li>Low threshold: When a faction's reserves reach a low-</li>
+</ul>
+<p>threshold reserve, the listed low threshold abilities are active. When reserves exceed the threshold, flip the card to its high threshold side.</p>
+<h3>Revival</h3>
+<p>The main way for a player to add forces to their own homeworld is through force revivals. Force Shipment may also be used to send forces to homeworlds in the following ways:</p>
+<ul>
+<li>All factions may ship their forces from one homeworld to another homeworld</li>
+</ul>
+<p>at a cost of 1 spice per force (half price for the Guild).</p>
+<ul>
+<li>The Spacing Guild may ship any number of their own forces from one</li>
+</ul>
+<p>territory of Arrakis to any homeworld (including their own) at a cost of 1 spice per force (before discount).</p>
+<ul>
+<li>Using their high threshold homeworld advantage, the Spacing Guild may offer</li>
+</ul>
+<p>to ship any number of another faction's forces from one territory of Arrakis to any homeworld at a cost of 1 spice per force (before discount).</p>
+<h3>Battles</h3>
+<p>As part of the normal resolution of battles during the Battle Phase, wherever two or more players' forces occupy a Homeworld token, battles must occur between those players. Normal battle rules are used with the following modifications:</p>
+<ul>
+<li>Traitors and Face Dancers cannot be called by a faction battling on an</li>
+</ul>
+<p>opponent's homeworld.</p>
+<ul>
+<li>The homeworld's faction gains the battle strength listed on the face up</li>
+</ul>
+<p>portion of their Homeworld card for free.</p>
+<ul>
+<li>Lasgun/shield explosions only send the listed number of the homeworld</li>
+</ul>
+<p>faction's forces to the Tlielaxu Tanks, no matter what was dialed. Both players still lose the battle and leaders are killed normally.</p>
+<h3>Occupying Other Homeworlds</h3>
+<p>When another faction's forces are alone on your homeworld, they are immediately considered the "Occupier" and gain:</p>
+<ul>
+<li>The listed Occupied ability.</li>
+</ul>
+<ul>
+<li>The number of spice (if any) shown in the occupied section of the Homeworld</li>
+</ul>
+<p>card from the Spice Bank during the Spice Collection phase. Spice collected this way may be immediately shared with the Occupier's ally An Occupier retains these advantages until none of their forces remain on the homeworld.</p>
+<h3>Alliances</h3>
+<p>No player may enter into an Alliance with any faction whose forces occupy their homeworld, nor may a faction ship to or occupy their ally's homeworld.</p>
+<h3>Emporer'S Homeworlds</h3>
+<p>The Emperor has two homeworlds: Kaitain and Salusa Secundus; normal forces are revived to Kaitain and Sardaukar forces are revived to Salusa Secundus. During Shipping and Movement, the Emperor can use their Force Movement to move any number of their forces from Kaitain to Salusa Secundus (or vice versa). When the Emperor makes a Force Shipment to Arrakis or another homeworld, forces can come from both Emperor homeworlds as part of the same shipment.</p>
+<h3>Choam Homeworld</h3>
+<p>Note that CHOAM's homeworld of Tupile has a penalty for high-threshold, but an advantage when they are at low threshold, opposite of the other homeworlds.</p>
+<h3>Variants</h3>
+<h3>Homeworlds</h3>
+<p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include. Nexus Cards provide players incentives and special effects for not joining an Alliance. AT the end of each Spice Blow and Nexus phase where a Nexus occurred and at least one Alliance exists, any player not in an Alliance may, after discarding their previous Nexus card (if any), draw one Nexus Card. If you draw your own faction's Nexus card, you may discard it immediately to draw a new one. Each Nexus Card is associated with one faction; its effect is determined by the factions in play this game: BETRAYAL: If the Nexus Card faction is controlled by another player, this card allows you to cancel an advantage that faction has when they try to use it. In some cases, this even allows a player to cancel an alliance ability. CUNNING: If you control the Nexus Card faction, this card gives you an enhanced version of one of your advantages. SECRET ALLY: If the Nexus Card faction is not in the game, you have a secret alliance with that faction, and this card allows you to use one of their advantages. Nexus Cards are discarded after use. If you need to draw a Nexus Card and none are available, shuffle the discards to form a new deck. If you hold a Nexus Card, you must discard it to enter into an Alliance. Discovery tokens add new elements to the game on sections of the board that are often bypassed. For this variant, shuffle the seven new Spice Cards into the Spice Deck. Then, shuffle the eight Discovery tokens face down into a supply.</p>
+<h3>Great Maker Spice Card</h3>
+<p>This is treated like a normal Shai Hulud card; however, a vote is held to determine whether or not the Nexus occurs. In storm order, each player votes yes or no. Unless a majority vote yes, no Nexus occurs. Afterward, regardless of the outcome of the vote, the Fremen may ride the Great Maker sandworm by moving any number of their forces in reserves to any sector of any territory (including the HMS), subject to storm and occupancy rules (instead of riding from a territory on the board or placing the Sandworm token). Note that a Karama Card cannot prevent riding the Great Maker.</p>
+<h3>Discovery Spice Card</h3>
+<p>Whenever a Discovery Spice Card is drawn, place 6 spice in the sector and territory indicated by the card (if it is currently in storm, no spice is placed). Any spice or forces already in that territory are destroyed by the spice blow (this only occurs when Discovery Spice Cards are drawn). Then, place a random Discovery token of the indicated type (Hiereg or Smuggler) face down in the other sector and territory shown on the card.</p>
+<h3>Tokens</h3>
+<p>There are two types of Discovery tokens: Hiereg and Smuggler. Hiereg tokens are placed in desert territories, and Smuggler tokens are placed in rock territories. During the Spice Collection Phase, any faction with non-advisor forces in a territory with a Discovery token may look at the token and choose whether or not to reveal it immediately. Unrevealed Discovery tokens remain face down, able to be revealed during a subsequent turn. Five of the Discovery tokens are locations, and remain face up in place when re vealed. These locations are considered a territory within the territory where the token is located, cost 1 spice per force to ship to, and protect forces in them from the effects of the storm and sandworms. Location Discovery Tokens cannot be occupied when revealed; at the start of the next turn, before the Storm Phase, any faction in a territory with a Location Discovery token revealed during the previous turn may move any number of their non-advisor forces in that territory into the location. Outside of this, the only way to occupy these locations is through normal Force Shipment or Force Movement.</p>
+<h3>Hiereg Tokens</h3>
+<p>Whenever a Hiereg token is face down on the board, the Fremen may look at it at any time without revealing it. Jacurutu Sietch: Counts as a normal stronghold. When you win a battle in Jacurutu Sietch, gain 1 spice for each undialed opponent force that is sent to the Tanks. Cistern: If you occupy this territory during the Spice Collection Phase, gain 2 spice from the Spice Bank. Ecological Testing Station: If you occupy this territory during the Storm Phase, you may modify the movement of the storm by &plusmn;1 (does not affect Weather Control). Shrine: If you occupy this territory, you may play Truthtrance Cards as Karama Cards, and vice versa.</p>
+<h3>Variants</h3>
+<h3>Nexus Cards</h3>
+<h3>Discovery Tokens</h3>
+<p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include.</p>
+<h3>Smuggler Tokens</h3>
+<p>Whenever a Smuggler token is face down on the board, the Spacing Guild may look at it at any time without revealing it. Orgiz Processing Station: If you occupy this territory during the Spice Collection Phase, steal 1 of the collected spice each time collection occurs in a territory containing spice. Treachery Card Stash: Gain 1 Treachery Card. If this causes you to exceed your hand limit, discard 1 Treachery Card of your choice. Remove this token from the game. Spice Stash: Gain 7 spice from the Spice Bank. Remove this token from the game. Ornithopter: Gain this token. You may discard it on any subsequent turn to make a Force Movement of up to three adjacent territories instead of your normal move. When playing with the Ixian &amp; Tleilaxu, CHOAM &amp; Richese, and Ecaz &amp; Moritani expansions together, instead of choosing factions normally, consider choosing factions based on the following thematic groupings: Intrigue: Deal every player two factions. Each player secretly chooses one, and all players reveal their selections simultaneously. Closed Economy: Bene Gesserit, CHOAM, Emperor, Richese, Spacing Guild,</p>
+<h3>Tleilaxu</h3>
+<p>War of Assassins: ATreides, Ecaz, Emperor, Harkonnen, Moritani, Spacing Guild,</p>
+<h3>Stronghold Cards</h3>
+<p>Technocrats: Bene Gesserit, CHOAM, Emperor, Ixians, Richese, Tleilaxu, Tech Tokens. Desert Power: ATreides, Bene Gesserit, Fremen, Harkonnen, Ixians, Spacing Guild,</p>
+<h3>Discovery Tokens</h3>
+<p>Long Live the Fighters: ATreides, CHOAM, Emperor, Ecaz, Fremen, Moritani,</p>
+<h3>Leader Skill Cards</h3>
+<p>Schemes Within Schemes: Bene Gesserit, CHOAM, Fremen, Harkonnen, Spacing Guild, Tleilaxu Amtal Rule: Ecaz, Fremen, Ixians, Moritani, Richese, Tleilaxu Landsraad: ATreides, Ecaz, Harkonnen, Ixians, Moritani, Richese, Homeworlds</p>
+<h3>Themed Matchups</h3>
+<h1>Faction Player Sheets</h1>
+<h3>Faction Player Sheets</h3>
+<section class="faction-sheet faction-sheet--atreides"><header class="faction-sheet__header"><img class="faction-sheet__logo" src="img/AT-logo-big.png" alt="ATreides">
+<div class="faction-sheet__title">
+<h2>ATreides</h2>
+<p>You have limited prescience.</p>
+</div>
+<div class="faction-sheet__leaders"><img class="faction-sheet__leader-primary" src="img/AT-leader.png" alt="ATreides leader">
+<div class="faction-sheet__leader-cluster"><img src="img/AT-leader-jessica.png" alt="Jessica"><img src="img/AT-leader-thufir.png" alt="Thufir"><img src="img/AT-leader-gurney.png" alt="Gurney"><img src="img/AT-leader-duncan.png" alt="Duncan"><img src="img/AT-leader-yueh.png" alt="Yueh"></div>
+</div>
+<div class="faction-sheet__start"><strong>AT START</strong>
+<p>10 forces in <em>Arrakeen</em> and 10 forces in reserves (off-planet). Start with 10 spice and 1 random Treachery Card. Place the Treachery Deck and Spice Deck near your player position. You manage these decks.</p>
+</div>
+<div class="faction-sheet__revival"><img src="img/revival-2.png" alt=""><strong>FREE REVIVAL</strong>
+<p>2 forces/turn</p>
+</div>
+</header>
+<div class="faction-sheet__body">
+<div>
+<div class="faction-sheet__bar">Advantages</div>
+<div class="faction-sheet__advantage"><img class="faction-sheet__advantage-icon" src="img/AT-karama.png" alt="">
+<p><strong>A. &ndash; BIDDING:</strong> During the Bidding Phase, you may look at each Treachery Card as it comes up for purchase before any faction bids on it. You, and only you, may keep written records about cards.</p>
+</div>
+<div class="faction-sheet__advantage"><img class="faction-sheet__advantage-icon" src="img/AT-karama.png" alt="">
+<p><strong>B. &ndash; MOVEMENT:</strong> AT the start of the Shipment and Movement Phase, before anyone moves, you may look at the top card of the Spice Deck.</p>
+</div>
+<div class="faction-sheet__advantage"><img class="faction-sheet__advantage-icon" src="img/AT-karama.png" alt="">
+<p><strong>C. &ndash; BATTLE:</strong> During the Battle Phase, you may force your opponent to reveal your choice of one of the four elements they will use in their Battle Plan against you: the leader, weapon, defense, or number dialed. The number dialed cannot be chosen in a battle with a No-Field Token. If you ask about a weapon or defense and your opponent tells you that they are not playing that element, you cannot then ask to see a different element.</p>
+</div>
+<div class="faction-sheet__advantage"><img class="faction-sheet__advantage-icon" src="img/AT-karama.png" alt="">
+<p><strong>D. &ndash; KWISATZ HADERACH:</strong> The Kwisatz Haderach token starts out inactive. Use the Kwisatz Haderach card and counter token to secretly keep track of force losses. Immediately after you have lost 7 or more forces in battle, it becomes active for the rest of the game.</p>
+<ul>
+<li>Add +2 strength to your leaders or cheap heroes in one territory per turn. If the leader or cheap hero is killed, the token has no effect in the battle.</li>
+<li>A leader accompanied by the token cannot turn traitor.</li>
+<li>The token can only be killed by a lasgun/shield explosion. If killed, it must be revived like any other leader; its revival costs 2 spice.</li>
+<li>The token has no effect on the rule governing revival of ATreides leaders.</li>
+</ul>
+</div>
+</div>
+<div class="faction-sheet__side">
+<div class="faction-sheet__bar">Alliance Ability</div>
+<p><strong>E. &ndash;</strong> You may assist your allies by forcing their opponent to show them one element of their Battle Plan.</p>
+<div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
+<p><strong>F. &ndash;</strong> You may use a Karama Card before Battle Plans are revealed to look at any one player's entire Battle Plan.</p>
+</div>
+</div>
+<footer class="faction-sheet__footer"><img src="img/icon-karama-cards.png" alt="">Ability can be cancelled by <em>Karama</em>.</footer></section>
+<h2>Bene Gesserit</h2>
+<p>AT START: 20 forces in reserves (off-planet; see START OF GAME ability). Start with 5 spice and 1 random Treachery Card.</p>
+<h3>Free Revival</h3>
+<p>1 force/turn</p>
+<h3>Bene Gesserit</h3>
+<h3>You are adept in the ways of</h3>
+<p>mind control.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; PREDICTION: After step 1 (Positions) in the Setup Phase, you secretly</p>
+<p>predict when one other faction will win, placing a turn number card and a faction card from your Prediction Cards face down behind your Player Shield. Place the unused Prediction Cards face down back in the box. If the faction you predicted wins (alone or as an ally, even your ally) in the turn you predicted, reveal your prediction and win alone. You also can win normally. You can't predict that the Spacing Guild or Fremen will win with their special victory conditions.</p>
+<p><strong>B.</strong> &ndash; START OF GAME: After the Fremen placement (if that faction is in the</p>
+<p>game), you start with one advisor in any territory of your choice.</p>
+<p><strong>C.</strong> &ndash; CHARITY: You always receive CHOAM charity of 2 spice regardless of how</p>
+<p>many spice you already have.</p>
+<p><strong>D.</strong> &ndash; KARAMA: You may use any worthless Treachery Card as a Karama Card.</p>
+<p><strong>E.</strong> &ndash; ADVISORS: Your forces have two sides, the advisor (striped) and the</p>
+<p>fighter (unstriped). Fighters are normal forces. Advisors are a special type of force that coexists peacefully with other faction forces in the same territory. Advisors have no effect on the play of the other factions whatsoever and cannot collect spice; be involved in combat; count as occupying a stronghold for victory conditions, ornithopter use, or Advanced Stronghold Cards; count against a stronghold's 2-faction limit; or play Family ATomics. Advisors are still susceptible, however, to storms, sandworms, lasgun/shield explosions, and atomics. Whenever any other faction ships forces to Dune from off-planet, you may ship for free one advisor from your reserves into that same territory or the Polar Sink. If Bene Gesserit fighters are already present in this territory and not flipped to advisors with your Intrusion advantage, the advisor must be shipped to the Polar Sink (or not at all). All Bene Gesserit forces in a territory must be of the same type (advisor or fighter):</p>
+<ul>
+<li>If advisors are ever alone in a territory, they automatically flip to</li>
+</ul>
+<p>fighters.</p>
+<ul>
+<li>Advisors moved to occupied territories without Bene Gesserit forces</li>
+</ul>
+<p>may flip to fighters or stay as advisors.</p>
+<ul>
+<li>Bene Gesserit forces shipping/moving into a territory already</li>
+</ul>
+<p>containing Bene Gesserit forces ship/move as the type of Bene Gesserit force present in the destination territory.</p>
+<p><strong>F.</strong> &ndash; INTRUSION: When another faction enters a territory where you have</p>
+<p>fighters, you may immediately flip those fighters to advisors.</p>
+<p><strong>G.</strong> &ndash; BATTLE: AT any time after the Spice Blow and Nexus Phase but before any</p>
+<p>shipment has occurred, you may flip advisors not under storm or in territories with allies to fighters anywhere you wish to battle. To do so, publicly announce the flipping, and flip all of your advisors to fighters in each territory in which you wish to battle.</p>
+<p><strong>H.</strong> &ndash; VOICE: You may force your opponent to play or not play a specific card or</p>
+<p>type of card (projectile weapon, poison weapon, projectile defense, poison defense, Worthless Card, cheap hero, or specific named special weapon or defense) in their Battle Plan.&dagger; If your opponent can't comply with your command, they are not required to reveal so and may do as they wish.</p>
+<h3>Alliance Ability</h3>
+<p><strong>I.</strong> &ndash; In an Alliance you may Voice your ally's opponent.</p>
+<h3>Special Karama Power</h3>
+<p>None. &dagger; The default type for each special weapon is listed below:</p>
+<h3>Chemistry counts as a poison defense</h3>
+<p>Poison Blade counts as both a projectile and poison weapon</p>
+<h3>Poison Tooth counts as a poison weapon</h3>
+<p>Shield Snooper counts as both a shield and snooper Weirding Way counts as a projectile weapon Chemistry and Weirding Way's alternate types cannot be forced into play with the Voice but can be prevented by it. Ability can be cancelled by Karama.</p>
+<h2>CHOAM</h2>
+<h3>Choam</h3>
+<p>You can manipulate the economy.</p>
+<h3>Advantages</h3>
+<p>AT START: 20 forces in reserves (off-planet). Start with 2 spice and 1 random Treachery Card.</p>
+<h3>Free Revival</h3>
+<p>0 forces/turn</p>
+<p><strong>A.</strong> &ndash; CHARITY: You collect CHOAM charity first and always receive 2 spice per</p>
+<p>faction in the game, regardless of how many spice you already have. When other factions collect CHOAM Charity, it is paid to them from your spice.</p>
+<p><strong>B.</strong> &ndash; TREACHERY: Your hand limit is 5 Treachery Cards; when you have 5</p>
+<p>Treachery Cards you must pass during bidding. In addition, at the end of any phase you may discard Treachery Cards as follows:</p>
+<ul>
+<li>You may reveal multiple cards from your hand with the same name to</li>
+</ul>
+<p>discard the surplus cards f or 3 spice each.</p>
+<ul>
+<li>You may discard Worthless Cards for 2 spice each. Alternatively, you</li>
+</ul>
+<p>may discard Worthless cards for their corresponding effect listed below: Baliset - Prevent one player from moving forces into a territory you occupy during the Shipment and Movement Phase (they may ship in normally). Jubba Cloak - Protect one group of your forces from losses during storm mo vement. Kull Wahad - Prevent one player from playing a Karama Card for a specific effect (see pg 14) as they attempt to do so. Kulon - Move your forces one extra territory during your Force Movement. La La La - Prevent one player from taking free revival during the Revival Phase. Trip to Gamont &ndash; Return 1 force belonging to another player to that player's reserves during the Mentat Pause Phase.</p>
+<p><strong>C.</strong> &ndash; REVIVAL: You pay only 1 spice to revive each of your forces. You may</p>
+<p>revive any number of your forces during the Revival Phase.</p>
+<p><strong>D.</strong> &ndash; INFLATION: Once per game during the Mentat Pause Phase, you may place</p>
+<p>your Inflation Token on the CHOAM Charity Phase of the Phase Track. In the following game turn, the amount of spice each player collects for CHOAM Charity is either doubled or canceled according to which side of the Inflation Token is face up. In the Mentat Pause Phase following a doubled or canceled CHOAM Charity Phase, flip the Inflation Token to its other side or remove it from the game if it has already been flipped. Players cannot make spice bribes while the Inflation Token is in play with the double side face up.</p>
+<p><strong>E.</strong> &ndash; AUDITOR: You have a special leader, the Auditor, who allows you to see</p>
+<p>cards in your opponent's hand when used as a leader in a battle. If the Auditor survived the battle, you may audit your opponent by looking at up to two random cards in their hand (not counting any they used in battle), or one card if the Auditor was killed. The audited faction may pay you 1 spice per card you would get to see to cancel the entire audit. The Auditor is eligible to be revived each turn, regardless of how many of your leaders are in the Tleilaxu Tanks. The Auditor cannot be a ghola for the Tleilaxu, captured by the Harkonnens, nor assigned a Leader Skill Card.</p>
+<p><strong>F.</strong> &ndash; FORCES: When other factions pay spice for support of their forces in</p>
+<p>battle, half of the total spice paid (rounded down) goes to you (you receive 0 spice when a Traitor is revealed). When you pay spice for support of forces, it goes to the Spice Bank.</p>
+<h3>Alliance Ability</h3>
+<p><strong>G.</strong> &ndash; Once per game turn, at the end of any phase, you may trade a Treachery</p>
+<p>Card with your ally. The trade must be two-way (each faction giving and receiving a card). You may also pay for some or all of your ally's spice support in battle (spice you pay goes to the Spice Bank).</p>
+<h3>Special Karama Power</h3>
+<p><strong>H.</strong> &ndash; AT any time, you may use a Karama Card to discard any number of</p>
+<p>Treachery Cards from your hand to gain 3 spice per card. Ability can be cancelled by Karama.</p>
+<h2>Ecaz</h2>
+<p>AT START: 6 forces in unoccupied territory after all other factions set up and 14 forces in reserves (off-planet). Start with 12 spice, 1 random Treachery Card, and 6 Terror tokens. FREE REVIVAL 2 forces/turn</p>
+<p><strong>A.</strong> &ndash; AMBASSADORS: AT the end of the Revival Phase, you may spend spice to place</p>
+<p>Ambassador tokens from your supply in any stronghold with no Ambassador tokens that is not in storm. The cost is 1 spice for the first Ambassador token, but increases by 1 spice for each subsequent Ambassador token placed that turn. When forces (excluding advisors) ship or move to a stronghold containing an Ambassador token, you may immediately trigger its effect (interrupting the triggering faction's action) and set it aside if a) you are not allied with the triggering faction, and b) the Ambassador token does not show the triggering faction's symbol. Ecaz: Return this Ambassador token to your supply. Add Duke Vidal to your leader pool if he is not in the Tleilaxu Tanks, captured, or a ghola. If you use Duke Vidal in a battle and he survives, place his Leader Disc next to the game board.</p>
+<h3>OR</h3>
+<p>Form an Alliance with the faction triggering the token as long as neither of you are currently allied and they agree to the Alliance. Then, add Duke Vidal to the triggering faction's leader pool. If Duke Vidal is still in their leader pool at the end of the turn, place his Leader Disc next to the game board. ATreides: Look at the triggering faction's hand. Bene Gesserit: Trigger the effect of any Ambassador token not in your supply, then remove the Bene Gesserit Ambassador token from the game. CHOAM: Discard any number of your Treachery Cards. Gain 3 spice from the Spice Bank per card discarded this way. Emperor: Gain 5 spice from the Spice Bank. Fremen: Move some or all of your forces from one territory to any sector of any territory (including the HMS), subject to storm and occupancy rules. Harkonnen: Look at 1 random Traitor Card the triggering faction holds. Ixian: Discard 1 of your Treachery Cards, then draw the top card from the Treachery Deck. Richese: If your hand is not full, pay 3 spice to the Spice Bank to draw the top card from the Treachery Deck. Spacing Guild: Ship up to 4 of your forces from reserves for free to any sector of any territory, subject to storm and occupancy rules. Tleilaxu: Revive one of your leaders OR up to 4 of your forces for free. After all 5 of your random Ambassador tokens have been triggered, combine them with the unused tokens and draw a new supply of 5 random Ambassador tokens. Ambassador tokens are susceptible to storms, lasgun/shield explosions, and atomics: they return to your supply when exposed to any of these effects.</p>
+<p><strong>B.</strong> - OCCUPY: You may enter and occupy the same territory as your ally, coexisting</p>
+<p>peacefully with their forces. When coexisting, you and your ally's forces are considered the same faction for Traitor and Face Dancer Card reveals, and your forces do not count against a stronghold's 2-faction limit but do count for ornithopter use. When the aggressor chooses to resolve a battle in a territory where you coexist with your ally, you must decide whether you or your ally is considered the lead faction in the battle (formulating a Battle Plan with their leaders and Treachery Cards). The number dialed for the lead faction's battle plan always includes half of the Ecaz forces in the territory (rounded up) at full strength, plus as many of your ally's forces as the lead faction chooses to dial. If the lead faction wins the battle, half of the Ecaz forces (rounded down) remain in the territory (the rest go to the Tleilaxu Tanks), and your ally loses their forces dialed normally. If you and your ally coexist in at least 3 strongholds at the end of the Mentat Pause Phase, your Alliance wins.</p>
+<p><strong>C.</strong> &ndash; REVIVAL: Duke Vidal can only be revived by House Ecaz (except as a ghola by the</p>
+<p>Tleilaxu). You may always revive Duke Vidal during the Revival Phase for 5 spice, no matter how many of your leaders are in the Tleilaxu Tanks. You may revive leaders normally when at least 5 of your leaders are in the Tleilaxu Tanks (counting Duke Vidal).</p>
+<p><strong>D.</strong> - LOYALTY: AT the start of the game, before Traitor Cards are dealt, set aside 1</p>
+<p>random Traitor Card from your faction face up for all players to see. It is never added to the Traitor deck.</p>
+<p><strong>E.</strong> - COLLECTION: During the Spice Collection Phase, you and your ally each collect the</p>
+<p>full amount of spice for strongholds where you coexist (Arrakeen, Carthag, and/or Tuek's Sietch). When collecting spice from a desert territory where you coexist, split the spice however you and your ally agree, or as evenly as possible with your ally gaining the remainder if you can't agree.</p>
+<h3>Alliance Ability</h3>
+<p><strong>F.</strong> &ndash; You may choose to have your ally benefit from a triggered Ambassador token's</p>
+<p>effect instead of you.</p>
+<h3>Special Karama Power</h3>
+<p><strong>G.</strong> &ndash; You may use a Karama Card before Battle Plans are revealed to add the</p>
+<p>difference between your leader disc and your opponent's leader disc to your number dialed, as long as you played neither a weapon nor a defense. Ability can be cancelled by Karama. AT START: 6 forces in Imperial Basin and 14 forces in reserves (off-planet). Start with 12 spice, the Ecaz Ambassador token + 5 random Ambassador tokens (your supply), and 1 random Treachery Card.</p>
+<h3>Ecaz</h3>
+<p>You forge strong alliances.</p>
+<h3>Advantages</h3>
+<h2>Emperor</h2>
+<p>AT START: 20 forces in reserves (off-planet). Start with 10 spice and 1 random Treachery Card.</p>
+<h3>Free Revival</h3>
+<p>1 force/turn</p>
+<h3>Emperor</h3>
+<p>You have access to great wealth.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; BIDDING: Whenever any other faction pays spice for a Treachery Card,</p>
+<p>they pay it to you instead of the Spice Bank.</p>
+<p><strong>B.</strong> &ndash; SARDAUKAR: Your five starred forces, elite Sardaukar, are worth two</p>
+<p>normal forces in battle and in taking losses; against the Fremen they are worth just one force. Sardaukar are treated as one force in revival; however, only one Sardaukar force can be revived per turn.</p>
+<h3>Alliance Ability</h3>
+<p><strong>C.</strong> &ndash; You may share your great wealth with your allies by transferring any</p>
+<p>amount of spice to them at any time and for any reason (placed behind their Player Shield). You may also assist your allies by paying spice for the revival of up to 3 extra of their forces from the Tleilaxu Tanks per Revival Phase.</p>
+<h3>Special Karama Power</h3>
+<p><strong>D.</strong> &ndash; You may use a Karama Card during the Revival Phase to immediately</p>
+<p>revive up to three forces or one leader for free. These revivals do not count against revival limits for the turn. Ability can be cancelled by Karama.</p>
+<h2>Fremen</h2>
+<h3>Fremen</h3>
+<h3>You are native to Dune and</h3>
+<p>know its ways.</p>
+<h3>Advantages</h3>
+<h3>Free Revival</h3>
+<p>3 forces/turn</p>
+<p><strong>A.</strong> &ndash; STORM RULE: Place the Storm Marker normally using the Battle Wheels on</p>
+<p>the first turn of the game. Subsequent storm movement is determined by using the Storm Deck. After moving the storm during the Storm Phase, randomly select a card from the Storm Deck, secretly look at it, and place it face down next to the game board. In the next Storm Phase, reveal the number on that Storm Card; move the storm counterclockwise the number of sectors indicated on the Storm Card. Shuffle the revealed Storm Card into the Storm Deck, randomly select a Storm Card, and look at it for the next turn's storm movement. After secretly looking at the Storm Card, place it face down next to the game board.</p>
+<p><strong>B.</strong> &ndash; STORM LOSSES: If your forces are caught in a storm, only half of them are</p>
+<p>killed (rounded up). You may also ship into a storm at half loss.</p>
+<p><strong>C.</strong> &ndash; SHAI-HULUD: If Shai-Hulud appears in a territory where you have forces,</p>
+<p>they are not devoured. Upon conclusion of the Nexus, you may ride the sandworm and move some or all of your forces in the territory to any sector of any territory (including the HMS), subject to storm and occupancy rules. Any forces in that territory are not devoured. If multiple Shai-Hulud appear during a Spice Blow, you may ride each sandworm from the origin territory to any other territory.</p>
+<p><strong>D.</strong> &ndash; SANDWORMS: During a Spice Blow, all consecutive sandworms that appear</p>
+<p>after the first sandworm can be placed by you in any sand territory you wish.</p>
+<p><strong>E.</strong> &ndash; SHIPMENT: Your reserves are on-planet; you do not ship to the board using</p>
+<p>off-planet shipment rules. For your Force Shipment you may bring any or all of your reserves for free onto The Great Flat or onto any one territory within two territories of The Great Flat (subject to storm and occupancy rules).</p>
+<p><strong>F.</strong> &ndash; MOVEMENT: During your Force Movement you may move your forces two</p>
+<p>territories instead of one.</p>
+<p><strong>G.</strong> &ndash; BATTLES: Your forces do not require spice to count at their full strength.</p>
+<p><strong>H.</strong> &ndash; FEDAYKIN: Your three starred forces, Fedaykin, are worth two normal</p>
+<p>forces in battle and in taking losses. They are each treated as one force in revival; however, only one Fedaykin force can be revived per turn.</p>
+<p><strong>I.</strong> &ndash; FREMEN SPECIAL VICTORY CONDITION: If no faction has won by the end of</p>
+<p>turn 10 and 1) Fremen forces (&plusmn; coexisting Ecaz forces) or no one occupy Sietch Tabr and Habbanya Sietch and 2) neither Harkonnen, ATreides, Emperor, nor Richese occupies Tuek's Sietch (even if they are your ally), your plans to alter Dune have succeeded and you and any allies win the game.</p>
+<h3>Alliance Ability</h3>
+<p><strong>J.</strong> &ndash; You may protect your allies from being devoured by sandworms and, at</p>
+<p>your discretion, may also increase their free revival to 3 forces. In addition, your allies win with you if you win with the Fremen Special Victory Condition.</p>
+<h3>Special Karama Power</h3>
+<p><strong>K.</strong> &ndash; You may use a Karama Card during the Spice Blow and Nexus Phase to</p>
+<p>place the Sandworm Token in any sand territory that you wish. This is treated as a normal sandworm and causes a Nexus. AT START: 10 forces distributed as you like on Sietch Tabr, False Wall South, and/or False Wall West; and 10 forces in reserves (on the far side of Dune). Start with 3 spice and 1 random Treachery Card. Ability can be cancelled by Karama.</p>
+<h2>Harkonnen</h2>
+<p>AT START: 10 forces in Carthag and 10 forces in reserves (off-planet). Start with 10 spice and 2 random treachery cards.</p>
+<h3>Free Revival</h3>
+<p>2 forces/turn</p>
+<h3>Harkonnen</h3>
+<p>You excel in treachery.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; TRAITORS: AT the start of the game keep all 4 Traitor Cards you are dealt.</p>
+<p>Any of these Traitor Cards can be revealed in a battle as a traitor.</p>
+<p><strong>B.</strong> &ndash; TREACHERY: Your hand limit is 8 Treachery Cards; when you have 8</p>
+<p>Treachery Cards you must pass during bidding. You start the game with 1 extra Treachery Card (2 total). Every time you buy a Treachery Card (including Richese auctions), you must take an extra Treachery Card for free from the Treachery Deck (unless it would put your over your hand limit).</p>
+<p><strong>C.</strong> &ndash; CAPTURED LEADERS: After you win a battle you may choose to capture a</p>
+<p>leader from the loser of the battle. If you choose to capture a leader, randomly select 1 leader from the loser (including the leader used in the battle, if not killed, but excluding all leaders used elsewhere that turn and in the Tleilaxu Tanks). After looking at the captured leader you must decide to either 1) place the Leader Disc face down into the Tleilaxu Tanks to gain 2 spice from the Spice Bank; or 2) keep the leader and use it once in a battle, after which, if it wasn't killed during that battle, you must return that leader to its faction. The identity of the captured leader is not required to be revealed. When all of your own leaders have been killed, you must immediately return all captured leaders to their factions. Killed captured leaders are put in the Tleilaxu Tanks from which their factions can revive them (subject to the normal revival rules). Captured leaders used in battle may be claimed as a traitor subject to the normal traitor rules.</p>
+<h3>Alliance Ability</h3>
+<p><strong>D.</strong> &ndash; Traitor Cards that you hold may be used against your ally's opponent if you</p>
+<p>so choose.</p>
+<h3>Special Karama Power</h3>
+<p><strong>E.</strong> &ndash; You may use a Karama Card during the Bidding Phase to take, without</p>
+<p>looking, up to 4 Treachery Cards from any one player. After combining their cards with yours, you must give that player Treachery Cards of your choice (including cards you just took) equal to the number of cards that you took. Ability can be cancelled by Karama.</p>
+<h2>Ixians</h2>
+<p>AT START: 6 forces (3 Cyborgs and 3 Suboids) in the Hidden Mobile Stronghold; 14 forces in reserves (off-planet). Start with 10 spice and 1 Treachery Card (see START OF GAME ability). FREE REVIVAL 1 force/turn</p>
+<h3>Ixians</h3>
+<h3>You are skilled in technology</h3>
+<p>and production.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; START OF GAME: Instead of dealing Treachery Cards normally, draw</p>
+<p>Treachery Cards equal to the number of players (+1 if Harkonnen is in play). Choose one to keep, shuffle the remaining cards, and deal one to each of the other players (2 to Harkonnen).</p>
+<p><strong>B.</strong> &ndash; HIDDEN MOBILE STRONGHOLD (HMS): After the first storm movement at</p>
+<p>the start of the game, place your Hidden Mobile Stronghold by pointing it at a sector in any non-stronghold territory. This stronghold counts toward the game win and is protected from worms and storms. Subsequently, before the storm is revealed, as long as your forces occupy it, you may move your Hidden Mobile Stronghold up to 3 territories pointing at a sector in any non-stronghold territory. When you move into, from, or through a sector of a territory containing spice, you may immediately collect 2 spice per force in your stronghold. No other faction may ship forces directly into your Hidden Mobile Stronghold or move it if they take control. Other factions must move or ship forces into the territory it is pointing at (including the Polar Sink), and then use their Force Movement to enter.</p>
+<p><strong>C.</strong> &ndash; BIDDING: During the Dealer step of the Bidding Phase, draw one more</p>
+<p>Treachery Card than the number up for bid (not counting Richese auctions), and look at all of the drawn cards. Put one card of your choice face down either on the top or bottom of the Treachery Deck. Then, shuffle the remaining cards and place them face down for the bidding round.</p>
+<p><strong>D.</strong> &ndash; TECHNOLOGY: Once per Bidding Phase, before ATreides gets to look at the</p>
+<p>card, you may take the Treachery Card about to be bid on, replacing it with one from your hand (except in Richese auctions).</p>
+<p><strong>E.</strong> &ndash; CYBORGS AND SUBOIDS:</p>
+<p>CYBORGS: Your 7 Cyborg forces are each worth 2 normal forces in battle, are able to move 2 territories, and can collect 3 spice during the Spice Collection Phase. Your Cyborg forces ship normally, but each costs 3 spice to revive. SUBOIDS: Your 13 Suboid forces are able to move 2 territories if accompanied by at least one Cyborg and ship normally but are worth &frac12; in battle. You can't increase the effectiveness of Suboids in battle by spending spice. When dialing &frac12; for a Suboid, use the hash marks between battle wheel numbers as needed. Suboids can also be used to absorb losses after a battle. After battle losses are calculated, any of your surviving Suboid forces in that territory can be exchanged for Cyborgs you lost in that battle. For example, if the Ixians had 2 Cyborgs and 6 Suboids in a battle and dialed 6, the Ixians would need to lose a strength of 6, which could be 2 Cyborgs (for 4), and 4 Suboids (for another 2). Then, since they had 2 surviving Suboids, they can swap those with the 2 Cyborgs they just sent to the Tleilaxu Tanks.</p>
+<h3>Alliance Ability</h3>
+<p><strong>F.</strong> &ndash; After an ally purchases a Treachery Card during a normal or Black Market</p>
+<p>auction, they may look at it and decide whether to immediately discard it to draw the top card from the Treachery Deck.</p>
+<h3>Special Karama Power</h3>
+<p><strong>G.</strong> &ndash; If your forces occupy the Hidden Mobile Stronghold, you may use a</p>
+<p>Karama Card to move the Hidden Mobile Stronghold 2 territories during your shipment and movement. Ability can be cancelled by Karama.</p>
+<h2>Moritani</h2>
+<p>AT START: 6 forces in unoccupied territory after all other factions set up and 14 forces in reserves (off-planet). Start with 12 spice, 1 random Treachery Card, and 6 Terror tokens. FREE REVIVAL 2 forces/turn</p>
+<h3>Moritani</h3>
+<p>You resort to terrorism.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; TERRORIZE: During the Mentat Pause Phase, you may place (face down) or</p>
+<p>move 1 of your Terror tokens. Terror tokens can only be placed in or moved to non-Hidden-Mobile strongholds without any Terror tokens. When forces (including advisors) from a faction you are not allied with ship or move into a stronghold containing a Terror token, you may reveal that Terror token, remove it from the game, and apply its effects to the triggering faction. Assassination: Send a random leader from the triggering faction to the Tleilaxu Tanks, collecting spice from the Spice Bank equal to the leader's strength (3 for Zoal). ATomics: Send all forces in the territory to the Tleilaxu Tanks, and place the ATomics Aftermath token in the territory. Forces can no longer ship or cross-ship into this territory. From now on, the hand limit for the Moritani and their ally is reduced by 1 (discard a random card if you exceed the hand limit when this triggers). Extortion: Place 5 spice from the Spice Bank in front of your Player Shield. Collect it in the Mentat Pause Phase, then regain this Terror token unless any one player in storm order pays you 3 spice. Robbery: Steal half the triggering faction's spice (rounded up) or take the top card of the Treachery Deck (discarding a card of your choice if you exceed your hand limit). Sabotage: If possible, draw 1 random Treachery Card from the triggering faction and discard it. Then, you may give the triggering faction 1 Treachery Card of your choice from your hand. Sneak ATtack: Place up to 5 forces from your reserves into the target territory (subject to storm and occupancy rules).</p>
+<p><strong>B.</strong> &ndash; ENEMY OF MY ENEMY: When forces from a non-Ecaz faction ship or move</p>
+<p>into a stronghold containing a Terror token, you may offer to enter into an Alliance with that faction. If they accept, you both break your existing Alliances (if any) and immediately become allies. Your Terror token is not revealed and returns to your supply. If the faction does not accept, you must reveal the Terror token and trigger its effects.</p>
+<p><strong>C.</strong> &ndash; DUKE VIDAL: AT the end of the Shipment and Movement Phase, if a) Duke</p>
+<p>Vidal is not in the Tleilaxu Tanks, and b) you are in at least two battles in strongholds with non-Ecaz opponents, add Duke Vidal to your leader pool (even from another faction). If Duke Vidal is still in your leader pool at the end of the turn, place his Leader Disc next to the game board.</p>
+<p><strong>D.</strong> &ndash; ASSASSINATE LEADERS: When you lose a battle in which a) the opposing</p>
+<p>faction's leader was not killed, b) no Traitor was revealed, c) you have no Traitor Cards of the opposing faction face up in front of your Player Shield, and d) you have not yet revealed your Traitor Card normally this game, you may reveal a Traitor Card of the opposing faction that doesn't match their leader from the battle to send the leader you reveal to the Tleilaxu Tanks, and collect spice from the Spice Bank equal to their strength (3 for Zoal). During the Mentat Pause Phase, set the revealed Traitor Card face up in front of your Player Shield as a marker, then draw a new Traitor Card.</p>
+<h3>Alliance Ability</h3>
+<p><strong>E.</strong> &ndash; When your ally loses a battle that had a winner, they may keep one</p>
+<p>Treachery Card they played in the battle that they would have been able to keep had they won.</p>
+<h3>Special Karama Power</h3>
+<p><strong>F.</strong> &ndash; You may use a Karama Card after you lose a battle to force your</p>
+<p>opponent to discard or keep any or all of the Treachery Cards they played. Ability can be cancelled by Karama. AT START: 6 forces in any unoccupied territory after all other factions set up and 14 forces in reserves (off-planet). Start with 12 spice, 1 random Treachery Card, and 6 Terror tokens.</p>
+<h2>Richese</h2>
+<h3>Richese</h3>
+<p>You have alternative technology.</p>
+<h3>Advantages</h3>
+<p>AT START: 20 forces in reserves (off-planet). Start with 5 spice, 1 random Treachery Card, and the 10 Richese Treachery Cards.</p>
+<h3>Free Revival</h3>
+<p>2 forces/turn</p>
+<p><strong>A.</strong> &ndash; BIDDING: During the Bidding Phase, you must auction one Richese</p>
+<p>Treachery Card of your choice from your cache in place of one normal Treachery Card (one fewer Treachery Card is put up for auction in the normal Bidding Round). AT the start of Declaration, you must announce whether your Richese Treachery Card will be auctioned immediately or after the normal Treachery Cards up for bid. When you auction the card, reveal it and choose either a Once Around or Silent Auction method (see below). The winner of the bid pays spice to you (Karama Cards can't be used); you pay spice to the Emperor (if in play) or Spice Bank if you win the bid or contribute to your ally's payment. When discarded, Richese Treachery Cards are discarded to the Treachery Card discard pile.</p>
+<ul>
+<li>Once Around Auction&mdash;Cho ose a direction (clockwise or counter-</li>
+</ul>
+<p>clockwise). Starting with the faction following you in that direction, each faction has a single opportunity to pass or raise the current bid. The highest bidder wins the bid. If everyone else passes, you may either gain the card for free or remove it from the game.</p>
+<ul>
+<li>Silent Auction&mdash;All factions able to bid place any amount of spice in one</li>
+</ul>
+<p>hand (including zero). Factions reveal their bids simultaneously and the faction with the most spice in hand wins the bid (ties break to the tied faction earliest in Storm order). Before revealing bids, factions may declare that the spice in their hand contributes to their ally's bid. If everyone bids zero spice, you may either gain the card for free or remove it from the game.</p>
+<p><strong>B.</strong> &ndash; NO-FIELD: You have 3 No-Field Tokens representing 0, 3, or 5 forces.</p>
+<p>However, they are considered 1 force for all effects until revealed (including spice collection). There may never be more than 1 No-Field Token on the planet at a time. When you are in a Battle with a No-Field Token, ATreides may not use Prescience to see the number dialed on your Battle Plan. In place of your normal Force Shipment, you may ship 1 No-Field Token from behind your Player Shield face down, paying only the cost of shipping a single force. During your Force Movement, you may move No-Field Tokens on the planet like they are forces. A No-Field Token must be revealed when caught in a storm, by a worm, in a lasgun/shield explosion, and when revealing your Battle Plan, but you may optionally reveal a No-Field Token at any time before the Battle Phase. When a No-Field Token is revealed:</p>
+<ul>
+<li>Place the indicated number of forces from your reserves (or up to that</li>
+</ul>
+<p>amount if you have fewer forces left in reserves) in the territory where the No-Field Token was revealed. These forces are subject to any effects triggering their reveal (e.g., they are destroyed by the storm).</p>
+<ul>
+<li>Place the revealed No-Field Token face up in front of your Player Shield,</li>
+</ul>
+<p>and return any No-Field Token already there behind your Player Shield.</p>
+<p><strong>C.</strong> &ndash; BLACK MARKET: AT the start of the Bidding Phase, before Declaration, you</p>
+<p>may auction one Treachery Card from your hand. You may announce what you are selling, and you may lie, but you do not show any player what is up for auction (ATreides may use their faction ability to look). Choose a normal, Once Around, or Silent Auction method. If the normal bidding method is chosen, proceed in storm order and resume bidding on normal Treachery Cards where bidding left off. The winner of the bid pays spice to you (Karama Cards can't be used). If no player bids any spice for your card, you must keep it, and the phase proceeds. If a card from your hand is sold, one fewer Treachery Card is put up for auction in the normal Bidding Round.</p>
+<h3>Alliance Ability</h3>
+<p><strong>D.</strong> &ndash; For your ally's Force Shipment, you may offer to ship their forces from off-</p>
+<p>planet using one of your available No-Field Tokens. Reveal the forces immediately upon shipping (if you already had a No-Field Token on the planet, it must first be revealed). Either you or your ally may pay for this shipment. You may give your ally a Richese Treachery Card that is in your hand at any time if their hand is not full.</p>
+<h3>Special Karama Power</h3>
+<p><strong>E.</strong> &ndash; AT any time, you may use a Karama Card to pay 3 spice to buy one of</p>
+<p>your Richese Treachery Cards, secretly choosing which one. Ability can be cancelled by Karama.</p>
+<h2>Spacing Guild</h2>
+<p>AT START: 5 forces in Tuek's Sietch and 15 forces in reserves (off-planet). Start with 5 spice and 1 random Treachery Card.</p>
+<h3>Free Revival</h3>
+<p>1 force/turn</p>
+<h3>Spacing Guild</h3>
+<h3>You control all shipment onto</h3>
+<p>and off of Dune.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; PAYMENT FOR SHIPMENT: When other factions ship forces onto Dune from</p>
+<p>their off-planet reserves, they pay the spice to you instead of to the Spice Bank.</p>
+<p><strong>B.</strong> &ndash; THREE TYPES OF SHIPMENT: You are capable of making one of three types</p>
+<p>of Force Shipment each turn:</p>
+<ul>
+<li>Normally from your off-planet reserves to any one sector of any one</li>
+</ul>
+<p>territory</p>
+<ul>
+<li>Cross-shipping any number of your forces from any one territory to</li>
+</ul>
+<p>any one sector of any other territory on the board, subject to storm and occupancy rules</p>
+<ul>
+<li>Returning any number of your forces from any one territory back to</li>
+</ul>
+<p>your reserves.</p>
+<p><strong>C.</strong> &ndash; HALF PRICE: You pay only half the normal fee (rounded up) when shipping</p>
+<p>your forces; you pay 1 spice for every 2 of your forces shipped back to reserves.</p>
+<p><strong>D.</strong> &ndash; SHIP AND MOVE WHEN YOU WISH: You may take your Force Shipment and</p>
+<p>Force Movement out of turn. This allows you to go first, last, or in between other players' turns. The rest of the factions must make their shipments and movements in the proper sequence. You do not have to reveal when you intend to make your Force Shipment and Force Movement until the moment you wish to take them.</p>
+<p><strong>E.</strong> &ndash; SPACING GUILD SPECIAL VICTORY CONDITION: If no faction has been able</p>
+<p>to win the game by the end of play, you have prevented control of Dune and automatically win the game.</p>
+<h3>Alliance Ability</h3>
+<p><strong>F.</strong> &ndash; Allies may ship from their off-planet reserves onto Dune or cross-ship from</p>
+<p>one territory to another with their forces that are already on Dune at the Spacing Guild half-price rate (including cross-shipping Fremen forces from reserve). Your allies win with you if you win with the Spacing Guild Special Victory Condition.</p>
+<h3>Special Karama Power</h3>
+<p><strong>G.</strong> &ndash; You may use a Karama Card during the Shipment and Movement Phase to</p>
+<p>stop one off-planet shipment of any one player. Ability can be cancelled by Karama.</p>
+<h2>Tleilaxu</h2>
+<p>AT START: 20 forces in reserves (off-planet). Start with 5 spice and 1 random Treachery Card.</p>
+<h3>Free Revival</h3>
+<p>2 forces/turn</p>
+<h3>Tleilaxu</h3>
+<h3>You have superior genetic</h3>
+<p>engineering technology.</p>
+<h3>Advantages</h3>
+<p><strong>A.</strong> &ndash; FACE DANCERS: AT the start of the game you are not dealt Traitor Cards.</p>
+<p>After traitors have been selected and unused Traitor Cards returned to the deck, shuffle the Traitor Deck and take the top 3 cards. These are your Face Dancers. When another faction wins a battle using a leader that matches a Face Dancer you control, you may reveal your Face Dancer and pause the game. When a Face Dancer is revealed:</p>
+<ol>
+<li>The battle still counts as a win for that player (they keep or discard</li>
+</ol>
+<p>Treachery Cards, place tokens and killed leaders in the Tleilaxu Tanks, collect spice for any leaders killed, and claim a Tech Token if appropriate).</p>
+<ol>
+<li>The Face Dancer leader is sent to the Tleilaxu Tanks if it was not</li>
+</ol>
+<p>already killed, but no spice is collected for it.</p>
+<ol>
+<li>The remaining non-advisor forces in the territory go back to their</li>
+</ol>
+<p>reserves and are replaced with up to the same number of Tleilaxu forces from your reserves and/or from anywhere on the planet. Once revealed you do not replace a Face Dancer (Traitor Card) until you have revealed all 3. When that happens, place all 3 Face Dancers in the Traitor Deck, shuffle, and draw 3 new Face Dancers. During the Mentat Pause Phase, you may discard 1 unrevealed Face Dancer. Shuffle it into the Traitor Deck and draw a new Face Dancer.</p>
+<p><strong>B.</strong> &ndash; TLEILAXU REVIVAL: Other factions make revival payments to you instead</p>
+<p>of to the Spice Bank. You make revival payments to the Spice Bank at half price (rounded up). You may revive any number of your forces and/or leaders during the Revival Phase, even before all 5 of your leaders are in the Tleilaxu Tanks.</p>
+<p><strong>C.</strong> &ndash; FORCE REVIVAL: You may increase the 3-force revival limit for any other</p>
+<p>faction to 5. Also, take 1 spice from the Spice Bank for each faction using free revival or a Ghola Card (including yourself).</p>
+<p><strong>D.</strong> &ndash; LEADER REVIVAL: Each faction with at least 1 leader in their leader pool</p>
+<p>can request you to revive one of their specific leaders (including ATreides' Kwisatz Haderach token) in the Tleilaxu Tanks per Revival Phase. You can set a price in spice (including 0) and, if met, revive that leader.</p>
+<p><strong>E.</strong> &ndash; GHOLAS: When you have fewer than 5 leaders in your leader pool you may</p>
+<p>revive other factions' dead leaders to your leader pool (at half price, up to a limit of 5 total leaders in your leader pool).</p>
+<p><strong>F.</strong> &ndash; ZOAL: Zoal's fighting strength matches the printed fighting strength of the</p>
+<p>opponent's leader (0 against a Cheap Hero) and for collecting spice for his death. Zoal's revival cost is 3 spice.</p>
+<h3>Alliance Ability</h3>
+<p><strong>G.</strong> &ndash; You may allow your allies to revive their forces and leaders at half price</p>
+<p>(rounded up).</p>
+<h3>Special Karama Power</h3>
+<p><strong>H.</strong> &ndash; You may use a Karama Card during the Revival Phase to prevent any one</p>
+<p>player from reviving forces and/or leaders. Ability can be cancelled by Karama.</p>
+<h1>Treachery Card Errata</h1>
+<h3>Treachery Card Errata</h3>
+<p>Family ATomics card text should read: You may play this card during any Storm Phase after the first game turn if you have one or more forces on the Shield Wall or a territory adjacent to the Shield Wall with no storm between your sector and the Wall (even if your sector or the Shield Wall is in storm). Play after the storm movement is calculated but before the storm is moved. E All forces on the Shield Wall are destroyed. Place the Destroyed Shield Wall token on the Shield Wall as a reminder. The Imperial Basin, Arrakeen, and Carthag are no longer protected from the Storm for the rest of the game. The Shield Wall remains a rock territory and may be entered normally. Remove this card from the game after use. Tleilaxu Ghola card text should read: Play at any time to immediately revive 1 of your leaders or up to 5 of your forces from the Tleilaxu Tanks for free, regardless of how many leaders you have in the Tleilaxu Tanks. These revivals do not count against your normal revivals for the turn. Hajr card text should read: Play during the Shipment and Movement Phase immediately after your Force Movement. Make an extra on-planet Force Movement subject to normal movement rules. The forces you move may be a group you've already moved this phase or another group. Poison Tooth replacement card text (CHOAM expansion) reads: Play as part of your Battle Plan. Kills both leaders, and is not stopped by a Snooper. After seeing the battle results, you may choose not to use this weapon. If you win the battle and did not use this card, you may keep it. Otherwise, it is discarded. Artillery Strike replacement card text (CHOAM expansion) reads: Play as part of your Battle Plan. Kills both leaders. Both players may use Shields to protect their leader against the Artillery Strike. Surviving (shielded) leaders do not count towards the battle total; the side that dialed higher wins the battle. No spice is collected for any leader killed in this battle. Discard after use. Karama Card text should read (aligned to the CHOAM expansion replacement cards): After game setup and factions have completed their "AT Start" actions, use this card to stop one use of a faction advantage (including alliance abilities) when a player attempts to use it. When used on faction advantages during a battle this must be played before Battle Plans are revealed. Or, this card may be used to do one of the following when appropriate:</p>
+<ul>
+<li>Purchase any player's Force Shipment at Guild rates (&frac12; normal), paid to</li>
+</ul>
+<p>the Spice Bank.</p>
+<ul>
+<li>Bid more spice than you have (without revealing this card) and/or</li>
+</ul>
+<p>purchase a Treachery Card without paying spice for it (cannot be used for Richese Auctions or if your hand is full).</p>
+<ul>
+<li>Use your faction's Special Karama Power (limit once per game).</li>
+</ul>
+<p>Cannot be used to stop a Special Victory Condition or Special Karama Power. Discard after use. Truthtrance card text should read: Play at any time to publicly ask one other player a single yes/no question about the game. They must answer "yes" or "no" publicly and do everything in their power to abide by their answer during the current turn. If it is impossible to abide by their answer later in the turn, they are no longer bound by their answer. If a player is asked something beyond that player's ability to decide to do they may answer "I don't know." If a player can't answer a Truthtrance question, the player playing it can ask a different question, or choose to play Truthtrance at a future point. The game pauses until an answer is given.</p>
+<h3>Questions And Answers</h3>
+<p>[Bene Gesserit] - Advisors cannot be used to play Family ATomics.</p>
+<h3>Faction Advantage Summary</h3>
+<h1>Questions and Answers</h1>
+<h3>General Questions</h3>
+<p>Are players allowed to take notes about matters other than cards? How about taking notes about public knowledge including cards played and retained in battles, traitors, etc.</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>Yes, and those notes can be kept secret. In competitive play, tournament rules apply and the expectation may be that no written notes of any kind can be kept other than the ATreides bidding advantage.</p>
+<p>What happens if at the end of the last turn, no one has won, and the Spacing Guild are not in play?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>The Fremen win. If they are not in play, the player occupying the most strongholds wins. If several qualify, all who qualify win.</p>
+<p>In the Advanced Game, when reshuffling the Spice Deck, must you reshuffle the entire deck?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>Yes.</p>
+<p>In the Advanced Game, do the Fremen get the sandworm advantage bonus if a second sandworm appears in a Spice Phase?</p>
+<p style="padding-left: 40px;"><strong>Answer:</strong> Yes, as long as the second sandworm is drawn immediately after the first one.</p>
+<p>Can the ATreides faction use the Kwisatz Haderach token immediately after losing their 7th token?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>Yes, you can lose the token in one battle and use the Kwisatz Haderach token in another one that turn.</p>
+<p>Why did you decide not to adopt the alliance constraint rulings from the rules and November 2020 FAQ as written?</p>
+<p style="padding-left: 40px;"><strong>Answer:</strong> Including Bene Gesserit advisors in the alliance constraint unnecessarily complicates the alliance constraint rules and dramatically changes the game by effectively locking down any strongholds they have advisors in from their allies (which is more than likely most of the strongholds). It also departs from the consistency of the ruling that "advisors have no effect on the play of the other factions whatsoever" when advisors already adhere to the alliance constraint rule intent clarified in the November 2020 FAQ of "allies may never battle one another." If players choose to play with the alliance constraint rule as written in the November 2020 FAQ, I suggest also allowing Bene Gesserit players to send their advisors to the tanks at any time in order to provide their alliance some measure of movement flexibility.</p>
+<p style="padding-left: 40px;">With regard to movement of allies, I preferred to adopt a single consistent rule that addressed all of the alliance constraint scenarios even though it places the impetus for movement out of an alliance territory on the first player to ship and move.</p>
+<p style="padding-left: 40px;">I recognize others may disagree with these rulings and encourage everyone to play how they find the game most fun.</p>
+<h3>Storm</h3>
+<p>Are forces in the sector where the storm begins its movement killed by the storm?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>No, only forces in a sector of sand territory (except the Imperial Basin) over which the storm passes or stops are killed.</p>
+<p>Should Weather Control be played first and then Family ATomics, or the other way around, or are both ways allowed?</p>
+<p style="padding-left: 40px;"><strong>Answer:</strong> You can play them in either order, but their effects are executed in the order they are played.</p>
+<h3>Revival</h3>
+<p>Are revived leaders still subject to turning traitor?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>Yes. Once a leader is a traitor, they are always a traitor for the entire game; however, they can now be used safely in battles with any faction except the one that holds it as a traitor.</p>
+<p>Can players revive leaders if their other leaders have been captured by the Harkonnens or are Tleilaxu Gholas?</p>
+<p style="padding-left: 40px;"><strong>Answer:</strong> Yes. All players can begin to revive their leaders if they don't have any of their own leaders available to play in battle.</p>
+<h3>Movement</h3>
+<p>When the Fremen ship, must they include the Great Flat when counting the two territory range from the Great Flat?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>No. Never include the Great Flat when counting the two-territory range.</p>
+<p>Can a player's forces, that have moved into different sectors of the same territory at different times, move or ship as a single group?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>Yes.</p>
+<p>If a storm is over Arrakeen or Carthag does it affect the three territory (ornithopter) move?</p>
+<p style="padding-left: 40px;"><strong>Answer: </strong>No, except of course, into, out of, or through the storm.</p>
+<h3>Battle</h3>
+<p>May the same weapon or defense card be played in more than one battle in the same phase if victorious?</p>
+<p>Answer: Yes.</p>
+<p>Can a player's forces that have moved into different sectors of the same territory at different times battle as a group?</p>
+<p>Answer: Yes, they must fight as a single group (if the storm permits).</p>
+<p>What happens if Truthtrance, Bene Gesserit Voice and ATreides Prescience or some combination thereof, are being used in the same battle?</p>
+<p>Answer: The Bene Gesserit Voice must always be used before the ATreides Prescience. Truthtrance can be played at any time in this interaction. Please note that a player has the ability to alter components of their Battle Plan that are not affected after being Voiced, Prescienced [sic] or Truthtranced.</p>
+<p>Can you still use the leader with the Mentat Skill in a battle if you use the skill to ask about a weapon?</p>
+<p>Answer: Yes. The Mentat skill's effect takes place before Battle Plans are made, so you may use the effect and then still take that leader behind your Player Shield (to potentially use in battle).</p>
+<p>What happens if a player's Prescience answer becomes impossible to meet (e.g., due to subsequent play of a Karama card)?</p>
+<p>Answer: You must provide an updated valid answer to the Prescience question before battle plans are revealed. What happens if a player's revealed Battle Plan isn't legal (e.g., dials a number higher than their tokens and/or spice paid allows, contains multiple Leader Discs or Treachery Cards of the same type, or doesn't include a leader when one is available to play)? Answer: If a number is dialed in excess of what can be supported, it is reduced to the highest supportable number. For excess Leader Discs or Treachery Cards, randomly select which is included from those played and return the other elements to the player's supply. If a leader isn't included in a Battle Plan when it was available to be included, the lowest available Leader Disc from that player is used for the battle.</p>
+<h3>Treachery Cards</h3>
+<p>What is the standard rule for discarding Treachery Cards after they are played?</p>
+<p>Answer: Treachery Cards must be discarded unless the card says they can be returned to your hand. When a card is used in battle, the winning player may choose to keep any cards they used, unless the card specifically indicates that it is discarded (e.g., cheap hero).</p>
+<p>Can a Tleilaxu Ghola Card allow a leader to fight in the same phase in which they were killed? Answer: Yes, a leader revived by this card during a Battle Phase can be used in the same Battle Phase. Does Thumper cause a Nexus? If another Sandworm is drawn after the Thumper is played, can the Fremen cause that worm to appear anywhere in the Advanced Game? Answer: Yes to both questions. Is Poison Tooth stopped by Chemistry? Is it stopped by any other kind of poison defense? Answer: Yes to the first question. No to the second; any poison defense defined as a Snooper does not stop Poison Tooth. Can Shield Snooper trigger a Lasgun-Shield explosion? Does it keep your leader safe from Artillery Strike? Answer: Yes. Is your leader safe from Artillery Strike if you use Weirding Way? Does Weirding Way used as a projectile defense trigger a Lasgun-Shield explosion? Answer: No to both questions. Weirding Way can be a projectile defense but does not count as a shield. What are the default types for special weapons with more than one possible categorization? Answer: Chemistry counts as a poison defense, Poison Blade counts as both a projectile and poison weapon, Poison Tooth counts as a poison weapon, Shield Snooper counts as both a shield and snooper, Weirding Way counts as a projectile weapon. Because of this, Chemistry and Weirding Way's alternate types cannot be forced into play with the Voice but can be prevented by it.</p>
+<h3>Questions And Answers</h3>
+<h3>Spice Cards</h3>
+<p>How does the Sandtrout work? Answer: The Sandtrout is an anti-Nexus. If any alliances existed when you draw the Sandtrout, they are canceled. Furthermore, the next time you draw a Shai-Hulud, a new Nexus does not occur. When you immediately draw that Shai-Hulud's replacement card, if it is another Shai-Hulud, you then have a normal Nexus. But if the replacement card is a Spice Blow, it is doubled.</p>
+<h3>Factions</h3>
+<p>Using Double Spice Blow Advanced rules, does ATreides get to look at two cards? Answer: No, only one. What does ATreides get to see when using Prescience to see a weapon if the opponent is using Weirding Way and a weapon? Or if ATreides asks to see a defense if the opponent played Chemistry with a Snooper? Answer: Weirding Way only counts as a weapon if no other weapon is played with it, so ATreides gets to see the other weapon. In the case of ATreides asking to see the defense when you play Weirding Way with a weapon, the Weirding Way counts as a projectile defense, and that's what ATreides would see. Similarly, Chemistry does not count as a defense when played with another defense, so the other defense is the one revealed. Can the Bene Gesserit ship a spiritual advisor when Ixians ship directly to the Hidden Mobile Stronghold? Answer: Yes. If Tleilaxu use the Harkonnen Secret Alliance effect, does the Traitor Card they keep now count as a Face Dancer or a Traitor? Answer: Face Dancer. Can an ATreides leader accompanied by the Kwisatz Haderach token be a Face Dancer? Answer: Yes. Can Tleilaxu revive other players' face down leaders as Gholas per their Advanced Game ability? Answer: Yes. If they die again, they are placed face down in the Tanks (and the Tleilaxu could revive them again if they have fewer than 5 leaders). What happens if CHOAM uses Trip to Gamont on Richese at a location where they have a No-Field token? Answer: The No-Field Token must be revealed, and one Richese force placed there would return to reserves. If none are there, the card is still considered used. If Tleilaxu have Rihani Decipherer and gain a Traitor Card, does it count as a Traitor or a Face Dancer? Answer: It counts as a Face Dancer, but it can only replace an unrevealed Face Dancer.</p>
+<h3>Questions And Answers</h3>
+<h3>Optional Rules for Alliances</h3>
+<p>Alliance Restriction Possible Side Effect Comment</p>
+<h3>Default Game Alliance</h3>
+<p>2 Player Alliance limit 4 Strongholds to win A longer game Players look for synergy with one other player and try to win together but must try to hold on to the strongholds they have. 2 Player Alliance limit 3 Strongholds to win A shorter game Players look for synergy with one other player and try to win together by holding or capturing 3 strongholds. 3 Player Alliance limit 4 Strongholds to win A longer short game May devolve into 3 strongest against 3 weakest, etc. but supposedly weaker players may be able to reverse the stronger players' fortunes and tip the balance. 3 Player Alliance limit 3 Strongholds to win</p>
+<h3>Probably the shortest</h3>
+<p>game May devolve into 3 strongest against 3 weakest, but supposedly weaker players may pull off a surprise win by winning key battles.</p>
+<h3>Any number of Players in</h3>
+<h3>Alliances</h3>
+<p>3 Strongholds to win A more exotic game The original Dune rules Alliance game; adversity creates ingenuity.</p>
+<h1>Credits</h1>
+<h3>Original rules</h3>
+<h3>Game Design:</h3>
+<p>Peter Olotka, Jack Kittredge, Bill Eberle</p>
+<h3>Development &amp; Quick Start Guide:</h3>
+<p>Greg Olotka</p>
+<h3>Special Thank You to</h3>
+<p>Ian Allen at Seventh Son Games for Rules Consulting</p>
+<h3>Play Testing</h3>
+<p>Thanks to the North Shore Gamers: Greg Schmidt, Joe Don Richardson, Rowan Miller, David Kuznick, Bob King, John Grubb and Alex Bowers</p>
+<h3>Avalon Hill Credit Development:</h3>
+<p>Mark Uhl and Richard Hamblen.</p>
+<h3>Avalon Hill Playtest:</h3>
+<p>Don Greenwood, Bruce Milligan, George Uhl, Robert Uhl, Seth Carus, Paul O&rsquo;Neil, Jim Skinner, Future Pastimes and the people at Johns Hopkins U., Carmen, Brandy and Doug</p>
+<h3>Artwork:</h3>
+<p>Ilya Baranovsky Producers: Peter Simunovich, John-Paul Brisigotti Graphic Design: Casey Davies, Victor Pesch</p>
+<h3>Logo Design:</h3>
+<p>Vicki Tunkel</p>
+<h3>Genuine Entertainment Producer:</h3>
+<p>Joe LeFavi</p>
+<h3>Special Thank You to</h3>
+<p>Robert Blance, Richard Foster, Reid Pittams, Simon Paton, and the Battlefront Studio Team.</p>
+<p>Brian Herbert, Kevin J. Anderson and the Herbert properties team.</p>
+<p>Elie Dekel, Lisa Lilly, Eric Morreel and the Legendary team.</p>
+<p>Games Design &copy; Gale Force Nine 2019. Gale Force Nine is a Battlefront Group Company</p>
+<p>DUNE &copy; 2019 Legendary. All Rights Reserved.</p>
+</main>
+<script>
+    function updateFaction(checkbox) {
+        const className = checkbox.dataset.class;
+        document.querySelectorAll('.' + className).forEach(element => {
+            element.hidden = !checkbox.checked;
+        });
+        document.querySelectorAll('.no-' + className).forEach(element => {
+            element.hidden = checkbox.checked;
+        });
+    }
+
+    function updateModule(checkbox) {
+        const moduleName = checkbox.dataset.module;
+        document.querySelectorAll('.' + moduleName).forEach(element => {
+            element.hidden = !checkbox.checked;
+        });
+        document.querySelectorAll('.no-' + moduleName).forEach(element => {
+            element.hidden = checkbox.checked;
+        });
+    }
+
+    function updatePlayerCount() {
+        const selected = document.querySelectorAll('#faction-selector input[type="checkbox"]:checked').length;
+        document.querySelectorAll('.players-2-3').forEach(element => { element.hidden = selected < 2 || selected > 3; });
+        document.querySelectorAll('.players-4-5').forEach(element => { element.hidden = selected < 4 || selected > 5; });
+    }
+
+    function updateFactionCount() {
+        const selected = document.querySelectorAll('#faction-selector input[type="checkbox"]:checked').length;
+        const harkonnen = document.querySelector('#faction-selector input[data-class="HK"]').checked;
+        document.querySelectorAll('.faction-count').forEach(element => { element.textContent = selected + (harkonnen ? 1 : 0); });
+    }
+
+    function updateTwoTimesFactionCount() {
+        const selected = document.querySelectorAll('#faction-selector input[type="checkbox"]:checked').length;
+        document.querySelectorAll('.two-times-faction-count').forEach(element => { element.textContent = selected * 2; });
+    }
+
+    function updateFactionSelectionLimit() {
+        const boxes = document.querySelectorAll('#faction-selector input[type="checkbox"]');
+        const limitReached = [...boxes].filter(checkbox => checkbox.checked).length >= 6;
+        boxes.forEach(checkbox => { checkbox.disabled = limitReached && !checkbox.checked; });
+    }
+
+    document.querySelectorAll('#faction-selector input[type="checkbox"]').forEach(checkbox => {
+        updateFaction(checkbox);
+        checkbox.addEventListener('change', () => {
+            updateFaction(checkbox);
+            updatePlayerCount();
+            updateFactionCount();
+            updateTwoTimesFactionCount();
+            updateFactionSelectionLimit();
+        });
+    });
+    updatePlayerCount();
+    updateFactionCount();
+    updateTwoTimesFactionCount();
+    updateFactionSelectionLimit();
+
+    document.querySelectorAll('#module-selector input[type="checkbox"]').forEach(checkbox => {
+        updateModule(checkbox);
+        checkbox.addEventListener('change', () => updateModule(checkbox));
+    });
+</script>
+<footer class="rulebook-footer">Dune Dynamic Rulebook</footer>
+<p><img class="footer-worm-art" src="img/art-cover-worm.png" alt=""> <img class="footer-fremen-art" src="img/art-fremen.png" alt=""></p>
+</body>
+</html>
+
+

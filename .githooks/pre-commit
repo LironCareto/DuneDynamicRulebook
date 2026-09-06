@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "Checking image references..."
+
+pwsh.exe -NoProfile -ExecutionPolicy Bypass \
+  -File "./scripts/update-image-gitignore.ps1" -Stage
+
+if [ $? -ne 0 ]; then
+    echo "Image validation failed. Commit aborted."
+    exit 1
+fi
+
+exit 0
