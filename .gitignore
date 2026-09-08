@@ -113,7 +113,9 @@ img/raw/
 !img/AT-leader-yueh.png
 !img/AT-leader.png
 !img/AT-logo.png
-!img/AT-special-karama.png
+!img/AT-troop.png
+!img/battle1.png
+!img/battle2.png
 !img/BG-leader-alia.png
 !img/BG-leader-fenning.png
 !img/BG-leader-irulan.png
@@ -129,7 +131,6 @@ img/raw/
 !img/CH-leader-verdun.png
 !img/CH-leader.png
 !img/CH-logo.png
-!img/CH-special-karama.png
 !img/EM-leader-aramsham.png
 !img/EM-leader-bashar.png
 !img/EM-leader-burseg.png
@@ -137,7 +138,6 @@ img/raw/
 !img/EM-leader-fenning.png
 !img/EM-leader.png
 !img/EM-logo.png
-!img/EM-special-karama.png
 !img/EZ-leader-bludd.png
 !img/EZ-leader-dinari.png
 !img/EZ-leader-ilesa.png
@@ -146,7 +146,6 @@ img/raw/
 !img/EZ-leader-vidal.png
 !img/EZ-leader.png
 !img/EZ-logo.png
-!img/EZ-special-karama.png
 !img/FR-leader-chani.png
 !img/FR-leader-jamis.png
 !img/FR-leader-mapes.png
@@ -154,7 +153,6 @@ img/raw/
 !img/FR-leader-stilgar.png
 !img/FR-leader.png
 !img/FR-logo.png
-!img/FR-special-karama.png
 !img/HK-leader-beast.png
 !img/HK-leader-feyd.png
 !img/HK-leader-kudu.png
@@ -162,9 +160,9 @@ img/raw/
 !img/HK-leader-vries.png
 !img/HK-leader.png
 !img/HK-logo.png
-!img/HK-special-karama.png
-!img/icon-karama-cards.png
+!img/icon-karama_2.png
 !img/icon-karama-white.png
+!img/icon-karama.png
 !img/IX-leader-cammar.png
 !img/IX-leader-dominic.png
 !img/IX-leader-kailea.png
@@ -172,13 +170,14 @@ img/raw/
 !img/IX-leader-tesia.png
 !img/IX-leader.png
 !img/IX-logo.png
-!img/IX-special-karama.png
 !img/karama.png
 !img/map-arrakeen.png
 !img/map-carthag.png
+!img/map-cielago-south.png
 !img/map-habanya-sietch.png
 !img/map-sietch-tabr.png
 !img/map-tueks-sietch.png
+!img/marker-turn.png
 !img/MO-leader-grieu.png
 !img/MO-leader-hiih.png
 !img/MO-leader-lupino.png
@@ -187,17 +186,25 @@ img/raw/
 !img/MO-leader-vidal.png
 !img/MO-leader.png
 !img/MO-logo.png
-!img/MO-special-karama.png
+!img/phase-battle-black-alpha.png
 !img/phase-battle-grey.png
+!img/phase-bidding-black-alpha.png
 !img/phase-bidding-grey.png
+!img/phase-charity-black-alpha.png
 !img/phase-charity-grey.png
+!img/phase-collection-black-alpha.png
 !img/phase-collection-grey.png
+!img/phase-mentat-black-alpha.png
 !img/phase-mentat-grey.png
 !img/phase-nexus.png
+!img/phase-revival-black-alpha.png
 !img/phase-revival-grey.png
+!img/phase-shipment-black-alpha.png
 !img/phase-shipment-grey.png
+!img/phase-spice-black-alpha.png
 !img/phase-spice-gold.png
 !img/phase-spice-grey.png
+!img/phase-storm-black-alpha.png
 !img/phase-storm-gold.png
 !img/phase-storm-grey.png
 !img/player-order.png
@@ -212,7 +219,6 @@ img/raw/
 !img/RI-leader-talis.png
 !img/RI-leader.png
 !img/RI-logo.png
-!img/RI-special-karama.png
 !img/SG-leader-bewt.png
 !img/SG-leader-esmar.png
 !img/SG-leader-guildrep.png
@@ -220,7 +226,10 @@ img/raw/
 !img/SG-leader-staban.png
 !img/SG-leader.png
 !img/SG-logo.png
-!img/SG-special-karama.png
+!img/spice-1.png
+!img/spice-10.png
+!img/spice-2.png
+!img/spice-5.png
 !img/tech-token-axolotl.png
 !img/tech-token-heighliners.png
 !img/tech-token-spice.png
@@ -231,7 +240,6 @@ img/raw/
 !img/TX-leader-zoal.png
 !img/TX-leader.png
 !img/TX-logo.png
-!img/TX-special-karama.png
 # END AUTO-USED-IMAGES
 # Local auxiliary files
 /index.before-faction-sheets.html
