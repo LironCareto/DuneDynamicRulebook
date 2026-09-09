@@ -64,7 +64,7 @@ Dune Dynamic Rulebook applies the same basic idea to Dune.
 
 Almost all of the hard work behind this project was done by other people.
 
-The rules content comes from the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) on BoardGameGeek.
+The rules content comes from the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) by Vantastic on BoardGameGeek.
 
 The idea of a configurable, dynamic web-based rulebook comes from [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook) by jbiatek.
 
