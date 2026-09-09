@@ -112,7 +112,7 @@
         vertical-align: -0.325em;
     }
 
-    span.special-karama > img {
+    span.special-karama img {
         position: absolute;
         width: 55% !important;
         height: 55% !important;
@@ -168,6 +168,69 @@
     .themed-matchup:focus-visible {
         outline: 2px solid var(--blue-heading);
         outline-offset: 2px;
+    }
+
+    .faction-reference-link {
+        display: contents;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .faction-sheet__header > .faction-reference-link > img {
+        position: relative;
+        z-index: 1;
+    }
+
+    .faction-reference-link:focus-visible img {
+        outline: 2px solid var(--blue-heading);
+        outline-offset: 2px;
+    }
+
+    .faction-reference-dialog {
+        width: min(70rem, calc(100% - 1.5rem));
+        max-width: none;
+        max-height: calc(100dvh - 1.5rem);
+        box-sizing: border-box;
+        padding: 0;
+        border: 0;
+        border-radius: 0.5rem;
+        overflow: auto;
+        overscroll-behavior: contain;
+    }
+
+    .faction-reference-dialog::backdrop {
+        background: rgb(0 0 0 / 55%);
+    }
+
+    .faction-reference-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.65rem;
+        background: var(--blue-heading);
+        color: white;
+    }
+
+    .faction-reference-close {
+        padding: 0.6rem 0.8rem;
+        border: 1px solid white;
+        border-radius: 0.25rem;
+        background: white;
+        color: var(--blue-heading);
+        font: inherit;
+        cursor: pointer;
+    }
+
+    .faction-reference-dialog .faction-sheet {
+        margin: 0;
+    }
+
+    body:has(.faction-reference-dialog[open]) {
+        overflow: hidden;
     }
 
     .selector-option {
@@ -1296,14 +1359,14 @@
 
     @media (max-width: 50rem) {
         :root {
-            --footer-height: 6.5rem;
+            --footer-height: 6rem;
         }
 
         .rulebook-footer {
             height: calc(var(--footer-height) + env(safe-area-inset-bottom, 0px));
-            padding: 0 3.25rem env(safe-area-inset-bottom, 0px);
-            grid-template-rows: 4.5rem 2rem;
-            background: linear-gradient(to bottom, #ead797 0 4.5rem, #baac79 4.5rem 100%);
+            padding: 0 0.5rem env(safe-area-inset-bottom, 0px);
+            grid-template-rows: 3rem 3rem;
+            background: linear-gradient(to bottom, #ead797 0 3rem, #baac79 3rem 100%);
         }
 
         body {
@@ -1312,14 +1375,15 @@
 
         .faction-leader-summary {
             grid-template-columns: repeat(3, max-content);
-            gap: 0.35rem 0.5rem;
+            gap: 0.35rem 0.4rem;
             min-width: 0;
-            font-size: 0.75rem;
+            font-size: clamp(0.75rem, 3.2vw, 0.9rem);
         }
 
         .faction-karama-notice {
+            padding-inline: 3.5rem;
             min-width: 0;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             line-height: 1.15;
             text-align: center;
         }
@@ -1328,12 +1392,29 @@
             flex-shrink: 0;
         }
 
+        .footer-artwork {
+            position: fixed;
+            inset: 0;
+            z-index: 11;
+            margin: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
         .footer-fremen-art,
         .footer-worm-art {
-            width: 3rem;
-            max-height: 4rem;
-            object-fit: contain;
+            position: absolute;
+            width: 7rem;
+            max-height: none;
             bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .footer-worm-art {
+            left: -2.5rem;
+        }
+
+        .footer-fremen-art {
+            right: -2.5rem;
         }
 
         .faction-sheet__header,
@@ -1351,11 +1432,6 @@
 
         .first-player-order {
             grid-template-columns: 1fr;
-        }
-    }
-    @media (max-width: 30rem) {
-        .faction-leader-summary {
-            grid-template-columns: repeat(2, max-content);
         }
     }
 </style>
@@ -3242,6 +3318,58 @@
         });
     });
 
+    function initializeFactionReferences() {
+        const sheets = new Map();
+        document.querySelectorAll('#faction-player-sheets > .faction-sheet').forEach(sheet => {
+            const code = [...sheet.classList].find(name => /^[A-Z]{2}$/.test(name));
+            if (!code) return;
+            sheet.id ||= 'faction-sheet-' + code.toLowerCase();
+            sheets.set(code, sheet);
+        });
+
+        const dialog = document.createElement('dialog');
+        dialog.className = 'faction-reference-dialog';
+        dialog.setAttribute('aria-labelledby', 'faction-reference-title');
+        dialog.innerHTML = '<div class="faction-reference-toolbar"><strong id="faction-reference-title">Faction reference</strong><button type="button" class="faction-reference-close" autofocus>Back to rules</button></div><div class="faction-reference-content"></div>';
+        document.body.append(dialog);
+        const content = dialog.querySelector('.faction-reference-content');
+        dialog.querySelector('button').addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', event => {
+            if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener('close', () => content.replaceChildren());
+
+        document.querySelectorAll('img').forEach(icon => {
+            const match = (icon.getAttribute('src') || '').match(/^(?:img)\/([A-Z]{2})-logo(?:-big)?\.png$/i);
+            if (!match || icon.closest('a')) return;
+            const sheet = sheets.get(match[1].toUpperCase());
+            if (!sheet) return;
+            const name = sheet.querySelector('h2').textContent.trim();
+            const link = document.createElement('a');
+            link.className = 'faction-reference-link';
+            link.href = '#' + sheet.id;
+            link.setAttribute('aria-label', 'View ' + name + ' faction sheet');
+            link.title = 'View ' + name + ' faction sheet';
+            icon.before(link);
+            link.append(icon);
+            link.addEventListener('click', event => {
+                if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                event.stopPropagation();
+                const copy = sheet.cloneNode(true);
+                copy.hidden = false;
+                copy.removeAttribute('id');
+                copy.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+                // The reference copy is informational, not a second set of navigation links.
+                copy.querySelectorAll('.faction-reference-link').forEach(anchor => anchor.replaceWith(...anchor.childNodes));
+                content.replaceChildren(copy);
+                dialog.querySelector('#faction-reference-title').textContent = name;
+                dialog.showModal();
+                dialog.scrollTop = 0;
+            });
+        });
+    }
+
     restoreSelection();
     saveSelection();
 
@@ -3270,6 +3398,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
+        initializeFactionReferences();
         document.querySelectorAll('#faction-selector input[type="checkbox"]').forEach(updateFaction);
         observeFactionSheets();
         observeKaramaBadges();
@@ -3293,6 +3422,6 @@
 </div>
 <div id="faction-karama-notice" class="faction-karama-notice" hidden><img src="img/karama.png" alt=""><span>Ability can be cancelled by <strong><em>Karama</em></strong>.</span></div>
 </footer>
-<p><img class="footer-worm-art" src="img/art-cover-worm.png" alt=""> <img class="footer-fremen-art" src="img/art-fremen.png" alt=""></p>
+<p class="footer-artwork"><img class="footer-worm-art" src="img/art-cover-worm.png" alt=""> <img class="footer-fremen-art" src="img/art-fremen.png" alt=""></p>
 </body>
 </html>
