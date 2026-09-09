@@ -1295,6 +1295,47 @@
     }
 
     @media (max-width: 50rem) {
+        :root {
+            --footer-height: 6.5rem;
+        }
+
+        .rulebook-footer {
+            height: calc(var(--footer-height) + env(safe-area-inset-bottom, 0px));
+            padding: 0 3.25rem env(safe-area-inset-bottom, 0px);
+            grid-template-rows: 4.5rem 2rem;
+            background: linear-gradient(to bottom, #ead797 0 4.5rem, #baac79 4.5rem 100%);
+        }
+
+        body {
+            padding-bottom: calc(var(--footer-height) + env(safe-area-inset-bottom, 0px) + 0.5rem);
+        }
+
+        .faction-leader-summary {
+            grid-template-columns: repeat(3, max-content);
+            gap: 0.35rem 0.5rem;
+            min-width: 0;
+            font-size: 0.75rem;
+        }
+
+        .faction-karama-notice {
+            min-width: 0;
+            font-size: 0.75rem;
+            line-height: 1.15;
+            text-align: center;
+        }
+
+        .faction-karama-notice img {
+            flex-shrink: 0;
+        }
+
+        .footer-fremen-art,
+        .footer-worm-art {
+            width: 3rem;
+            max-height: 4rem;
+            object-fit: contain;
+            bottom: env(safe-area-inset-bottom, 0px);
+        }
+
         .faction-sheet__header,
         .faction-sheet__body {
             grid-template-columns: 1fr;
@@ -1310,6 +1351,11 @@
 
         .first-player-order {
             grid-template-columns: 1fr;
+        }
+    }
+    @media (max-width: 30rem) {
+        .faction-leader-summary {
+            grid-template-columns: repeat(2, max-content);
         }
     }
 </style>
