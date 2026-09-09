@@ -104,6 +104,7 @@ img/*
 # Do not edit this section manually.
 img/*
 img/raw/
+!img/art-bw-worm-3.png
 !img/art-cover-worm.png
 !img/art-fremen.png
 !img/AT-leader-duncan.png
@@ -153,6 +154,11 @@ img/raw/
 !img/FR-leader-stilgar.png
 !img/FR-leader.png
 !img/FR-logo.png
+!img/hiereg-back.png
+!img/hiereg-cistern.png
+!img/hiereg-jacurutu.png
+!img/hiereg-shrine.png
+!img/hiereg-station.png
 !img/HK-leader-beast.png
 !img/HK-leader-feyd.png
 !img/HK-leader-kudu.png
@@ -226,6 +232,11 @@ img/raw/
 !img/SG-leader-staban.png
 !img/SG-leader.png
 !img/SG-logo.png
+!img/smuggler-back.png
+!img/smuggler-ornithopter.png
+!img/smuggler-spice.png
+!img/smuggler-station.png
+!img/smuggler-treachery.png
 !img/spice-1.png
 !img/spice-10.png
 !img/spice-2.png

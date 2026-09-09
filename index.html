@@ -203,6 +203,39 @@
         font-variant: small-caps;
     }
 
+    .discovery-token-group {
+        margin: 1rem 0;
+    }
+
+    .discovery-token-row {
+        display: grid;
+        grid-template-columns: 3rem minmax(0, 1fr);
+        gap: 0.65rem;
+        align-items: start;
+        margin: 0.4rem 0;
+        break-inside: avoid;
+    }
+
+    #rulebook-content .discovery-token-row > img {
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        margin: 0;
+        object-fit: contain;
+    }
+
+    #rulebook-content .discovery-token-row p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    #rulebook-content .discovery-token-row h5 {
+        margin: 0 0 0.3rem;
+        padding: 0;
+        text-decoration: underline;
+    }
+
     .h5-section {
         padding-left: 40px;
     }
@@ -886,6 +919,11 @@
     .faction-sheet__start strong,
     .faction-sheet__revival strong {
         font-size: 0.7rem;
+    }
+
+    .faction-sheet__start > strong {
+        font-size: inherit;
+        font-weight: 900;
     }
 
     .faction-sheet__start p {
@@ -1723,25 +1761,33 @@
 <h3>How an Alliance Functions</h3>
 <h4>Winning</h4>
 <p>If an Alliance occupies a total of at least 4 strongholds with one or more forces during the Mentat Pause Phase, that Alliance wins the game.</p>
-<h4>Constraint</h4>
-<p>Allies may never battle one another. If forces of allied factions are present in the same territory (except the <em>Polar Sink</em>) at the end of <span class="outlined">either player’s</span> shipment and movement, the forces in that territory from the player whose shipment and movement just concluded are lost to the Tleilaxu Tanks. BG Advisors do not trigger the alliance constraint.</p>
-<h4>Bidding</h4>
-<p>During the Bidding Phase, allies may help pay for each other’s Treachery Cards. To do so, they contribute to the card’s purchase by paying spice up to, but not more than, the card’s purchase price. You cannot bid more than the total of the spice you have plus the spice that their ally is willing to give to help pay for a card. <span class="EM"><span class="karama-badge"><img class="circularize" src="img/EM-logo.png"></span> Unless transferred directly to the purchasing player using the Emperor’s alliance ability, any spice the Emperor pays for their ally’s Treachery Card purchase goes to the Spice Bank.</span> RI Any spice Richese pays toward their ally’s purchase in a Richese Treachery Card or Black Market auction goes to the <span class="EM"><img class="circularize" src="img/EM-logo.png">Emperor</span><span class="no-EM">Spice Bank</span>.</p>
+<h4>Constraint<sup>&dagger;</sup></h4>
+<p>Allies may never battle one another. If forces of allied factions are present in the same territory (except the <em>Polar Sink</em>) at the end of <span class="outlined">either player’s</span> shipment and movement, the forces in that territory from the player whose shipment and movement just concluded are lost to the Tleilaxu Tanks. <span class="EM"><img class="circularize" src="img/BG-logo.png"><sub class="logo-sub">E</sub> Advisors do not trigger the alliance constraint.</sub></p>
+<section class="phase-callout first-storm">
+<p><sup>&dagger;</sup>  This text intentionally departs from the rules and November 2020 FAQ in 2 ways: 1) by enforcing the alliance constraint at the end of each player’s shipment and movement (instead of after the later player in turn order) and 2) by allowing Bene Gesserit advisors to co-exist in territories with allies. For the rationale behind these rulings please see Questions and Answers section.</p></section>
+    <h4>Bidding</h4>
+<p>During the Bidding Phase, allies may help pay for each other’s Treachery Cards. To do so, they contribute to the card’s purchase by paying spice up to, but not more than, the card’s purchase price. You cannot bid more than the total of the spice you have plus the spice that their ally is willing to give to help pay for a card. <span class="EM"><span class="karama-badge"><img class="circularize" src="img/EM-logo.png"></span><sub class="logo-sub">C</sub> Unless transferred directly to the purchasing player using the Emperor’s alliance ability, any spice the Emperor pays for their ally’s Treachery Card purchase goes to the Spice Bank.</span> <span class="RI"> Any spice Richese pays toward their ally’s purchase in a Richese Treachery Card or Black Market auction goes to the <span class="EM"><span class="karama-badge"><img class="circularize" src="img/EM-logo.png"></span><sub class="logo-sub">C</sub> Emperor</span><span class="no-EM">Spice Bank</span>.</span></p>
 <h4>Shipment</h4>
 <p>During the Shipment and Movement Phase, allies may help pay for each other’s shipments. To do so, they contribute to the shipment’s payment by paying spice up to, but not more than, the shipment’s cost. Any spice the Spacing Guild pays for their ally’s shipment goes to the Spice Bank.</p>
 <h4>Alliance Abilities</h4>
 <p>Allies may assist one another as specified on their Player Sheets.</p>
+</section>
+<section id="secrecy">
 <h2>Secrecy</h2>
 <p>Unless indicated by a card effect or faction advantage, any player may share any information they choose with any other player at any time, either publicly or privately. Players are never required to keep their cards, spice holdings, or the traitors they selected secret. They also are not obligated to reveal this information either.</p>
 <p>All spice holdings should be kept behind Player Shields. The number of Treachery Cards held must be kept open during the Bidding Phase but can be kept secret at all other times. Discard piles are not public information and may not be searched unless an effect allows you to do so (e.g., Nullentropy Box).</p>
+</section>
+<section id="bribery">
 <h2>Bribery</h2>
 <p>Players who are not members of the same Alliance can make any kind of verbal deals or bribes between one another. Once made, these deals and bribes must be stated aloud and must be honored. A player cannot renege on a deal or bribe. If part of a deal becomes impossible to honor, then that part of the deal is void. All parties of a deal may agree to nullify the deal at any time.</p>
-<p>A deal or bribe cannot involve the transfer or gift of Treachery Cards, leaders, forces, or faction advantages. This leaves secret information, future actions, and, of course, spice. Spice transferred as part of a deal or bribe is placed in FRONT of the recipient’s Player Shield. Players may collect spice from in front of their Player Shield and add it to their normal spice only at the start of each turn’s Mentat Pause phase. <span class="EM"><span class="karama-badge"><img class="circularize" src="img/EM-logo.png"></span> Emperor may transfer any amount of spice to allies at any time for any reason.</span></p>
+<p>A deal or bribe cannot involve the transfer or gift of Treachery Cards, leaders, forces, or faction advantages. This leaves secret information, future actions, and, of course, spice. Spice transferred as part of a deal or bribe is placed in FRONT of the recipient’s Player Shield. Players may collect spice from in front of their Player Shield and add it to their normal spice only at the start of each turn’s Mentat Pause phase. <span class="EM"><span class="karama-badge"><img class="circularize" src="img/EM-logo.png"></span><sub class="logo-sub">C</sub> Emperor may transfer any amount of spice to allies at any time for any reason.</span></p>
 <p>A player cannot make a deal or bribe that would contravene the rules or the player’s faction advantages. These are the only limitations.</p>
 </section>
 <section id="karama-cards">
 <h1 class="heading-with-icon"><img class="heading-icon" src="img/icon-karama.png" alt="">Karama Cards</h1>
-<p><span class="outlined">Karama Cards are Treachery Cards that allow you to gain a one-time special advantage or to prevent one use of an opponent’s faction advantage. <span class="BG"><img class="circularize" src="img/BG-logo.png">May use worthless Cards as Karama Cards. &lt;&gt;Revised Karama Card text and clarifications are included below (aligned to the CHOAM expansion replacement card):</span></span></p>
+<p><span class="outlined">Karama Cards are Treachery Cards that allow you to gain a <strong>one-time special advantage</strong> unique to your faction, or to prevent one use of an opponent’s faction advantage.</span> <span class="BG"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png"></span><sub class="logo-sub">D</sub> May use worthless Cards as Karama Cards.</span></p>
+
+<p>Revised Karama Card text and clarifications are included below (aligned to the CHOAM expansion replacement card):</p>
 <p style="padding-left: 40px;">After game setup and factions have completed their "At Start" actions, use this card to stop one use of a faction advantage (including alliance abilities) when a player attempts to use it. When used on faction advantages during a battle this must be played before Battle Plans are revealed.</p>
 <p style="padding-left: 40px;">Or, this card may be used to do one of the following when appropriate:</p>
 <ul>
@@ -1779,7 +1825,7 @@
 </thead>
 <tbody class="AT">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/AT-logo.png"></span>Atreides</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/AT-logo.png"></span> Atreides</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Atreides from looking at a card up for bidding.</td>
@@ -1792,7 +1838,7 @@
 </tbody>
 <tbody class="BG">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/BG-logo.png"></span>Bene Gesserit</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/BG-logo.png"></span> Bene Gesserit</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Bene Gesserit from using a Worthless Card as a Karama; the Worthless Card must be discarded.</td>
@@ -1809,7 +1855,7 @@
 </tbody>
 <tbody class="CH">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/CH-logo.png"></span>CHOAM</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/CH-logo.png"></span> CHOAM</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent CHOAM from discarding one Worthless Card/set of duplicates for spice.</td>
@@ -1830,7 +1876,7 @@
 </tbody>
 <tbody class="EZ">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/EZ-logo.png"></span>Ecaz</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/EZ-logo.png"></span> Ecaz</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Ecaz from placing any Ambassadors this turn.</td>
@@ -1843,7 +1889,7 @@
 </tbody>
 <tbody class="EM">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/EM-logo.png"></span>Emperor</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/EM-logo.png"></span> Emperor</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Emperor giving spice to an ally for one specific effect.</td>
@@ -1856,7 +1902,7 @@
 </tbody>
 <tbody class="FR">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/FR-logo.png"></span>Fremen</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/FR-logo.png"></span> Fremen</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Fremen from viewing the next storm movement card.</td>
@@ -1881,7 +1927,7 @@
 </tbody>
 <tbody class="HK">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/HK-logo.png"></span>Harkonnen</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/HK-logo.png"></span> Harkonnen</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Harkonnen from gaining an extra card during bidding.</td>
@@ -1894,7 +1940,7 @@
 </tbody>
 <tbody class="IX">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/IX-logo.png"></span>Ixians</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/IX-logo.png"></span> Ixians</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Hidden Mobile Stronghold from moving and collecting spice.</td>
@@ -1915,7 +1961,7 @@
 </tbody>
 <tbody class="MO">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/MO-logo.png"></span>Moritani</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/MO-logo.png"></span> Moritani</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Moritani from placing or moving a Terror token this turn.</td>
@@ -1928,7 +1974,7 @@
 </tbody>
 <tbody class="RI">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/RI-logo.png"></span>Richese</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/RI-logo.png"></span> Richese</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Richese from conducting a Black Market auction this turn.</td>
@@ -1941,7 +1987,7 @@
 </tbody>
 <tbody class="SG">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/SG-logo.png"></span>Spacing Guild</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/SG-logo.png"></span> Spacing Guild</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Prevent Spacing Guild from taking shipment and movement out of turn.</td>
@@ -1954,7 +2000,7 @@
 </tbody>
 <tbody class="TX">
 <tr class="karama-faction-row">
-<th colspan="2"><span class="special-karama"><img class="circularize" src="img/TX-logo.png"></span>Tleilaxu</th>
+<th colspan="2"><span class="special-karama"><img class="circularize" src="img/TX-logo.png"></span> Tleilaxu</th>
 </tr>
 <tr class="karama-advantage-row">
 <td>Limit force revival to 3 for all players.</td>
@@ -1986,47 +2032,47 @@
 </thead>
 <tbody>
 <tr class="AT">
-<td><span class="special-karama"><img class="circularize" src="img/AT-logo.png"></span>Atreides look at any one player’s entire Battle Plan.</td>
+<td><span class="special-karama"><img class="circularize" src="img/AT-logo.png"></span> Atreides look at any one player’s entire Battle Plan.</td>
 <td>Battle</td>
 </tr>
 <tr class="CH">
-<td><span class="special-karama"><img class="circularize" src="img/CH-logo.png"></span>CHOAM discard Treachery Cards from hand to gain 3 spice per card.</td>
+<td><span class="special-karama"><img class="circularize" src="img/CH-logo.png"></span> CHOAM discard Treachery Cards from hand to gain 3 spice per card.</td>
 <td>At any time</td>
 </tr>
 <tr class="EZ">
-<td><span class="special-karama"><img class="circularize" src="img/EZ-logo.png"></span>Ecaz add difference between their leader and opponent leader in battle if you don’t play a weapon or defense.</td>
+<td><span class="special-karama"><img class="circularize" src="img/EZ-logo.png"></span> Ecaz add difference between their leader and opponent leader in battle if you don’t play a weapon or defense.</td>
 <td>Battle</td>
 </tr>
 <tr class="EM">
-<td><span class="special-karama"><img class="circularize" src="img/EM-logo.png"></span>Emperor revive up to 3 forces or 1 leader for free.</td>
+<td><span class="special-karama"><img class="circularize" src="img/EM-logo.png"></span> Emperor revive up to 3 forces or 1 leader for free.</td>
 <td>Revival</td>
 </tr>
 <tr class="FR">
-<td><span class="special-karama"><img class="circularize" src="img/FR-logo.png"></span>Fremen place sandworm token in any sand territory, triggering a Nexus.</td>
+<td><span class="special-karama"><img class="circularize" src="img/FR-logo.png"></span> Fremen place sandworm token in any sand territory, triggering a Nexus.</td>
 <td>Spice Blow and Nexus</td>
 </tr>
 <tr class="HK">
-<td><span class="special-karama"><img class="circularize" src="img/HK-logo.png"></span>Harkonnen take &amp; return up to 4 Treachery Cards from another player.</td>
+<td><span class="special-karama"><img class="circularize" src="img/HK-logo.png"></span> Harkonnen take &amp; return up to 4 Treachery Cards from another player.</td>
 <td>Bidding</td>
 </tr>
 <tr class="IX">
-<td><span class="special-karama"><img class="circularize" src="img/IX-logo.png"></span>Ixian move Hidden Mobile Stronghold 2 territories during their Shipment and Movement in addition to their Force Movement.</td>
+<td><span class="special-karama"><img class="circularize" src="img/IX-logo.png"></span> Ixian move Hidden Mobile Stronghold 2 territories during their Shipment and Movement in addition to their Force Movement.</td>
 <td>Shipment and Movement</td>
 </tr>
 <tr class="MO">
-<td><span class="special-karama"><img class="circularize" src="img/MO-logo.png"></span>Moritani force their opponent to discard or keep any or all of the Treachery Cards they played.</td>
+<td><span class="special-karama"><img class="circularize" src="img/MO-logo.png"></span> Moritani force their opponent to discard or keep any or all of the Treachery Cards they played.</td>
 <td>Battle</td>
 </tr>
 <tr class="RI">
-<td><span class="special-karama"><img class="circularize" src="img/RI-logo.png"></span>Richese pay 3 spice to secretly buy 1 Richese Treachery Card.</td>
+<td><span class="special-karama"><img class="circularize" src="img/RI-logo.png"></span> Richese pay 3 spice to secretly buy 1 Richese Treachery Card.</td>
 <td>At any time</td>
 </tr>
 <tr class="SG">
-<td><span class="special-karama"><img class="circularize" src="img/SG-logo.png"></span>Spacing Guild stop one off-planet shipment of any one player.</td>
+<td><span class="special-karama"><img class="circularize" src="img/SG-logo.png"></span> Spacing Guild stop one off-planet shipment of any one player.</td>
 <td>Shipment and Movement</td>
 </tr>
 <tr class="TX">
-<td><span class="special-karama"><img class="circularize" src="img/TX-logo.png"></span>Tleilaxu prevent a player from reviving forces and leaders.</td>
+<td><span class="special-karama"><img class="circularize" src="img/TX-logo.png"></span> Tleilaxu prevent a player from reviving forces and leaders.</td>
 <td>Revival</td>
 </tr>
 </tbody>
@@ -2036,8 +2082,9 @@
 <section id="variants">
 <h1>Variants</h1>
 <p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include.</p>
-<h2>Tech Tokens</h2>
-<h3>Controlling Tech Tokens</h3>
+<section id="variant-tech-tokens">
+<h3>Tech Tokens</h3>
+<h4>Controlling Tech Tokens</h4>
 <p>Tech Tokens indicate that a faction controls a specific industry and are kept in front of Player Shields. If you defeat a faction in battle that has 1 or more Tech Tokens, you take the Tech Token of their choice from them.</p>
 <p>A single player controlling all 3 Tech Tokens counts as a Stronghold for winning the game (allies cannot share control of Tech Tokens).</p>
 <h4>Assigning Tech Tokens</h4>
@@ -2060,29 +2107,32 @@
 </tr>
 </tbody>
 </table>
-<h2>Leader Skill Cards</h2>
+</section>
+<section id="variant-leader-skill-cards">
+<h3>Leader Skill Cards</h3>
 <p>Leader Skill Cards provide one leader of each faction with a unique advantage.</p>
 <p>When using Leader Skill Cards, complete the Treachery step of setup after step 1, then deal two Leader Skill Cards to each faction. Each faction chooses one to keep, and shuffles the other back into the Leader Skill Deck. Play their Leader Skill Card face up in front of their Player Shield, and assign one of their Leader Discs to it by placing the disc face up next to it. Complete the remaining steps of setup normally starting with the Traitor step.</p>
 <p>Leader Skills grant a special bonus or ability for as long as the skilled leader is alive, and the card is face up in play (either in front of their Player Shield or used in a battle). If a skilled leader is captured, the skill goes with them, but they are placed behind the Harkonnen Player Shield. If a skilled leader is killed, shuffle the Leader Skill Card back into the Leader Skill Deck. Whenever you revive one of their leaders, if you have no Leader Skill Card, you may draw two Leader Skill Cards, choose one to play face up in front of their Player Shield, and assign the newly revived leader to that skill. Shuffle the unchosen Leader Skill back into the Leader Skill Deck.</p>
 <p>Leader Skills also provide advantages when the skilled leader is used in and survives a battle. When you choose a leader for a battle, you may either leave the skilled leader face up in front of their Player Shield, or take it and the Leader Skill Card behind their Player Shield. If you use a skilled leader in battle, include its Leader Skill Card in their Battle Plan. This is the only way that both parts of the skill can be in effect in a battle (if applicable). No part of a skill is available to you while a skilled leader and its associated Leader Skill Card are behind their Player Shield.</p>
 <p>After the Battle Phase, return skilled leaders in territories on the map and their associated Leader Skill Card in front of their Player Shield.</p>
 <p>A Leader Skill must be used before a faction ability (e.g., the Mentat skill before Atreides Prescience). Any skill that mentions a card type (e.g., Poison Weapon) requires that the card included in the Battle Plan is played as that card type to gain the skill bonus. Therefore, a card like Chemistry would have to be played as a poison weapon to gain the Master of Assassins skill bonus.</p>
-<h2>Advanced Stronghold Cards</h2>
+</section>
+<section id="variant-advanced-stronghold-cards">
+<h3>Advanced Stronghold Cards</h3>
 <p>These cards provide bonuses representing home-field advantage for the factions occupying strongholds. During the Mentat Pause Phase (not during game setup), each faction occupying a stronghold takes its corresponding Stronghold Card from the supply or the faction who previously held the card. If a stronghold is unoccupied, its Stronghold Card is placed in the supply.</p>
-<h2>Homeworlds</h2>
-<h2>Homeworld Tokens</h2>
+</section>
+<section id="variant-homeworlds">
+<h3>Homeworlds</h3>
+<h4>Homeworld Tokens</h4>
 <p>Represent each faction’s homeworld or domain and is where their reserves are kept. Homeworlds are not territories and so are not subject to faction advantages such as Ecaz’s Occupy and Bene Gesserit’s Intrusion.</p>
-<h3>Homeworld Cards</h3>
+<h4>Homeworld Cards</h4>
 <p>Depict abilities that are granted to each faction depending on the number of forces in their reserves:</p>
 <ul>
-<li>High threshold: As long as a faction maintains the minimum</li>
+<li>High threshold: As long as a faction maintains the minimum threshold of reserves, they gain the listed abilities. When reserves dip below the threshold, flip the card to its low threshold side.</li>
 </ul>
-<p>threshold of reserves, they gain the listed abilities. When reserves dip below the threshold, flip the card to its low threshold side.</p>
 <ul>
-<li>Low threshold: When a faction’s reserves reach a low-</li>
-</ul>
-<p>threshold reserve, the listed low threshold abilities are active. When reserves exceed the threshold, flip the card to its high threshold side.</p>
-<h3>Revival</h3>
+<li>Low threshold: When a faction’s reserves reach a low-threshold reserve, the listed low threshold abilities are active. When reserves exceed the threshold, flip the card to its high threshold side.</li></ul>
+<h4>Revival</h4>
 <p>The main way for a player to add forces to their own homeworld is through force revivals. Force Shipment may also be used to send forces to homeworlds in the following ways:</p>
 <ul>
 <li>All factions may ship their forces from one homeworld to another homeworld</li>
@@ -2096,65 +2146,111 @@
 <li>Using their high threshold homeworld advantage, the Spacing Guild may offer</li>
 </ul>
 <p>to ship any number of another faction’s forces from one territory of Arrakis to any homeworld at a cost of 1 spice per force (before discount).</p>
-<h3>Battles</h3>
+<h4>Battles</h4>
 <p>As part of the normal resolution of battles during the Battle Phase, wherever two or more players’ forces occupy a Homeworld token, battles must occur between those players. Normal battle rules are used with the following modifications:</p>
 <ul>
-<li>Traitors and Face Dancers cannot be called by a faction battling on an</li>
+<li>Traitors and Face Dancers cannot be called by a faction battling on an opponent’s homeworld.</li>
 </ul>
-<p>opponent’s homeworld.</p>
 <ul>
-<li>The homeworld’s faction gains the battle strength listed on the face up</li>
+<li>The homeworld’s faction gains the battle strength listed on the face up portion of their Homeworld card for free.</li>
 </ul>
-<p>portion of their Homeworld card for free.</p>
 <ul>
-<li>Lasgun/shield explosions only send the listed number of the homeworld</li>
+<li>Lasgun/shield explosions only send the listed number of the homeworld faction’s forces to the Tlielaxu Tanks, no matter what was dialed. Both players still lose the battle and leaders are killed normally.</li>
 </ul>
-<p>faction’s forces to the Tlielaxu Tanks, no matter what was dialed. Both players still lose the battle and leaders are killed normally.</p>
-<h3>Occupying Other Homeworlds</h3>
+<h4>Occupying Other Homeworlds</h4>
 <p>When another faction’s forces are alone on their homeworld, they are immediately considered the "Occupier" and gain:</p>
 <ul>
 <li>The listed Occupied ability.</li>
 </ul>
 <ul>
-<li>The number of spice (if any) shown in the occupied section of the Homeworld</li>
+<li>The number of spice (if any) shown in the occupied section of the Homeworld card from the Spice Bank during the Spice Collection phase. Spice collected this way may be immediately shared with the Occupier’s ally An Occupier retains these advantages until none of their forces remain on the homeworld.</li>
 </ul>
-<p>card from the Spice Bank during the Spice Collection phase. Spice collected this way may be immediately shared with the Occupier’s ally An Occupier retains these advantages until none of their forces remain on the homeworld.</p>
-<h3>Alliances</h3>
+<h4>Alliances</h4>
 <p>No player may enter into an Alliance with any faction whose forces occupy their homeworld, nor may a faction ship to or occupy their ally’s homeworld.</p>
-<h3>Emporer’S Homeworlds</h3>
+<h4>Emperor’S Homeworlds</h4>
 <p>The Emperor has two homeworlds: Kaitain and Salusa Secundus; normal forces are revived to Kaitain and Sardaukar forces are revived to Salusa Secundus. During Shipping and Movement, the Emperor can use their Force Movement to move any number of their forces from Kaitain to Salusa Secundus (or vice versa). When the Emperor makes a Force Shipment to Arrakis or another homeworld, forces can come from both Emperor homeworlds as part of the same shipment.</p>
-<h3>Choam Homeworld</h3>
+<h4>Choam Homeworld</h4>
 <p>Note that CHOAM’s homeworld of Tupile has a penalty for high-threshold, but an advantage when they are at low threshold, opposite of the other homeworlds.</p>
-<h3>Variants</h3>
-<h3>Homeworlds</h3>
-<p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include. Nexus Cards provide players incentives and special effects for not joining an Alliance. At the end of each Spice Blow and Nexus phase where a Nexus occurred and at least one Alliance exists, any player not in an Alliance may, after discarding their previous Nexus card (if any), draw one Nexus Card. If you draw their own faction’s Nexus card, you may discard it immediately to draw a new one. Each Nexus Card is associated with one faction; its effect is determined by the factions in play this game: BETRAYAL: If the Nexus Card faction is controlled by another player, this card allows you to cancel an advantage that faction has when they try to use it. In some cases, this even allows a player to cancel an alliance ability. CUNNING: If you control the Nexus Card faction, this card gives you an enhanced version of one of their advantages. SECRET ALLY: If the Nexus Card faction is not in the game, you have a secret alliance with that faction, and this card allows you to use one of their advantages. Nexus Cards are discarded after use. If you need to draw a Nexus Card and none are available, shuffle the discards to form a new deck. If you hold a Nexus Card, you must discard it to enter into an Alliance. Discovery tokens add new elements to the game on sections of the board that are often bypassed. For this variant, shuffle the seven new Spice Cards into the Spice Deck. Then, shuffle the eight Discovery tokens face down into a supply.</p>
-<h3>Great Maker Spice Card</h3>
-<p>This is treated like a normal Shai Hulud card; however, a vote is held to determine whether or not the Nexus occurs. In storm order, each player votes yes or no. Unless a majority vote yes, no Nexus occurs. Afterward, regardless of the outcome of the vote, the Fremen may ride the Great Maker sandworm by moving any number of their forces in reserves to any sector of any territory (including the HMS), subject to storm and occupancy rules (instead of riding from a territory on the board or placing the Sandworm token). Note that a Karama Card cannot prevent riding the Great Maker.</p>
-<h3>Discovery Spice Card</h3>
-<p>Whenever a Discovery Spice Card is drawn, place 6 spice in the sector and territory indicated by the card (if it is currently in storm, no spice is placed). Any spice or forces already in that territory are destroyed by the spice blow (this only occurs when Discovery Spice Cards are drawn). Then, place a random Discovery token of the indicated type (Hiereg or Smuggler) face down in the other sector and territory shown on the card.</p>
-<h3>Tokens</h3>
-<p>There are two types of Discovery tokens: Hiereg and Smuggler. Hiereg tokens are placed in desert territories, and Smuggler tokens are placed in rock territories. During the Spice Collection Phase, any faction with non-advisor forces in a territory with a Discovery token may look at the token and choose whether or not to reveal it immediately. Unrevealed Discovery tokens remain face down, able to be revealed during a subsequent turn. Five of the Discovery tokens are locations, and remain face up in place when re vealed. These locations are considered a territory within the territory where the token is located, cost 1 spice per force to ship to, and protect forces in them from the effects of the storm and sandworms. Location Discovery Tokens cannot be occupied when revealed; at the start of the next turn, before the Storm Phase, any faction in a territory with a Location Discovery token revealed during the previous turn may move any number of their non-advisor forces in that territory into the location. Outside of this, the only way to occupy these locations is through normal Force Shipment or Force Movement.</p>
-<h3>Hiereg Tokens</h3>
-<p>Whenever a Hiereg token is face down on the board, the Fremen may look at it at any time without revealing it. Jacurutu Sietch: Counts as a normal stronghold. When you win a battle in Jacurutu Sietch, gain 1 spice for each undialed opponent force that is sent to the Tanks. Cistern: If you occupy this territory during the Spice Collection Phase, gain 2 spice from the Spice Bank. Ecological Testing Station: If you occupy this territory during the Storm Phase, you may modify the movement of the storm by &plusmn;1 (does not affect Weather Control). Shrine: If you occupy this territory, you may play Truthtrance Cards as Karama Cards, and vice versa.</p>
-<h3>Variants</h3>
 <h3>Nexus Cards</h3>
+<p>Nexus Cards provide players incentives and special effects for not joining an Alliance.</p>
+<p>At the end of each Spice Blow and Nexus phase where a Nexus occurred and at least one Alliance exists, any player not in an Alliance may, after discarding their previous Nexus card (if any), draw one Nexus Card. If you draw their own faction’s Nexus card, you may discard it immediately to draw a new one.</p> <p>Each Nexus Card is associated with one faction; its effect is determined by the factions in play this game:</p> 
+    <p style="padding-left: 40px;"><strong>BETRAYAL: </strong>If the Nexus Card faction is controlled by another player, this card allows you to cancel an advantage that faction has when they try to use it. In some cases, this even allows a player to cancel an alliance ability. </p>
+    <p style="padding-left: 40px;"><strong>CUNNING: </strong>If you control the Nexus Card faction, this card gives you an enhanced version of one of their advantages. </p>
+    <p style="padding-left: 40px;"><strong>SECRET ALLY: </strong>If the Nexus Card faction is not in the game, you have a secret alliance with that faction, and this card allows you to use one of their advantages.</p> 
+<p>Nexus Cards are discarded after use. If you need to draw a Nexus Card and none are available, shuffle the discards to form a new deck. If you hold a Nexus Card, you must discard it to enter into an Alliance. 
 <h3>Discovery Tokens</h3>
-<p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include.</p>
-<h3>Smuggler Tokens</h3>
-<p>Whenever a Smuggler token is face down on the board, the Spacing Guild may look at it at any time without revealing it. Orgiz Processing Station: If you occupy this territory during the Spice Collection Phase, steal 1 of the collected spice each time collection occurs in a territory containing spice. Treachery Card Stash: Gain 1 Treachery Card. If this causes you to exceed their hand limit, discard 1 Treachery Card of their choice. Remove this token from the game. Spice Stash: Gain 7 spice from the Spice Bank. Remove this token from the game. Ornithopter: Gain this token. You may discard it on any subsequent turn to make a Force Movement of up to three adjacent territories instead of their normal move. When playing with the Ixian &amp; Tleilaxu, CHOAM &amp; Richese, and Ecaz &amp; Moritani expansions together, instead of choosing factions normally, consider choosing factions based on the following thematic groupings: Intrigue: Deal every player two factions. Each player secretly chooses one, and all players reveal their selections simultaneously. Closed Economy: Bene Gesserit, CHOAM, Emperor, Richese, Spacing Guild,</p>
-<h3>Tleilaxu</h3>
-<p>War of Assassins: Atreides, Ecaz, Emperor, Harkonnen, Moritani, Spacing Guild,</p>
-<h3>Stronghold Cards</h3>
-<p>Technocrats: Bene Gesserit, CHOAM, Emperor, Ixians, Richese, Tleilaxu, Tech Tokens. Desert Power: Atreides, Bene Gesserit, Fremen, Harkonnen, Ixians, Spacing Guild,</p>
-<h3>Discovery Tokens</h3>
-<p>Long Live the Fighters: Atreides, CHOAM, Emperor, Ecaz, Fremen, Moritani,</p>
-<h3>Leader Skill Cards</h3>
-<p>Schemes Within Schemes: Bene Gesserit, CHOAM, Fremen, Harkonnen, Spacing Guild, Tleilaxu Amtal Rule: Ecaz, Fremen, Ixians, Moritani, Richese, Tleilaxu Landsraad: Atreides, Ecaz, Harkonnen, Ixians, Moritani, Richese, Homeworlds</p>
+<p>Discovery tokens add new elements to the game on sections of the board that are often bypassed. For this variant, shuffle the seven new Spice Cards into the Spice Deck. Then, shuffle the eight Discovery tokens face down into a supply.</p>
+<h4>Great Maker Spice Card</h4>
+<p>This is treated like a normal Shai Hulud card; however, a vote is held to determine whether or not the Nexus occurs. In storm order, each player votes yes or no. Unless a majority vote yes, no Nexus occurs.</p> 
+<p>Afterward, regardless of the outcome of the vote, the Fremen may ride the Great Maker sandworm by moving any number of their forces in reserves to any sector of any territory (including the HMS), subject to storm and occupancy rules (instead of riding from a territory on the board or placing the Sandworm token). Note that a Karama Card cannot prevent riding the Great Maker.</p>
+<h4 >Discovery Spice Card</h4>
+<p>Whenever a Discovery Spice Card is drawn, place 6 spice in the sector and territory indicated by the card (if it is currently in storm, no spice is placed). Any spice or forces already in that territory are destroyed by the spice blow (this only occurs when Discovery Spice Cards are drawn). Then, place a random Discovery token of the indicated type (Hiereg or Smuggler) face down in the other sector and territory shown on the card.</p>
+<h4 >Tokens</h4>
+<p>There are two types of Discovery tokens: Hiereg and Smuggler. Hiereg tokens are placed in desert territories, and Smuggler tokens are placed in rock territories. During the Spice Collection Phase, any faction with non-advisor forces in a territory with a Discovery token may look at the token and choose whether or not to reveal it immediately. Unrevealed Discovery tokens remain face down, able to be revealed during a subsequent turn.</p>
+<p>Five of the Discovery tokens are locations, and remain face up in place when re vealed. These locations are considered a territory within the territory where the token is located, cost 1 spice per force to ship to, and protect forces in them from the effects of the storm and sandworms. Location Discovery Tokens cannot be occupied when revealed; at the start of the next turn, before the Storm Phase, any faction in a territory with a Location Discovery token revealed during the previous turn may move any number of their non-advisor forces in that territory into the location. Outside of this, the only way to occupy these locations is through normal Force Shipment or Force Movement.</p>
+<section class="discovery-token-group" aria-labelledby="hiereg-tokens-title">
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/hiereg-back.png" alt="Hiereg token reverse">
+        <div><h5 id="hiereg-tokens-title">Hiereg Tokens</h5><p>Whenever a Hiereg token is face down on the board, the Fremen may look at it at any time without revealing it.</p></div>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/hiereg-jacurutu.png" alt="Jacurutu Sietch token">
+        <p><strong>Jacurutu Sietch:</strong> Counts as a normal stronghold. When you win a battle in Jacurutu Sietch, gain 1 spice for each undialed opponent force that is sent to the Tanks.</p>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/hiereg-cistern.png" alt="Cistern token">
+        <p><strong>Cistern:</strong> If you occupy this territory during the Spice Collection Phase, gain 2 spice from the Spice Bank.</p>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/hiereg-station.png" alt="Ecological Testing Station token">
+        <p><strong>Ecological Testing Station:</strong> If you occupy this territory during the Storm Phase, you may modify the movement of the storm by &plusmn;1 (does not affect Weather Control).</p>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/hiereg-shrine.png" alt="Shrine token">
+        <p><strong>Shrine:</strong> If you occupy this territory, you may play Truthtrance Cards as Karama Cards, and vice versa.</p>
+    </div>
+</section>
+
+<section class="discovery-token-group" aria-labelledby="smuggler-tokens-title">
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/smuggler-back.png" alt="Smuggler token reverse">
+        <div><h5 id="smuggler-tokens-title">Smuggler Tokens</h5><p>Whenever a Smuggler token is face down on the board, the Spacing Guild may look at it at any time without revealing it.</p></div>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/smuggler-station.png" alt="Orgiz Processing Station token">
+        <p><strong>Orgiz Processing Station:</strong> If you occupy this territory during the Spice Collection Phase, steal 1 of the collected spice each time collection occurs in a territory containing spice.</p>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/smuggler-treachery.png" alt="Treachery Card Stash token">
+        <p><strong>Treachery Card Stash:</strong> Gain 1 Treachery Card. If this causes you to exceed their hand limit, discard 1 Treachery Card of their choice. Remove this token from the game.</p>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/smuggler-spice.png" alt="Spice Stash token">
+        <p><strong>Spice Stash:</strong> Gain 7 spice from the Spice Bank. Remove this token from the game.</p>
+    </div>
+    <div class="discovery-token-row">
+        <img class="circularize" src="img/smuggler-ornithopter.png" alt="Ornithopter token">
+        <p><strong>Ornithopter:</strong> Gain this token. You may discard it on any subsequent turn to make a Force Movement of up to three adjacent territories instead of their normal move.</p>
+    </div>
+</section>
+<section id="variant-themed-matchups">
 <h3>Themed Matchups</h3>
+<p>When playing with the Ixian &amp; Tleilaxu, CHOAM &amp; Richese, and Ecaz &amp; Moritani expansions together, instead of choosing factions normally, consider choosing factions based on the following thematic groupings:</p>
+<p><strong>Intrigue:</strong> Deal every player two factions. Each player secretly chooses one, and all players reveal their selections simultaneously.</p>
+<p><strong>Closed Economy:</strong> Bene Gesserit, CHOAM, Emperor, Richese, Spacing Guild, Tleilaxu.</p>
+<p><strong>War of Assassins:</strong> Atreides, Ecaz, Emperor, Harkonnen, Moritani, Spacing Guild, Stronghold Cards</p>
+<p><strong>Technocrats:</strong> Bene Gesserit, CHOAM, Emperor, Ixians, Richese, Tleilaxu, Tech Tokens.</p>
+<p><strong>Desert Power:</strong> Atreides, Bene Gesserit, Fremen, Harkonnen, Ixians, Spacing Guild, Discovery Tokens</p>
+<p><strong>Long Live the Fighters:</strong> Atreides, CHOAM, Emperor, Ecaz, Fremen, Moritani, Leader Skill Cards</p>
+<p><strong>Schemes Within Schemes:</strong> Bene Gesserit, CHOAM, Fremen, Harkonnen, Spacing Guild, Tleilaxu</p>
+<p><strong>Amtal Rule:</strong> Ecaz, Fremen, Ixians, Moritani, Richese, Tleilaxu</p>
+<p><strong>Landsraad:</strong> Atreides, Ecaz, Harkonnen, Ixians, Moritani, Richese, Homeworlds</p>
 </section>
 <section id="faction-player-sheets">
 <h1>Faction Player Sheets</h1>
-<h3>Faction Player Sheets</h3>
+<div style="column-span: all;">
+<img src="img/art-bw-worm-3.png" alt="" style="display: block; width: 881px; max-width: 50%; height: auto; margin: 0.75rem auto;">
+</div>
 <section class="faction-sheet faction-sheet--atreides AT"><header class="faction-sheet__header"><img class="faction-sheet__logo circularize" src="img/AT-logo.png" alt="Atreides">
 <div class="faction-sheet__title">
 <h2>Atreides</h2>
