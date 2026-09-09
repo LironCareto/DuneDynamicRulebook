@@ -1144,15 +1144,18 @@
     /* --- Faction sheet body --------------------------------- */
 
     .faction-sheet__body {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
-        gap: 0.7rem 1.5rem;
+        column-count: 2;
+        column-gap: 1.5rem;
+        column-fill: balance;
         padding: 0.55rem 0.35rem;
     }
 
     .faction-sheet__body > * {
-        break-inside: avoid;
+        break-inside: auto;
+    }
+
+    .faction-sheet__body .faction-sheet__bar {
+        break-after: avoid;
     }
 
     .faction-sheet__body h3 {
@@ -1165,6 +1168,7 @@
         letter-spacing: 0.06em;
     }
 
+    #rulebook-content .faction-sheet__body .discovery-token-row p,
     .faction-sheet__body p,
     .faction-sheet__body li {
         font-size: inherit;
@@ -1182,6 +1186,7 @@
     }
 
     .faction-sheet__advantage {
+        break-inside: avoid;
         position: relative;
         margin: 0 0 0.8rem;
         padding-left: 1.8rem;
@@ -1453,9 +1458,12 @@
             right: -2.5rem;
         }
 
-        .faction-sheet__header,
-        .faction-sheet__body {
+        .faction-sheet__header {
             grid-template-columns: 1fr;
+        }
+
+        .faction-sheet__body {
+            column-count: 1;
         }
 
         .faction-sheet__header {
