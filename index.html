@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dune Advanced Rulebook</title>
     <style>
     /* =========================================================
@@ -133,8 +134,72 @@
         paint-order: stroke fill;
     }
 
+    #module-selector {
+        padding-top: 0.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    #module-selector > h3 {
+        margin-bottom: 0.75rem;
+    }
+
+    .themed-matchup,
+    .themed-matchup-info {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid var(--border-light);
+        border-radius: 0.25rem;
+        background: #f4f4f4;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+    }
+
+    .themed-matchup {
+        cursor: pointer;
+    }
+
+    .themed-matchup:hover {
+        background: var(--sand-light);
+    }
+
+    .themed-matchup:focus-visible {
+        outline: 2px solid var(--blue-heading);
+        outline-offset: 2px;
+    }
+
     .selector-option {
         white-space: nowrap;
+    }
+
+    #faction-selector .selector-option {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin: 0.2rem 0.55rem 0.2rem 0;
+    }
+
+    #faction-selector .faction-selector-icon {
+        width: 1.4rem;
+        height: 1.4rem;
+        object-fit: contain;
+    }
+
+    #faction-limit-notice {
+        margin: 0.5rem 0 0;
+        padding: 0.55rem 0.75rem;
+        border-left: 3px solid #946600;
+        background: #fff3cd;
+        color: #664d03;
+        font-size: 0.9rem;
+    }
+
+    #faction-limit-notice:empty {
+        margin: 0;
+        padding: 0;
+        border: 0;
     }
 
     .inline {
@@ -365,10 +430,24 @@
         column-count: 1;
     }
 
+    #rulebook-content :is(h1, h2, h3, h4, h5, h6) {
+        break-inside: avoid;
+    }
+
+    #introduction > h2:first-child {
+        margin-top: 0;
+    }
+
     #rulebook-content h2,
     #rulebook-content h3,
     #rulebook-content h4 {
         break-after: avoid-column;
+    }
+
+    #rulebook-content h1.heading-with-icon {
+        min-height: 3rem;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
     }
 
     #rulebook-content h1 {
@@ -392,8 +471,18 @@
 
     .faction-symbols-heading {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 0.65rem;
+    }
+
+    .faction-symbols-heading > .heading-text-slot {
+        flex: 0 0 14em;
+    }
+
+    .faction-symbols-heading .heading-text {
+        white-space: nowrap;
+        overflow-wrap: normal;
     }
 
     .faction-symbols-icons {
@@ -453,7 +542,7 @@
         padding: 0.35rem 3rem;
         background: var(--blue-callout);
         color: #fff;
-        font-family: Georgia, serif;
+        font-family: "Copperplate Gothic Bold", "Balthazar", serif;
         font-size: 1rem;
         font-variant: small-caps;
         letter-spacing: 0.08em;
@@ -1005,6 +1094,12 @@
         left: 0;
     }
 
+    .faction-sheet__advantage > .special-karama {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
     .faction-sheet__advantage-icon {
         position: absolute;
         top: 0;
@@ -1221,15 +1316,17 @@
 </head>
 <body>
 <section id="faction-selector">
-
+<h1>DUNE DYNAMIC RULEBOOK</h1>
 <h3>Factions in play</h3>
-<label class="selector-option"><input type="checkbox" data-class="AT"> Atreides</label> <label class="selector-option"><input type="checkbox" data-class="BG"> Bene Gesserit</label> <label class="selector-option"><input type="checkbox" data-class="CH"> CHOAM</label> <label class="selector-option"><input type="checkbox" data-class="EZ"> Ecaz</label> <label class="selector-option"><input type="checkbox" data-class="EM"> Emperor</label> <label class="selector-option"><input type="checkbox" data-class="FR"> Fremen</label> <label class="selector-option"><input type="checkbox" data-class="HK"> Harkonnen</label> <label class="selector-option"><input type="checkbox" data-class="IX"> Ixians</label> <label class="selector-option"><input type="checkbox" data-class="MO"> Moritani</label> <label class="selector-option"><input type="checkbox" data-class="RI"> Richese</label> <label class="selector-option"><input type="checkbox" data-class="SG"> Spacing Guild</label> <label class="selector-option"><input type="checkbox" data-class="TX"> Tleilaxu</label></section>
+<label class="selector-option"><input type="checkbox" data-class="AT"> <img class="faction-selector-icon circularize" src="img/AT-logo.png" alt=""> Atreides</label> <label class="selector-option"><input type="checkbox" data-class="BG"> <img class="faction-selector-icon circularize" src="img/BG-logo.png" alt=""> Bene Gesserit</label> <label class="selector-option"><input type="checkbox" data-class="CH"> <img class="faction-selector-icon circularize" src="img/CH-logo.png" alt=""> CHOAM</label> <label class="selector-option"><input type="checkbox" data-class="EZ"> <img class="faction-selector-icon circularize" src="img/EZ-logo.png" alt=""> Ecaz</label> <label class="selector-option"><input type="checkbox" data-class="EM"> <img class="faction-selector-icon circularize" src="img/EM-logo.png" alt=""> Emperor</label> <label class="selector-option"><input type="checkbox" data-class="FR"> <img class="faction-selector-icon circularize" src="img/FR-logo.png" alt=""> Fremen</label> <label class="selector-option"><input type="checkbox" data-class="HK"> <img class="faction-selector-icon circularize" src="img/HK-logo.png" alt=""> Harkonnen</label> <label class="selector-option"><input type="checkbox" data-class="IX"> <img class="faction-selector-icon circularize" src="img/IX-logo.png" alt=""> Ixians</label> <label class="selector-option"><input type="checkbox" data-class="MO"> <img class="faction-selector-icon circularize" src="img/MO-logo.png" alt=""> Moritani</label> <label class="selector-option"><input type="checkbox" data-class="RI"> <img class="faction-selector-icon circularize" src="img/RI-logo.png" alt=""> Richese</label> <label class="selector-option"><input type="checkbox" data-class="SG"> <img class="faction-selector-icon circularize" src="img/SG-logo.png" alt=""> Spacing Guild</label> <label class="selector-option"><input type="checkbox" data-class="TX"> <img class="faction-selector-icon circularize" src="img/TX-logo.png" alt=""> Tleilaxu</label>
+<p id="faction-limit-notice" role="status" aria-live="polite" aria-atomic="true"></p>
+</section>
 <section id="module-selector">
 <h3>Variants</h3>
 <label class="selector-option"><input type="checkbox" data-module="tech-tokens"> Tech Tokens</label> <label class="selector-option"><input type="checkbox" data-module="leader-skill-cards"> Leader Skill Cards</label> <label class="selector-option"><input type="checkbox" data-module="stronghold-cards"> Stronghold Cards</label> <label class="selector-option"><input type="checkbox" data-module="homeworlds"> Homeworlds</label> <label class="selector-option"><input type="checkbox" data-module="nexus-cards"> Nexus Cards</label> <label class="selector-option"><input type="checkbox" data-module="discovery-tokens"> Discovery Tokens</label></section>
 <main id="rulebook-content">
 <section id="introduction">
-<h1>UNOFFICIAL Revised Advanced Game Rulebook Version 2.2</h1>
+
 <h2 class="intro-heading">Editor’s Note</h2>
 <p>The purpose of this document is to act as an <strong><span style="text-decoration: underline;">unofficial </span></strong>comprehensive listing of the Advanced Game rules and FAQ for the Gale Force Nine edition of Dune, including the Ixians &amp; Tleilaxu, CHOAM &amp; Richese, and Ecaz &amp; Moritani expansions. In addition, revisions to the original language have been made for clarity and consistency. Any unofficial rulings (additions to the rules as written or departures from them) have been marked in <span class="outlined">outlined text</span>. I expect some will disagree with these rulings; I encourage everyone to play according to the rules that make the game the most fun for their group.</p>
 <p>These revised rules were rewritten and edited by Van Willis with help from Brad Johnson based on the original work; layout/graphics work was done by murphzero based on the original work. No permission to publish this document has been obtained. This is not to be seen as a challenge to copyright, but rather as an additional reference for owners of the game.</p>
@@ -2082,7 +2179,7 @@
 <section id="variants">
 <h1>Variants</h1>
 <p>The following variants can be added to a game of Dune, together or separately, irrespective of which factions you choose to include.</p>
-<section id="variant-tech-tokens">
+<section id="variant-tech-tokens" class="tech-tokens">
 <h3>Tech Tokens</h3>
 <h4>Controlling Tech Tokens</h4>
 <p>Tech Tokens indicate that a faction controls a specific industry and are kept in front of Player Shields. If you defeat a faction in battle that has 1 or more Tech Tokens, you take the Tech Token of their choice from them.</p>
@@ -2108,7 +2205,7 @@
 </tbody>
 </table>
 </section>
-<section id="variant-leader-skill-cards">
+<section id="variant-leader-skill-cards" class="leader-skill-cards">
 <h3>Leader Skill Cards</h3>
 <p>Leader Skill Cards provide one leader of each faction with a unique advantage.</p>
 <p>When using Leader Skill Cards, complete the Treachery step of setup after step 1, then deal two Leader Skill Cards to each faction. Each faction chooses one to keep, and shuffles the other back into the Leader Skill Deck. Play their Leader Skill Card face up in front of their Player Shield, and assign one of their Leader Discs to it by placing the disc face up next to it. Complete the remaining steps of setup normally starting with the Traitor step.</p>
@@ -2117,11 +2214,11 @@
 <p>After the Battle Phase, return skilled leaders in territories on the map and their associated Leader Skill Card in front of their Player Shield.</p>
 <p>A Leader Skill must be used before a faction ability (e.g., the Mentat skill before Atreides Prescience). Any skill that mentions a card type (e.g., Poison Weapon) requires that the card included in the Battle Plan is played as that card type to gain the skill bonus. Therefore, a card like Chemistry would have to be played as a poison weapon to gain the Master of Assassins skill bonus.</p>
 </section>
-<section id="variant-advanced-stronghold-cards">
+<section id="variant-advanced-stronghold-cards" class="stronghold-cards">
 <h3>Advanced Stronghold Cards</h3>
 <p>These cards provide bonuses representing home-field advantage for the factions occupying strongholds. During the Mentat Pause Phase (not during game setup), each faction occupying a stronghold takes its corresponding Stronghold Card from the supply or the faction who previously held the card. If a stronghold is unoccupied, its Stronghold Card is placed in the supply.</p>
 </section>
-<section id="variant-homeworlds">
+<section id="variant-homeworlds" class="homeworlds">
 <h3>Homeworlds</h3>
 <h4>Homeworld Tokens</h4>
 <p>Represent each faction’s homeworld or domain and is where their reserves are kept. Homeworlds are not territories and so are not subject to faction advantages such as Ecaz’s Occupy and Bene Gesserit’s Intrusion.</p>
@@ -2171,13 +2268,17 @@
 <p>The Emperor has two homeworlds: Kaitain and Salusa Secundus; normal forces are revived to Kaitain and Sardaukar forces are revived to Salusa Secundus. During Shipping and Movement, the Emperor can use their Force Movement to move any number of their forces from Kaitain to Salusa Secundus (or vice versa). When the Emperor makes a Force Shipment to Arrakis or another homeworld, forces can come from both Emperor homeworlds as part of the same shipment.</p>
 <h4>Choam Homeworld</h4>
 <p>Note that CHOAM’s homeworld of Tupile has a penalty for high-threshold, but an advantage when they are at low threshold, opposite of the other homeworlds.</p>
+</section>
+<section id="variant-nexus-cards" class="nexus-cards">
 <h3>Nexus Cards</h3>
 <p>Nexus Cards provide players incentives and special effects for not joining an Alliance.</p>
 <p>At the end of each Spice Blow and Nexus phase where a Nexus occurred and at least one Alliance exists, any player not in an Alliance may, after discarding their previous Nexus card (if any), draw one Nexus Card. If you draw their own faction’s Nexus card, you may discard it immediately to draw a new one.</p> <p>Each Nexus Card is associated with one faction; its effect is determined by the factions in play this game:</p> 
     <p style="padding-left: 40px;"><strong>BETRAYAL: </strong>If the Nexus Card faction is controlled by another player, this card allows you to cancel an advantage that faction has when they try to use it. In some cases, this even allows a player to cancel an alliance ability. </p>
     <p style="padding-left: 40px;"><strong>CUNNING: </strong>If you control the Nexus Card faction, this card gives you an enhanced version of one of their advantages. </p>
     <p style="padding-left: 40px;"><strong>SECRET ALLY: </strong>If the Nexus Card faction is not in the game, you have a secret alliance with that faction, and this card allows you to use one of their advantages.</p> 
-<p>Nexus Cards are discarded after use. If you need to draw a Nexus Card and none are available, shuffle the discards to form a new deck. If you hold a Nexus Card, you must discard it to enter into an Alliance. 
+<p>Nexus Cards are discarded after use. If you need to draw a Nexus Card and none are available, shuffle the discards to form a new deck. If you hold a Nexus Card, you must discard it to enter into an Alliance.</p>
+</section>
+<section id="variant-discovery-tokens" class="discovery-tokens">
 <h3>Discovery Tokens</h3>
 <p>Discovery tokens add new elements to the game on sections of the board that are often bypassed. For this variant, shuffle the seven new Spice Cards into the Spice Deck. Then, shuffle the eight Discovery tokens face down into a supply.</p>
 <h4>Great Maker Spice Card</h4>
@@ -2233,18 +2334,20 @@
         <p><strong>Ornithopter:</strong> Gain this token. You may discard it on any subsequent turn to make a Force Movement of up to three adjacent territories instead of their normal move.</p>
     </div>
 </section>
+</section>
 <section id="variant-themed-matchups">
 <h3>Themed Matchups</h3>
 <p>When playing with the Ixian &amp; Tleilaxu, CHOAM &amp; Richese, and Ecaz &amp; Moritani expansions together, instead of choosing factions normally, consider choosing factions based on the following thematic groupings:</p>
-<p><strong>Intrigue:</strong> Deal every player two factions. Each player secretly chooses one, and all players reveal their selections simultaneously.</p>
-<p><strong>Closed Economy:</strong> Bene Gesserit, CHOAM, Emperor, Richese, Spacing Guild, Tleilaxu.</p>
-<p><strong>War of Assassins:</strong> Atreides, Ecaz, Emperor, Harkonnen, Moritani, Spacing Guild, Stronghold Cards</p>
-<p><strong>Technocrats:</strong> Bene Gesserit, CHOAM, Emperor, Ixians, Richese, Tleilaxu, Tech Tokens.</p>
-<p><strong>Desert Power:</strong> Atreides, Bene Gesserit, Fremen, Harkonnen, Ixians, Spacing Guild, Discovery Tokens</p>
-<p><strong>Long Live the Fighters:</strong> Atreides, CHOAM, Emperor, Ecaz, Fremen, Moritani, Leader Skill Cards</p>
-<p><strong>Schemes Within Schemes:</strong> Bene Gesserit, CHOAM, Fremen, Harkonnen, Spacing Guild, Tleilaxu</p>
-<p><strong>Amtal Rule:</strong> Ecaz, Fremen, Ixians, Moritani, Richese, Tleilaxu</p>
-<p><strong>Landsraad:</strong> Atreides, Ecaz, Harkonnen, Ixians, Moritani, Richese, Homeworlds</p>
+<p class="themed-matchup-info"><strong>Intrigue:</strong> Deal every player two factions. Each player secretly chooses one, and all players reveal their selections simultaneously.</p>
+<p><button type="button" class="themed-matchup" data-factions="BG,CH,EM,RI,SG,TX" data-variants=""><strong>Closed Economy:</strong> Bene Gesserit, CHOAM, Emperor, Richese, Spacing Guild, Tleilaxu.</button></p>
+<p><button type="button" class="themed-matchup" data-factions="AT,EZ,EM,HK,MO,SG" data-variants="stronghold-cards"><strong>War of Assassins:</strong> Atreides, Ecaz, Emperor, Harkonnen, Moritani, Spacing Guild, Stronghold Cards</button></p>
+<p><button type="button" class="themed-matchup" data-factions="BG,CH,EM,IX,RI,TX" data-variants="tech-tokens"><strong>Technocrats:</strong> Bene Gesserit, CHOAM, Emperor, Ixians, Richese, Tleilaxu, Tech Tokens.</button></p>
+<p><button type="button" class="themed-matchup" data-factions="AT,BG,FR,HK,IX,SG" data-variants="discovery-tokens"><strong>Desert Power:</strong> Atreides, Bene Gesserit, Fremen, Harkonnen, Ixians, Spacing Guild, Discovery Tokens</button></p>
+<p><button type="button" class="themed-matchup" data-factions="AT,CH,EM,EZ,FR,MO" data-variants="leader-skill-cards"><strong>Long Live the Fighters:</strong> Atreides, CHOAM, Emperor, Ecaz, Fremen, Moritani, Leader Skill Cards</button></p>
+<p><button type="button" class="themed-matchup" data-factions="BG,CH,FR,HK,SG,TX" data-variants=""><strong>Schemes Within Schemes:</strong> Bene Gesserit, CHOAM, Fremen, Harkonnen, Spacing Guild, Tleilaxu</button></p>
+<p><button type="button" class="themed-matchup" data-factions="EZ,FR,IX,MO,RI,TX" data-variants=""><strong>Amtal Rule:</strong> Ecaz, Fremen, Ixians, Moritani, Richese, Tleilaxu</button></p>
+<p><button type="button" class="themed-matchup" data-factions="AT,EZ,HK,IX,MO,RI" data-variants="homeworlds"><strong>Landsraad:</strong> Atreides, Ecaz, Harkonnen, Ixians, Moritani, Richese, Homeworlds</button></p>
+</section>
 </section>
 <section id="faction-player-sheets">
 <h1>Faction Player Sheets</h1>
@@ -2290,9 +2393,9 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>E. &ndash;</strong> You may assist their allies by forcing their opponent to show them one element of their Battle Plan.</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/AT-logo.png" alt=""></span><p><strong>E. &ndash;</strong> You may assist their allies by forcing their opponent to show them one element of their Battle Plan.</p></div>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>F. &ndash;</strong> You may use a Karama Card before Battle Plans are revealed to look at any one player’s entire Battle Plan.</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/AT-logo.png" alt=""></span><p><strong>F. &ndash;</strong> You may use a Karama Card before Battle Plans are revealed to look at any one player’s entire Battle Plan.</p></div>
 </div>
 </div>
 <footer class="faction-sheet__footer"><img src="img/karama.png" alt="">Ability can be cancelled by <em>Karama</em>.</footer></section>
@@ -2306,10 +2409,10 @@
 </header>
 <div class="faction-sheet__body">
 <div><div class="faction-sheet__bar">Advantages</div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png"></span><p><strong>A.</strong> &ndash; PREDICTION: After step 1 (Positions) in the Setup Phase, you secretly</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/BG-logo.png" alt=""><p><strong>A.</strong> &ndash; PREDICTION: After step 1 (Positions) in the Setup Phase, you secretly</p>
 <p>predict when one other faction will win, placing a turn number card and a faction card from their Prediction Cards face down behind their Player Shield. Place the unused Prediction Cards face down back in the box. If the faction you predicted wins (alone or as an ally, even their ally) in the turn you predicted, reveal their prediction and win alone. You also can win normally. You can’t predict that the Spacing Guild or Fremen will win with their special victory conditions.</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png"></span><p><strong>B.</strong> &ndash; START OF GAME: After the Fremen placement (if that faction is in the</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/BG-logo.png" alt=""><p><strong>B.</strong> &ndash; START OF GAME: After the Fremen placement (if that faction is in the</p>
 <p>game), you start with one advisor in any territory of their choice.</p>
 </div>
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png"></span><p><strong>C.</strong> &ndash; CHARITY: You always receive CHOAM charity of 2 spice regardless of how</p>
@@ -2343,7 +2446,7 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>I.</strong> &ndash; In an Alliance you may Voice their ally’s opponent.</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png" alt=""></span><p><strong>I.</strong> &ndash; In an Alliance you may Voice their ally’s opponent.</p></div>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
 <p>None. &dagger; The default type for each special weapon is listed below:</p>
 <h3>Chemistry counts as a poison defense</h3>
@@ -2392,10 +2495,10 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>G.</strong> &ndash; Once per game turn, at the end of any phase, you may trade a Treachery</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/CH-logo.png" alt=""></span><p><strong>G.</strong> &ndash; Once per game turn, at the end of any phase, you may trade a Treachery</p></div>
 <p>Card with their ally. The trade must be two-way (each faction giving and receiving a card). You may also pay for some or all of their ally’s spice support in battle (spice you pay goes to the Spice Bank).</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>H.</strong> &ndash; At any time, you may use a Karama Card to discard any number of</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/CH-logo.png" alt=""></span><p><strong>H.</strong> &ndash; At any time, you may use a Karama Card to discard any number of</p></div>
 <p>Treachery Cards from their hand to gain 3 spice per card. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2419,10 +2522,10 @@
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/EZ-logo.png"></span><p><strong>B.</strong> - OCCUPY: You may enter and occupy the same territory as their ally, coexisting</p>
 <p>peacefully with their forces. When coexisting, you and their ally’s forces are considered the same faction for Traitor and Face Dancer Card reveals, and their forces do not count against a stronghold’s 2-faction limit but do count for ornithopter use. When the aggressor chooses to resolve a battle in a territory where you coexist with their ally, you must decide whether you or their ally is considered the lead faction in the battle (formulating a Battle Plan with their leaders and Treachery Cards). The number dialed for the lead faction’s battle plan always includes half of the Ecaz forces in the territory (rounded up) at full strength, plus as many of their ally’s forces as the lead faction chooses to dial. If the lead faction wins the battle, half of the Ecaz forces (rounded down) remain in the territory (the rest go to the Tleilaxu Tanks), and their ally loses their forces dialed normally. If you and their ally coexist in at least 3 strongholds at the end of the Mentat Pause Phase, their Alliance wins.</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/EZ-logo.png"></span><p><strong>C.</strong> &ndash; REVIVAL: Duke Vidal can only be revived by House Ecaz (except as a ghola by the</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/EZ-logo.png" alt=""><p><strong>C.</strong> &ndash; REVIVAL: Duke Vidal can only be revived by House Ecaz (except as a ghola by the</p>
 <p>Tleilaxu). You may always revive Duke Vidal during the Revival Phase for 5 spice, no matter how many of their leaders are in the Tleilaxu Tanks. You may revive leaders normally when at least 5 of their leaders are in the Tleilaxu Tanks (counting Duke Vidal).</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/EZ-logo.png"></span><p><strong>D.</strong> - LOYALTY: At the start of the game, before Traitor Cards are dealt, set aside 1</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/EZ-logo.png" alt=""><p><strong>D.</strong> - LOYALTY: At the start of the game, before Traitor Cards are dealt, set aside 1</p>
 <p>random Traitor Card from their faction face up for all players to see. It is never added to the Traitor deck.</p>
 </div>
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/EZ-logo.png"></span><p><strong>E.</strong> - COLLECTION: During the Spice Collection Phase, you and their ally each collect the</p>
@@ -2430,10 +2533,10 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>F.</strong> &ndash; You may choose to have their ally benefit from a triggered Ambassador token’s</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/EZ-logo.png" alt=""><p><strong>F.</strong> &ndash; You may choose to have their ally benefit from a triggered Ambassador token’s</p></div>
 <p>effect instead of you.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>G.</strong> &ndash; You may use a Karama Card before Battle Plans are revealed to add the</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/EZ-logo.png" alt=""></span><p><strong>G.</strong> &ndash; You may use a Karama Card before Battle Plans are revealed to add the</p></div>
 <p>difference between their leader disc and their opponent’s leader disc to their number dialed, as long as you played neither a weapon nor a defense. Ability can be cancelled by Karama.
 </div>
 </div>
@@ -2457,10 +2560,10 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>C.</strong> &ndash; You may share their great wealth with their allies by transferring any</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/EM-logo.png" alt=""></span><p><strong>C.</strong> &ndash; You may share their great wealth with their allies by transferring any</p></div>
 <p>amount of spice to them at any time and for any reason (placed behind their Player Shield). You may also assist their allies by paying spice for the revival of up to 3 extra of their forces from the Tleilaxu Tanks per Revival Phase.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>D.</strong> &ndash; You may use a Karama Card during the Revival Phase to immediately</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/EM-logo.png" alt=""></span><p><strong>D.</strong> &ndash; You may use a Karama Card during the Revival Phase to immediately</p></div>
 <p>revive up to three forces or one leader for free. These revivals do not count against revival limits for the turn. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2488,7 +2591,7 @@
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><p><strong>D.</strong> &ndash; SANDWORMS: During a Spice Blow, all consecutive sandworms that appear</p>
 <p>after the first sandworm can be placed by you in any sand territory you wish.</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><p><strong>E.</strong> &ndash; SHIPMENT: Their reserves are on-planet; you do not ship to the board using</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/FR-logo.png" alt=""><p><strong>E.</strong> &ndash; SHIPMENT: Their reserves are on-planet; you do not ship to the board using</p>
 <p>off-planet shipment rules. For their Force Shipment you may bring any or all of their reserves for free onto The Great Flat or onto any one territory within two territories of The Great Flat (subject to storm and occupancy rules).</p>
 </div>
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><p><strong>F.</strong> &ndash; MOVEMENT: During their Force Movement you may move their forces two</p>
@@ -2499,15 +2602,15 @@
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><p><strong>H.</strong> &ndash; FEDAYKIN: Their three starred forces, Fedaykin, are worth two normal</p>
 <p>forces in battle and in taking losses. They are each treated as one force in revival; however, only one Fedaykin force can be revived per turn.</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><p><strong>I.</strong> &ndash; FREMEN SPECIAL VICTORY CONDITION: If no faction has won by the end of</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/FR-logo.png" alt=""><p><strong>I.</strong> &ndash; FREMEN SPECIAL VICTORY CONDITION: If no faction has won by the end of</p>
 <p>turn 10 and 1) Fremen forces (&plusmn; coexisting Ecaz forces) or no one occupy Sietch Tabr and Habbanya Sietch and 2) neither Harkonnen, Atreides, Emperor, nor Richese occupies Tuek’s Sietch (even if they are their ally), their plans to alter Dune have succeeded and you and any allies win the game.</p></div>
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>J.</strong> &ndash; You may protect their allies from being devoured by sandworms and, at</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png" alt=""></span><p><strong>J.</strong> &ndash; You may protect their allies from being devoured by sandworms and, at</p></div>
 <p>their discretion, may also increase their free revival to 3 forces. In addition, their allies win with you if you win with the Fremen Special Victory Condition.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>K.</strong> &ndash; You may use a Karama Card during the Spice Blow and Nexus Phase to</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/FR-logo.png" alt=""></span><p><strong>K.</strong> &ndash; You may use a Karama Card during the Spice Blow and Nexus Phase to</p></div>
 <p>place the Sandworm Token in any sand territory that you wish. This is treated as a normal sandworm and causes a Nexus.
 </div>
 </div>
@@ -2523,7 +2626,7 @@
 </header>
 <div class="faction-sheet__body">
 <div><div class="faction-sheet__bar">Advantages</div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/HK-logo.png"></span><p><strong>A.</strong> &ndash; TRAITORS: At the start of the game keep all 4 Traitor Cards you are dealt.</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/HK-logo.png" alt=""><p><strong>A.</strong> &ndash; TRAITORS: At the start of the game keep all 4 Traitor Cards you are dealt.</p>
 <p>Any of these Traitor Cards can be revealed in a battle as a traitor.</p>
 </div>
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/HK-logo.png"></span><p><strong>B.</strong> &ndash; TREACHERY: Their hand limit is 8 Treachery Cards; when you have 8</p>
@@ -2534,10 +2637,10 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>D.</strong> &ndash; Traitor Cards that you hold may be used against their ally’s opponent if you</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/HK-logo.png" alt=""></span><p><strong>D.</strong> &ndash; Traitor Cards that you hold may be used against their ally’s opponent if you</p></div>
 <p>so choose.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>E.</strong> &ndash; You may use a Karama Card during the Bidding Phase to take, without</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/HK-logo.png" alt=""></span><p><strong>E.</strong> &ndash; You may use a Karama Card during the Bidding Phase to take, without</p></div>
 <p>looking, up to 4 Treachery Cards from any one player. After combining their cards with theirs, you must give that player Treachery Cards of their choice (including cards you just took) equal to the number of cards that you took. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2553,7 +2656,7 @@
 </header>
 <div class="faction-sheet__body">
 <div><div class="faction-sheet__bar">Advantages</div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/IX-logo.png"></span><p><strong>A.</strong> &ndash; START OF GAME: Instead of dealing Treachery Cards normally, draw</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/IX-logo.png" alt=""><p><strong>A.</strong> &ndash; START OF GAME: Instead of dealing Treachery Cards normally, draw</p>
 <p>Treachery Cards equal to the number of players (+1 if Harkonnen is in play). Choose one to keep, shuffle the remaining cards, and deal one to each of the other players (2 to Harkonnen).</p>
 </div>
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/IX-logo.png"></span><p><strong>B.</strong> &ndash; HIDDEN MOBILE STRONGHOLD (HMS): After the first storm movement at</p>
@@ -2570,10 +2673,10 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>F.</strong> &ndash; After an ally purchases a Treachery Card during a normal or Black Market</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/IX-logo.png" alt=""></span><p><strong>F.</strong> &ndash; After an ally purchases a Treachery Card during a normal or Black Market</p></div>
 <p>auction, they may look at it and decide whether to immediately discard it to draw the top card from the Treachery Deck.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>G.</strong> &ndash; If their forces occupy the Hidden Mobile Stronghold, you may use a</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/IX-logo.png" alt=""></span><p><strong>G.</strong> &ndash; If their forces occupy the Hidden Mobile Stronghold, you may use a</p></div>
 <p>Karama Card to move the Hidden Mobile Stronghold 2 territories during their shipment and movement. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2598,15 +2701,15 @@
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/MO-logo.png"></span><p><strong>C.</strong> &ndash; DUKE VIDAL: At the end of the Shipment and Movement Phase, if a) Duke</p>
 <p>Vidal is not in the Tleilaxu Tanks, and b) you are in at least two battles in strongholds with non-Ecaz opponents, add Duke Vidal to their leader pool (even from another faction). If Duke Vidal is still in their leader pool at the end of the turn, place his Leader Disc next to the game board.</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/MO-logo.png"></span><p><strong>D.</strong> &ndash; ASSASSINATE LEADERS: When you lose a battle in which a) the opposing</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/MO-logo.png" alt=""><p><strong>D.</strong> &ndash; ASSASSINATE LEADERS: When you lose a battle in which a) the opposing</p>
 <p>faction’s leader was not killed, b) no Traitor was revealed, c) you have no Traitor Cards of the opposing faction face up in front of their Player Shield, and d) you have not yet revealed their Traitor Card normally this game, you may reveal a Traitor Card of the opposing faction that doesn’t match their leader from the battle to send the leader you reveal to the Tleilaxu Tanks, and collect spice from the Spice Bank equal to their strength (3 for Zoal). During the Mentat Pause Phase, set the revealed Traitor Card face up in front of their Player Shield as a marker, then draw a new Traitor Card.</p></div>
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>E.</strong> &ndash; When their ally loses a battle that had a winner, they may keep one</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/MO-logo.png" alt=""><p><strong>E.</strong> &ndash; When their ally loses a battle that had a winner, they may keep one</p></div>
 <p>Treachery Card they played in the battle that they would have been able to keep had they won.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>F.</strong> &ndash; You may use a Karama Card after you lose a battle to force your</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/MO-logo.png" alt=""></span><p><strong>F.</strong> &ndash; You may use a Karama Card after you lose a battle to force your</p></div>
 <p>opponent to discard or keep any or all of the Treachery Cards they played. Ability can be cancelled by Karama.
 </div>
 </div>
@@ -2649,10 +2752,10 @@
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>D.</strong> &ndash; For their ally’s Force Shipment, you may offer to ship their forces from off-</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png" alt=""></span><p><strong>D.</strong> &ndash; For their ally’s Force Shipment, you may offer to ship their forces from off-</p></div>
 <p>planet using one of their available No-Field Tokens. Reveal the forces immediately upon shipping (if you already had a No-Field Token on the planet, it must first be revealed). Either you or their ally may pay for this shipment. You may give their ally a Richese Treachery Card that is in their hand at any time if their hand is not full.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>E.</strong> &ndash; At any time, you may use a Karama Card to pay 3 spice to buy one of</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/RI-logo.png" alt=""></span><p><strong>E.</strong> &ndash; At any time, you may use a Karama Card to pay 3 spice to buy one of</p></div>
 <p>their Richese Treachery Cards, secretly choosing which one. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2692,15 +2795,15 @@
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/SG-logo.png"></span><p><strong>D.</strong> &ndash; SHIP AND MOVE WHEN YOU WISH: You may take their Force Shipment and</p>
 <p>Force Movement out of turn. This allows you to go first, last, or in between other players’ turns. The rest of the factions must make their shipments and movements in the proper sequence. You do not have to reveal when you intend to make their Force Shipment and Force Movement until the moment you wish to take them.</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/SG-logo.png"></span><p><strong>E.</strong> &ndash; SPACING GUILD SPECIAL VICTORY CONDITION: If no faction has been able</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/SG-logo.png" alt=""><p><strong>E.</strong> &ndash; SPACING GUILD SPECIAL VICTORY CONDITION: If no faction has been able</p>
 <p>to win the game by the end of play, you have prevented control of Dune and automatically win the game.</p></div>
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>F.</strong> &ndash; Allies may ship from their off-planet reserves onto Dune or cross-ship from</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/SG-logo.png" alt=""></span><p><strong>F.</strong> &ndash; Allies may ship from their off-planet reserves onto Dune or cross-ship from</p></div>
 <p>one territory to another with their forces that are already on Dune at the Spacing Guild half-price rate (including cross-shipping Fremen forces from reserve). Their allies win with you if you win with the Spacing Guild Special Victory Condition.</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>G.</strong> &ndash; You may use a Karama Card during the Shipment and Movement Phase to</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/SG-logo.png" alt=""></span><p><strong>G.</strong> &ndash; You may use a Karama Card during the Shipment and Movement Phase to</p></div>
 <p>stop one off-planet shipment of any one player. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2743,15 +2846,15 @@
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png"></span><p><strong>E.</strong> &ndash; GHOLAS: When you have fewer than 5 leaders in their leader pool you may</p>
 <p>revive other factions’ dead leaders to their leader pool (at half price, up to a limit of 5 total leaders in their leader pool).</p>
 </div>
-<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png"></span><p><strong>F.</strong> &ndash; ZOAL: Zoal’s fighting strength matches the printed fighting strength of the</p>
+<div class="faction-sheet__advantage"><img class="circularize faction-sheet__advantage-icon" src="img/TX-logo.png" alt=""><p><strong>F.</strong> &ndash; ZOAL: Zoal’s fighting strength matches the printed fighting strength of the</p>
 <p>opponent’s leader (0 against a Cheap Hero) and for collecting spice for his death. Zoal’s revival cost is 3 spice.</p></div>
 </div>
 <div class="faction-sheet__side">
 <div class="faction-sheet__bar">Alliance Ability</div>
-<p><strong>G.</strong> &ndash; You may allow their allies to revive their forces and leaders at half price</p>
+<div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png" alt=""></span><p><strong>G.</strong> &ndash; You may allow their allies to revive their forces and leaders at half price</p></div>
 <p>(rounded up).</p>
 <div class="faction-sheet__bar">Special <em>Karama</em> Power</div>
-<p><strong>H.</strong> &ndash; You may use a Karama Card during the Revival Phase to prevent any one</p>
+<div class="faction-sheet__advantage"><span class="special-karama"><img class="circularize" src="img/TX-logo.png" alt=""></span><p><strong>H.</strong> &ndash; You may use a Karama Card during the Revival Phase to prevent any one</p></div>
 <p>player from reviving forces and/or leaders. Ability can be cancelled by Karama.</p>
 </div>
 </div>
@@ -2961,13 +3064,17 @@
         });
     }
 
-    function updateModule(checkbox) {
-        const moduleName = checkbox.dataset.module;
-        document.querySelectorAll('.' + moduleName).forEach(element => {
-            element.hidden = !checkbox.checked;
-        });
-        document.querySelectorAll('.no-' + moduleName).forEach(element => {
-            element.hidden = checkbox.checked;
+    function updateModules() {
+        const boxes = [...document.querySelectorAll('#module-selector input[type="checkbox"]')];
+        const hasSelection = boxes.some(checkbox => checkbox.checked);
+        boxes.forEach(checkbox => {
+            const moduleName = checkbox.dataset.module;
+            document.querySelectorAll('.' + moduleName).forEach(element => {
+                element.hidden = hasSelection && !checkbox.checked;
+            });
+            document.querySelectorAll('.no-' + moduleName).forEach(element => {
+                element.hidden = hasSelection && checkbox.checked;
+            });
         });
     }
 
@@ -3063,7 +3170,31 @@
         const boxes = document.querySelectorAll('#faction-selector input[type="checkbox"]');
         const limitReached = [...boxes].filter(checkbox => checkbox.checked).length >= 6;
         boxes.forEach(checkbox => { checkbox.disabled = limitReached && !checkbox.checked; });
+        const notice = document.getElementById('faction-limit-notice');
+        const message = limitReached ? 'You cannot select more than 6 factions at a time. Deselect a faction to choose another.' : '';
+        if (notice.textContent !== message) notice.textContent = message;
     }
+
+    document.querySelectorAll('.themed-matchup').forEach(button => {
+        button.addEventListener('click', () => {
+            const factions = new Set(button.dataset.factions.split(','));
+            const modules = new Set(button.dataset.variants.split(','));
+            document.querySelectorAll('#faction-selector input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = factions.has(checkbox.dataset.class);
+            });
+            document.querySelectorAll('#module-selector input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = modules.has(checkbox.dataset.module);
+            });
+            updateFaction();
+            updateModules();
+            updatePlayerCount();
+            updateFactionCount();
+            updateTwoTimesFactionCount();
+            updateFactionSelectionLimit();
+            saveSelection();
+            document.getElementById('faction-selector').scrollIntoView({ block: 'start' });
+        });
+    });
 
     restoreSelection();
     saveSelection();
@@ -3084,10 +3215,10 @@
     updateTwoTimesFactionCount();
     updateFactionSelectionLimit();
 
+    updateModules();
     document.querySelectorAll('#module-selector input[type="checkbox"]').forEach(checkbox => {
-        updateModule(checkbox);
         checkbox.addEventListener('change', () => {
-            updateModule(checkbox);
+            updateModules();
             saveSelection();
         });
     });
