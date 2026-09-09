@@ -139,6 +139,7 @@ img/raw/
 !img/EM-leader-fenning.png
 !img/EM-leader.png
 !img/EM-logo.png
+!img/EM-troop-sardaukar.png
 !img/EZ-leader-bludd.png
 !img/EZ-leader-dinari.png
 !img/EZ-leader-ilesa.png
@@ -154,6 +155,7 @@ img/raw/
 !img/FR-leader-stilgar.png
 !img/FR-leader.png
 !img/FR-logo.png
+!img/FR-troop-fedaykin.png
 !img/hiereg-back.png
 !img/hiereg-cistern.png
 !img/hiereg-jacurutu.png
@@ -176,6 +178,8 @@ img/raw/
 !img/IX-leader-tesia.png
 !img/IX-leader.png
 !img/IX-logo.png
+!img/IX-troop-suboid.png
+!img/IX-tropp-cyborg.png
 !img/karama.png
 !img/map-arrakeen.png
 !img/map-carthag.png
@@ -192,6 +196,12 @@ img/raw/
 !img/MO-leader-vidal.png
 !img/MO-leader.png
 !img/MO-logo.png
+!img/MO-terror-assasination.png
+!img/MO-terror-atomics.png
+!img/MO-terror-attack.png
+!img/MO-terror-extortion.png
+!img/MO-terror-robbery.png
+!img/MO-terror-sabotage.png
 !img/phase-battle-black-alpha.png
 !img/phase-battle-grey.png
 !img/phase-bidding-black-alpha.png
@@ -244,6 +254,8 @@ img/raw/
 !img/tech-token-axolotl.png
 !img/tech-token-heighliners.png
 !img/tech-token-spice.png
+!img/token-ambassador.png
+!img/token-no-field-back.png
 !img/TX-leader-ajidica.png
 !img/TX-leader-blin.png
 !img/TX-leader-wykk.png
