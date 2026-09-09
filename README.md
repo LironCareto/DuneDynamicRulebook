@@ -72,6 +72,18 @@ My contribution has mainly been to combine those two pieces: taking the integrat
 
 All credit for the original rules research, editing, layout, and interaction concept belongs to their respective creators.
 
+## Website
+
+[Open Dune Dynamic Rulebook](https://lironcareto.github.io/DuneDynamicRulebook/).
+
+The website is published with GitHub Pages from the `main` branch and the `/(root)` folder. Each push to `main` updates the website. The `.nojekyll` file serves the HTML and images directly without Jekyll processing.
+
+## License
+
+The original software code contributed to this project is licensed under the [MIT License](LICENSE).
+
+This license applies only to original code, including the HTML structure, CSS, JavaScript, and project scripts. It does not cover game rules or rulebook text, artwork, images, logos, fonts, trademarks, or other third-party material, including such content embedded in `index.html`. Those materials remain subject to their respective owners' rights and any applicable licenses. No rights to third-party material are granted by this project's MIT license.
+
 ## Current status
 
 This project is a work in progress.
