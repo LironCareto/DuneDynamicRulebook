@@ -4,8 +4,8 @@ A dynamic, integrated rulebook for Gale Force Nine's **Dune** board game and its
 
 This project combines two excellent existing works:
 
-- the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23), published on BoardGameGeek by Vantastic, which integrates the rules from the base game and its expansions into a single comprehensive reference;
-- the dynamic, configurable presentation model of [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook), which allows rule content to be shown or hidden depending on the game setup.
+- the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23), compiled by **Vantastic (Van Willis)** and published on BoardGameGeek, which integrates the rules from the base game and its expansions into a single comprehensive reference;
+- the dynamic, configurable presentation model of [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook) by **jbiatek**, which allows rule content to be shown or hidden depending on the game setup.
 
 The goal is simple:
 
@@ -46,15 +46,17 @@ The long-term goal is to support dynamic filtering for things such as:
 
 ## Rules basis
 
-The rules content is based on the excellent [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) by Vantastic, available on BoardGameGeek.
+This project is based on—and pays tribute to—the excellent [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23), compiled by **Vantastic (Van Willis)** and published on BoardGameGeek.
 
-That document already does the difficult work of integrating the base game and expansion rules into a single reference.
+That document already does the difficult work of integrating the base game and expansion rules into a single reference. His work is used with his permission.
 
-Dune Dynamic Rulebook uses that integrated ruleset as its foundation and adapts it to a dynamic web format.
+Changes have been made to adapt the original PDF to this dynamic HTML format and provide additional features and clarifications. These changes reflect my best judgement and were made without input from Vantastic. He has neither reviewed the contents of this rulebook nor supervised the changes, and he is not responsible for any changes made to his original work.
+
+Maintenance of this adaptation is my responsibility. Vantastic has no obligation to review, maintain, or update it.
 
 ## Inspiration
 
-The interaction model is inspired by [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook) by jbiatek.
+The interaction model is inspired by [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook) by **jbiatek**.
 
 BSGRulebook demonstrates how a complex board game with multiple expansions can be represented as a single configurable rulebook whose contents adapt to the chosen game setup.
 
@@ -64,13 +66,13 @@ Dune Dynamic Rulebook applies the same basic idea to Dune.
 
 Almost all of the hard work behind this project was done by other people.
 
-The rules content comes from the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) by Vantastic on BoardGameGeek.
+The integrated rules compilation comes from the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) by **Vantastic (Van Willis)**.
 
-The idea of a configurable, dynamic web-based rulebook comes from [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook) by jbiatek.
+The inspiration for the configurable, dynamic web-based presentation comes from [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook) by **jbiatek**.
 
-My contribution has mainly been to combine those two pieces: taking the integrated Dune rules and presenting them through a dynamic rulebook interface.
+My contribution has mainly been to combine those two pieces: taking the integrated Dune rules and adapting them into a dynamic rulebook interface.
 
-All credit for the original rules research, editing, layout, and interaction concept belongs to their respective creators.
+Credit for the original game, rules, compilation, artwork, and presentation inspiration belongs to their respective creators. I am grateful for their work.
 
 ## Website
 
@@ -82,7 +84,11 @@ The website is published with GitHub Pages from the `main` branch and the `/(roo
 
 The original software code contributed to this project is licensed under the [MIT License](LICENSE).
 
-This license applies only to original code, including the HTML structure, CSS, JavaScript, and project scripts. It does not cover game rules or rulebook text, artwork, images, logos, fonts, trademarks, or other third-party material, including such content embedded in `index.html`. Those materials remain subject to their respective owners' rights and any applicable licenses. No rights to third-party material are granted by this project's MIT license.
+This license applies only to original code, including the HTML structure, CSS, JavaScript, and project scripts. It does not cover game rules or rulebook text, artwork, images, logos, fonts, trademarks, or other third-party material, including such content embedded in `index.html`.
+
+The content adapted from Vantastic’s **Unofficial Revised Dune Rulebook v2.3** is used with his permission under the conditions agreed for this project, including free access, attribution, a link to the original work, and a clear statement that the adaptations are my responsibility. This permission does not place his work under the MIT License.
+
+Third-party materials remain subject to their respective owners’ rights and any applicable licenses. No rights to those materials are granted by this project's MIT License. Vantastic’s permission concerns his contribution to the rulebook and does not grant rights to third-party artwork or other assets.
 
 ## Current status
 
@@ -117,12 +123,12 @@ The project tries to follow a few simple principles:
 
 This is an unofficial, non-commercial fan project created solely as a reference aid for owners and players of the game.
 
-No profit is made from this project, and no commercial use is intended.
+Access to the rulebook is free. No profit is made from this project.
 
-All trademarks, game rules, artwork, logos, and other intellectual property remain the property of their respective owners.
+All third-party trademarks, artwork, logos, rulebook content, and other protected materials remain the property of their respective rights holders.
 
-Any copyrighted material included in this project is used in good faith for purposes such as reference, commentary, preservation, and fan-created educational use, with the intention of remaining within applicable fair use / fair dealing principles where relevant.
+Third-party artwork, images, and logos associated with Gale Force Nine and Dune are included in good faith for reference and fan-created educational use, with the intention of remaining within applicable fair use / fair dealing principles where relevant. No ownership of these assets is claimed, and no permission from their rights holders is implied. Vantastic’s permission to adapt his rulebook does not extend to these assets.
 
-This project is not affiliated with or endorsed by Gale Force Nine or any of the rights holders associated with Dune.
+This project is not affiliated with or endorsed by Gale Force Nine or the rights holders associated with Dune. Vantastic has permitted the adaptation of his work as described above; he has not reviewed or approved the contents of this adaptation.
 
 If any rights holder has concerns about the inclusion of specific material, please get in touch.
