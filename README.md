@@ -4,7 +4,7 @@ A dynamic, integrated rulebook for Gale Force Nine's **Dune** board game and its
 
 This project combines two excellent existing works:
 
-- the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23), published on BoardGameGeek, which integrates the rules from the base game and its expansions into a single comprehensive reference;
+- the [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23), published on BoardGameGeek by Vantastic, which integrates the rules from the base game and its expansions into a single comprehensive reference;
 - the dynamic, configurable presentation model of [**BSGRulebook**](https://github.com/jbiatek/BSGRulebook), which allows rule content to be shown or hidden depending on the game setup.
 
 The goal is simple:
@@ -46,7 +46,7 @@ The long-term goal is to support dynamic filtering for things such as:
 
 ## Rules basis
 
-The rules content is based on the excellent [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) available on BoardGameGeek.
+The rules content is based on the excellent [**Unofficial Revised Dune Rulebook v2.3**](https://boardgamegeek.com/filepage/196513/unofficial-revised-dune-rulebook-v23) by Vantastic, available on BoardGameGeek.
 
 That document already does the difficult work of integrating the base game and expansion rules into a single reference.
 
