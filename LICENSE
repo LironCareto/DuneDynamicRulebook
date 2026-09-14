@@ -1,3 +1,25 @@
+SCOPE OF THIS LICENSE
+
+The MIT License below applies only to original software code contributed to
+Dune Dynamic Rulebook, including the original HTML structure, CSS, JavaScript,
+and project scripts.
+
+It does not apply to game rules or rulebook text, artwork, images, logos,
+fonts, trademarks, or any other third-party material, including such material
+embedded in index.html.
+
+Content adapted from Vantastic's Unofficial Revised Dune Rulebook v2.3 is used
+with permission under the conditions described in README.md, including free
+access, attribution, a link to the original work, and a clear statement that
+the adaptations are the maintainer's responsibility. That permission does not
+place the adapted work under the MIT License and does not grant rights to
+third-party artwork or other assets.
+
+All third-party material remains subject to its respective owners' rights and
+any applicable licenses. No rights to such material are granted by this file.
+
+-------------------------------------------------------------------------------
+
 MIT License
 
 Copyright (c) 2026 LironCareto
@@ -19,4 +41,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
