@@ -1837,7 +1837,7 @@
     <span class="TX"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png" alt="Tleilaxu"></span><sub class="logo-sub">A</sub></span></p>
 <p>Check to see if any player or Alliance has won the game. If there are no winners, move the Game Turn Counter to the next position on the Turn Track to begin the next turn.</p>
 </section>
-<section class="phase-callout anytime-advantages">
+<section class="phase-callout anytime-advantages" data-factions-any="CH,RI">
 <h3>At Any Time / End of Phase Advantages</h3>
 <div class="phase-callout-body">
 <p><strong>Advantages that can be executed "at any time" must be used either before or after Battle Plans are revealed or any player’s action.</strong></p>
@@ -1845,7 +1845,7 @@
 <span class="RI"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><sub class="logo-sub">B</sub> May reveal a No-Field Token at any time before the Battle Phase.</span><br/>
 <span class="RI"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><sub class="logo-sub">D</sub> Give their ally a Treachery Card from their hand.</span><br/>
 <span class="RI"><span class="special-karama"><img class="circularize" src="img/RI-logo.png"></span><sub class="logo-sub">E</sub> Pay 3 spice to buy 1 Richese Treachery Cards secretly.</span>
-<p><strong>Some abilities can be exected at the end of any phase.</strong></p>
+<p class="CH"><strong>Some abilities can be executed at the end of any phase.</strong></p>
 <span class="CH"><span class="karama-badge"><img class="circularize" src="img/CH-logo.png"></span><sub class="logo-sub">B</sub> Discard duplicate Treachery Cards for 3 spice each.</span><br/>
 <span class="CH"><span class="karama-badge"><img class="circularize" src="img/CH-logo.png"></span><sub class="logo-sub">B</sub> Discard Worthless Cards for 2 spice each or special effect.</span><br/>
 <span class="CH"><span class="karama-badge"><img class="circularize" src="img/CH-logo.png"></span><sub class="logo-sub">G</sub> Once per turn trade a Treachery Card with their ally.</span><br/>
@@ -3546,6 +3546,14 @@ Weirding Way counts as a projectile weapon<br>Chemistry and Weirding Way’s alt
                 element.hidden = hasSelection && checkbox.checked;
             });
         });
+
+        document.querySelectorAll('[data-factions-any]').forEach(element => {
+            const factions = element.dataset.factionsAny.split(',');
+            const hasMatchingFaction = factions.some(faction =>
+                boxes.some(checkbox => checkbox.dataset.class === faction && checkbox.checked)
+            );
+            element.hidden = hasSelection && !hasMatchingFaction;
+        });
     }
 
     function updateModules() {
@@ -3557,7 +3565,7 @@ Weirding Way counts as a projectile weapon<br>Chemistry and Weirding Way’s alt
                 element.hidden = hasSelection && !checkbox.checked;
             });
             document.querySelectorAll('.no-' + moduleName).forEach(element => {
-                element.hidden = hasSelection && checkbox.checked;
+                element.hidden = checkbox.checked;
             });
         });
     }
