@@ -5,6 +5,8 @@ img/raw/
 img/*
 
 *.marker-preview/
+/scripts/
+/.githooks/
 
 # Images actually used by the rulebook
 !img/art-cover-worm.png
