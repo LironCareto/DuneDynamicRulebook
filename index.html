@@ -1484,21 +1484,27 @@
 
     /* --- Footer artwork ------------------------------------- */
 
+    .footer-artwork {
+        position: absolute;
+        inset: 0;
+        z-index: 11;
+        margin: 0;
+        pointer-events: none;
+    }
+
     .footer-fremen-art {
-        position: fixed;
+        position: absolute;
         right: 0;
         bottom: 0;
-        z-index: 11;
         width: clamp(10rem, 23vw, 16rem);
         height: auto;
         pointer-events: none;
     }
 
     .footer-worm-art {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
-        z-index: 11;
         width: clamp(8rem, 15vw, 12rem);
         height: auto;
         pointer-events: none;
@@ -1567,18 +1573,8 @@
             flex-shrink: 0;
         }
 
-        .footer-artwork {
-            position: fixed;
-            inset: 0;
-            z-index: 11;
-            margin: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
         .footer-fremen-art,
         .footer-worm-art {
-            position: absolute;
             width: 7rem;
             max-height: none;
             bottom: env(safe-area-inset-bottom, 0px);
@@ -3791,8 +3787,8 @@ Weirding Way counts as a projectile weapon<br>Chemistry and Weirding Way’s alt
 <div class="faction-leader-summary__item TX"><img class="circularize" src="img/TX-logo.png" alt="Tleilaxu">X,4,3,2,1</div>
 </div>
 <div id="faction-karama-notice" class="faction-karama-notice" hidden><img src="img/karama.png" alt=""><span>Ability can be cancelled by <strong><em>Karama</em></strong>.</span></div>
-</footer>
 <p class="footer-artwork"><img class="footer-worm-art" src="img/art-cover-worm.png" alt=""> <img class="footer-fremen-art" src="img/art-fremen.png" alt=""></p>
+</footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ab32c6b5aef44230b10d248242a60471"}'></script><!-- End Cloudflare Web Analytics -->    
 </body>
 </html>
