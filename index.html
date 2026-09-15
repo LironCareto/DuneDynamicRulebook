@@ -38,6 +38,10 @@
         font-family: "Trebuchet MS", sans-serif;
     }
 
+    [hidden] {
+        display: none !important;
+    }
+
     .logo-marker {
         display: inline-block;
         white-space: nowrap;
@@ -1679,12 +1683,12 @@
 <p>Players take their Player Shields and Player Sheets and set up their faction as follows:</p>
 <p class="tech-tokens"><ul><li class="TX">Tleilaxu starts controlling the Axolotl Tanks Tech Token. </li><li class="IX">Ixian starts controlling the Heighliners Tech Token. </li><li class="FR"> Fremen starts controlling the Spice Production Tech Token. </li><li class="no-TX">Other factions do not control any Tech Tokens. </li><li class="no-TX no-IX no-FR">Leave unassigned Tech Tokens face down next to the board. </li></ul></p>
 <p class="homeworlds">Each faction places their corresponding Homeworld Token(s) and their corresponding Homeworld Card(s) next to them, visible to others, placing their Forces reserve on the Homeworld Token.</p>
-
+<p class="RI">Richese get their separate cache of 10 treachery cards marked with the Richese faction symbol. These cards are not part of their hand.</p>
 <section class="setup-step">
 <h3>1. Positions</h3>
 <p>Players Place their Player Marker on the player circle closest to their Player Shield and seat at the table. <span class="BG"><img class="circularize" src="img/BG-logo.png"><sub class="logo-sub">A</sub> The Bene Gesseritpredict one faction and turn to win.</span></p>
 </section>
-<section class="setup-step">
+<section class="setup-step no-leader-skill-cards">
 <h3>2. Traitors</h3>
 <div class="traitor-card-pair">
 <div class="traitor-card-pair__card traitor-card-pair__back"><img src="img/card-traitor-back.png" alt="Traitor card back"></div>
@@ -1694,22 +1698,43 @@
 <p>Each player then secretly selects any 1 card to keep by placing their chosen card face down behind their Player Shield, returning the other cards face down to the bottom of the deck. <span class="HK"><img class="circularize" src="img/HK-logo.png"><sub class="logo-sub">A</sub> Harkonnen keep all 4 Traitor Cards dealt.</span></p>
 <p class="TX"><img class="circularize" src="img/TX-logo.png"><sub class="logo-sub">A</sub> After the non chosen Traitor Cards have been returned to the bottom of the deck, Tleilaxu receive the top 3 cards from the Traitor Deck.</p>
 </section>
-<section class="setup-step">
-<h3>3. Spice</h3>
+<section class="setup-step leader-skill-cards">
+<h3>2. Treachery</h3>
+    <p>Deal 1 card from the Treachery Deck face down to each player<span class="HK">, deal 1 extra card to Harkonnen</span>. <span class="IX"><img class="circularize" src="img/IX-logo.png"><sub class="logo-sub">A</sub> Choose <span class="faction-count">#</span> Treachery Cards from initial deal, shuffle and deal remaining cards to other players<span class="HK">, <img class="circularize" src="img/HK-logo.png"><sub class="logo-sub">B</sub> giving 2 to Harkonnen</span>.</span></p>
+</section>
+<section class="setup-step leader-skill-cards">
+<h3>3. Leader Skill Cards</h3>
+<p>Deal out 2 Leader Skill Cards to each faction. Each player chooses one to keep, and shuffles the other back into the Leader Skill Deck. Each player plays thje card they keep face up in front of their faction shield, then choose one of their Leader Discs to play face up next to their Leader Skill. That leader has that skill for as long as they are alive.</p>
+</section>
+<section class="setup-step leader-skill-cards">
+<h3>4. Traitors</h3>
+<div class="traitor-card-pair">
+<div class="traitor-card-pair__card traitor-card-pair__back"><img src="img/card-traitor-back.png" alt="Traitor card back"></div>
+<div class="traitor-card-pair__card traitor-card-pair__front"><img src="img/card-traitor-front.png" alt="Traitor card front"></div>
+</div>
+<p>Remove the cards for all factions not in play from the Traitor Deck. Shuffle the cards thoroughly. <span class="EZ"><img class="circularize" src="img/EZ-logo.png"><sub class="logo-sub">D</sub> Reveal 1 Ecaz Traitor Card randomy before dealing Traitor Cards, and shuffle again the remaining cards.</span> Then deal each player 4 cards <span class="TX">except Tleilaxu</span>.</p>
+<p>Each player then secretly selects any 1 card to keep by placing their chosen card face down behind their Player Shield, returning the other cards face down to the bottom of the deck. <span class="HK"><img class="circularize" src="img/HK-logo.png"><sub class="logo-sub">A</sub> Harkonnen keep all 4 Traitor Cards dealt.</span></p>
+<p class="TX"><img class="circularize" src="img/TX-logo.png"><sub class="logo-sub">A</sub> After the non chosen Traitor Cards have been returned to the bottom of the deck, Tleilaxu receive the top 3 cards from the Traitor Deck.</p>
+</section>
+<section class="setup-step">    
+<h3 class="no-leader-skill-cards">3. Spice</h3>
+<h3 class="leader-skill-cards">5. Spice</h3>
 <p>Give each player spice from the Spice Bank equal to the number indicated by their Player Sheet. All spice holdings should be kept behind Player Shields.</p>
 <div class="starting-spice-tokens"><img src="img/spice-1.png" alt="1 spice"><img src="img/spice-2.png" alt="2 spice"><img src="img/spice-5.png" alt="5 spice"><img src="img/spice-10.png" alt="10 spice"></div>
 </section>
 <section class="setup-step">
-<h3>4. Forces</h3>
+<h3 class="no-leader-skill-cards">4. Forces</h3>
+<h3 class="leader-skill-cards">6. Forces</h3>
 <p>Place each player’s forces on the board as indicated by their Player Sheet. All remaining forces are paced in their reserves next to their Player Shield. <span class="FR"><img class="circularize" src="img/FR-logo.png">Fremen distribute 10 forces between <em>Sietch Tabr</em>, <em>False Wall South</em>, and/or <em>False Wall West</em>, at their choice.</span> <span class="BG"><img class="circularize" src="img/BG-logo.png"><sub class="logo-sub">B</sub><span class="FR"> After Fremen placement, </span>Bene Gesserit start with 1 advisor in any territory.</span></p>
 <div class="starting-force-tokens" role="img" aria-label="Three Fremen forces, three Atreides forces, and one Bene Gesserit advisor"><img class="circularize" src="img/FR-troop.png" alt=""><img class="circularize" src="img/FR-troop.png" alt=""><img class="circularize" src="img/FR-troop.png" alt=""><img class="circularize" src="img/AT-troop.png" alt=""><img class="circularize" src="img/AT-troop.png" alt=""><img class="circularize" src="img/AT-troop.png" alt=""><img class="circularize" src="img/BG-troop-advisor.png" alt=""></div>
 </section>
-<section class="setup-step">
-<h3>5. Treachery</h3>
+<section class="setup-step no-leader-skill-cards">
+<h3 class="no-leader-skill-cards">5. Treachery</h3>
 <p>Deal 1 card from the Treachery Deck face down to each player<span class="HK">, deal 1 extra card to Harkonnen</span>. <span class="IX"><img class="circularize" src="img/IX-logo.png"><sub class="logo-sub">A</sub> Choose <span class="faction-count">#</span> Treachery Cards from initial deal, shuffle and deal remaining cards to other players<span class="HK">, <img class="circularize" src="img/HK-logo.png"><sub class="logo-sub">B</sub> giving 2 to Harkonnen</span>.</span></p>
 </section>
 <section class="setup-step">
-<h3>6. Game Turn Counter</h3>
+<h3 class="no-leader-skill-cards">6. Game Turn Counter</h3>
+<h3 class="leader-skill-cards">7. Game Turn Counter</h3>
 <p>Place the Game Turn Counter at 1, on the Turn Track.</p>
 <div class="starting-turn-counter"><img src="img/marker-turn.png" alt="Game Turn Counter"></div>
 </section>
@@ -1725,14 +1750,14 @@
     <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png" alt="Fremen"></span><sub class="logo-sub">A,B</sub></span> 
     <span class="IX"><img class="circularize" src="img/IX-logo.png" alt="Ixians"><sub class="logo-sub">B</sub></span> 
     <span class="RI"><img class="circularize" src="img/RI-logo.png" alt="Richese"><sub class="logo-sub">B</sub></span></p>
-<p>The storm marker moves. The faction whose Player Marker the storm next approaches will be te First Player for this turn.</p>
+<p>The storm marker moves. The faction whose Player Marker the storm next approaches will be the First Player for this turn.</p>
 </section>
 <section class="sequence-phase">
 <a class="sequence-phase-link" href="#phase-spice" aria-label="Phase 2: Spice Blow and Nexus"><img class="sequence-phase-icon" src="img/phase-spice-black-alpha.png" alt=""></a>
 <h3>2. Spice Blow and Nexus Phase</h3>
 <p>
     <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png" alt="Fremen"></span><sub class="logo-sub">C,D,J</sub> 
-        <span class="special-karama"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">K</sub></span> 
+    <span class="special-karama"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">K</sub></span> 
     <span class="RI"><img class="circularize" src="img/RI-logo.png" alt="Richese"><sub class="logo-sub">B</sub></span></p>
 <p>Turn over the top card of the Spice Deck and place the amount of spice shown on the card in the indicated sector of the highlighted territory. If Shai-Hulud appears a Nexus occurs, and players have the opportunity to make and break Alliances.</p>
 </section>
@@ -1912,15 +1937,14 @@
 <p style="padding-left: 40px;">Then the following occurs.</p>
 <ul>
 <li style="list-style-type: none;">
-<ul>
-<li>
-<span class="outlined">If it is the fourth Shai Hulud card revealed, the Shield Wall is destroyed. Place the Shield Wall token on top of the Shield Wall space on the map. All forces in the Shield Wall sector are removed to the Tleilaxu Tanks. From now on, the Shield Wall sector is treated as a sand territory and Carthag, Arrakeen, the Imperial Basin and the Rim Wall West are not protected from the storm or sandworm.</span>
-</li>
-<li>All spice and forces in the territory shown on the card now face up in discard pile A are removed to the Spice Bank and Tleilaxu Tanks, respectively. Place the Shai-Hulud card face up on Spice discard pile A. <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">C,J</sub> Fremen forces are not devoured. They can ride the worm to any sector of any territory <span class="IX">(including HMS), </span>subject to storm and occupancy rules. Fremen can also protect their allies from sandworm.</span><span class="RI"><img class="circularize" src="img/RI-logo.png"><sub class="logo-sub">D</sub> A No-Field token must be revealed when caught by a worm.</span></li>
-<li>Reveal the top card of the Spice Deck. If it is another Shai-Hulud it is immediately discarded to Spice discard pile A, and another card is revealed. This continues until a Territory Card appears and is resolved. The Territory Card is then placed face up on Spice discard pile A. <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">B</sub> For each consecutive sandworm drawn, the Fremen may choose the territory where it appears.</span></li>
-<li><span class="no-discovery-tokens">R</span><span class="discovery-tokens"><strong>The Great Maker</strong> is treated like a normal Shau Hulud card; however, a vote is held to determine whether or not a Nexus occurs. In storm order, each player votes yes or no. Unless a majority vote yes, no Nexus occurs. With a regular <strong>Shau Hulud</strong> card, r</span>esolve a Nexus. During a Nexus, all players have a chance to make or break Alliances. Once players have had a chance to do so, play continues (see section Alliances (Nexus)). </li>
-<span class="discovery-tokens"><span class="FR"><li><img class="circularize" src="img/FR-logo.png">The Fremen may ride <strong>the Great Maker</strong> sandworm by moving any nuymber of their forces in reserves to any sector of any territory<span class="IX"> (including the HMS)</span>, subject to storm and occupancy rules (instead of riding from a territory on the board or placing the Sandworm token).A Karama Card cannot prevent riding the Great Maker.</li></span></span>
-</ul>
+    <ul>
+    <li>
+    <span class="outlined">If it is the fourth Shai Hulud card revealed, the Shield Wall is destroyed. Place the Shield Wall token on top of the Shield Wall space on the map. All forces in the Shield Wall sector are removed to the Tleilaxu Tanks. From now on, the Shield Wall sector is treated as a sand territory and Carthag, Arrakeen, the Imperial Basin and the Rim Wall West are not protected from the storm or sandworm.</span></li>
+    <li>All spice and forces in the territory shown on the card now face up in discard pile A are removed to the Spice Bank and Tleilaxu Tanks, respectively. Place the Shai-Hulud card face up on Spice discard pile A. <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">C,J</sub> Fremen forces are not devoured. They can ride the worm to any sector of any territory <span class="IX">(including HMS), </span>subject to storm and occupancy rules. Fremen can also protect their allies from sandworm.</span><span class="RI"><img class="circularize" src="img/RI-logo.png"><sub class="logo-sub">D</sub> A No-Field token must be revealed when caught by a worm.</span></li>
+    <li>Reveal the top card of the Spice Deck. If it is another Shai-Hulud it is immediately discarded to Spice discard pile A, and another card is revealed. This continues until a Territory Card appears and is resolved. The Territory Card is then placed face up on Spice discard pile A. <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">B</sub> For each consecutive sandworm drawn, the Fremen may choose the territory where it appears.</span></li>
+    <li><span class="no-discovery-tokens">R</span><span class="discovery-tokens"><strong>The Great Maker</strong> is treated like a normal Shau Hulud card; however, a vote is held to determine whether or not a Nexus occurs. In storm order, each player votes yes or no. Unless a majority vote yes, no Nexus occurs. With a regular <strong>Shau Hulud</strong> card, r</span>esolve a Nexus. During a Nexus, all players have a chance to make or break Alliances. Once players have had a chance to do so, play continues (see section Alliances (Nexus)). </li>
+    <span class="discovery-tokens"><span class="FR"><li><img class="circularize" src="img/FR-logo.png">The Fremen may ride <strong>the Great Maker</strong> sandworm by moving any nuymber of their forces in reserves to any sector of any territory<span class="IX"> (including the HMS)</span>, subject to storm and occupancy rules (instead of riding from a territory on the board or placing the Sandworm token).A Karama Card cannot prevent riding the Great Maker.</li></span></span>
+    </ul>
 </li>
 </ul>
 </div>
@@ -1934,14 +1958,16 @@
 <p class="BG"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png"></span><sub class="logo-sub">C</sub> Bene Gesserit always receive 2 spice of CHOAM charity.</p>
 <p class="tech-tokens">If any faction including the one controlling the Spice Production Tech Token, takes CHOAM Charity, the controller of Spice Production Tech Token collects 1 spice per Tech Token they control. <span class="BG">If only Bene Gesserit collects CHOAM Charity, no spice is collected by the controller of Spice Production Tech Token.</span></p>
 </section>
+
 <section id="phase-bidding-section" class="rulebook-phase" aria-labelledby="phase-bidding">
 <h1 id="phase-bidding" class="heading-with-icon"><img class="heading-icon" src="img/phase-bidding-grey.png" alt="">Phase 4: Bidding</h1>
-<p class="RI"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><sub class="logo-sub">D</sub> Richese may auction one Treachery Card from hand using a normal, Once-Around, or Silent-Auction.</p>
+<p class="RI"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><sub class="logo-sub">C</sub> Richese may auction one Treachery Card from hand using a Once-Around, or Silent-Auction format.</p>
 <h3>Declaration</h3>
 <p class="HK"><span class="special-karama"><img class="circularize" src="img/HK-logo.png"></span><sub class="logo-sub">E</sub> During the bidding phase, Harkonnen can exchange up to 4 cards with any other player, replacing them with cards from their hand.</p>
 <p>Before bidding starts, all players declare how many Treachery Cards they hold. The default hand limit is 4<span class="CH">, <img class="circularize" src="img/CH-logo.png"><sub class="logo-sub">B</sub> CHOAM can hold 5</span><span class="HK">, <img class="circularize" src="img/HK-logo.png"><sub class="logo-sub">B</sub> Harkonnen can hold 8</span>.</p>
 <h3>Dealer</h3>
-<p>Deal cards from the Treachery Deck face down in a row, 1 card for each player whose hand is not full. <span class="IX"><span class="karama-badge"><img class="circularize" src="img/IX-logo.png"></span><sub class="logo-sub">C</sub> Ixians draw one extra card, review all, place one on top or bottom of the Treachery Deck, and shuffle the others face down for bidding.</span></p>
+<p class="RI"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><sub class="logo-sub">A</sub> Richese must auction one Treachery Card from their Richese cache using a Once-Around, or Silent-Auction format.</p>
+<p>Deal cards from the Treachery Deck face down in a row, 1 card for each player whose hand is not full<span class="RI"> minus one</span>. <span class="IX"><span class="karama-badge"><img class="circularize" src="img/IX-logo.png"></span><sub class="logo-sub">C</sub> Ixians draw one extra card, review all, place one on top or bottom of the Treachery Deck, and shuffle the others face down for bidding.</span></p>
 <h3>Auction</h3>
 <p class="IX"><span class="karama-badge"><img class="circularize" src="img/IX-logo.png"></span><sub class="logo-sub">D</sub> Once per phase Ixians replace card up for bid with one from hand<span class="AT"> (before Atreides see them)</span>.</p>
 <p class="AT"><span class="karama-badge"><img class="circularize" src="img/AT-logo.png"></span><sub class="logo-sub">A</sub> Atreides look at each card before it is bid on and can take notes.</p>
@@ -1981,6 +2007,7 @@
 <p>To revive a leader, you must pay that leader&rsquo;s fighting strength in spice to <span class="no-TX">the Spice Bank</span><span class="TX"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png"></span><sub class="logo-sub">B</sub> Tleilaxu</span>.</p>
 <p class="TX"><img class="circularize" src="img/TX-logo.png"><sub class="logo-sub">F</sub> Zoal revival cost is 3</p>
 <p>A revived leader can be played normally and is still subject to being a traitor.</p>
+<p class="leader-skill-cards">After reviving a leader if you have no Leader Skill Card, you may draw two Leader Skill Cards, and then choose one to play face up in front of your shield and assign the newly revived leader to that skill.</p>
 <h4>Dead Again</h4>
 <p>If a revived leader is killed again, place it face down in the Tleilaxu Tanks. This leader cannot be revived again until all of their other revivable leaders of their faction have been revived, killed, and sent to the Tleilaxu Tanks again.</p>
 <p class="EZ"><span class="karama-badge"><img class="circularize" src="img/EZ-logo.png"></span><sub class="logo-sub">A</sub> Ecaz may pay spice to place Ambassador tokens in strongholds.</p>
@@ -2087,6 +2114,7 @@
 </ul>
 <h4>Leaders</h4>
 <p>Select one Leader Disc and place it face up in the slot on their Battle Wheel. Players may alternately play a Cheap Hero Card in lieu of a Leader Disc. <span class="AT"><span class="karama-badge"><img class="circularize" src="img/AT-logo.png"></span><sub class="logo-sub">D</sub> Kwisatz Haderach token adds +2 to leader strength &amp; accompanied leader cannot turn a traitor.</span></p>
+<p class="leader-skill-cards">You may either leave the skilled leader face up in front of your faction shield or take it and the Leader Skill Card behind the shield. When you use that skilled leader, place it in your wheel with the Leader Skill Card (along with any Treachery Cards normally). In this case, the first part of the skill is still in effect (if applicable), but you also  can use the second part of the skill (<strong><em>This leader in battle</em></strong>), associated with that leader. Alternatively, if you use another leader for battle, and the skilled leader and card are behind the shield, no part of the skill is available to you. If you leave the skilled leader in front of your shield, the first part of the skill can still be used when your other leaders are in battle (if applicable). </p>
 <ul>
 <li>If possible, you must always play a leader or cheap hero as part of their Battle Plan.</li>
 <li>If you cannot play a leader and are not playing a Cheap Hero Card, you must announce so prior to revealing battle plans; you cannot play any Treachery Cards as part of your Battle Plan.</li>
@@ -2144,8 +2172,7 @@
 <ul>
 <li>Places the traitorous leader in the Tleilaxu Tanks and receives the traitorous leader’s fighting strength in spice from the Spice Bank.</li>
 </ul>
-<section class="h5-section">
-</section>
+<span class="h5-section">
 <h5>The Player Whose Traitor Was Revealed</h5>
 <ul>
 <li>Loses all of their forces in the territory to the Tleilaxu Tanks.</li>
@@ -2156,11 +2183,17 @@
 <ul>
 <li>Discards all of the cards they played.</li>
 </ul>
-<section class="h5-section">
+<span class="leader-skill-cards">
+<ul>
+<li>Shuffle the Leader Skill Card back into the Leader Skill Deck.</li>
+</ul>
+</span>
 </section>
+<section class="h5-section">
 <h5>Two Traitors</h5>
 <p>If both players reveal a Traitor Card, both players’ forces in the territory, their cards played, and their leaders, are lost. Neither player gets any spice.</p>
 </section>
+<p class="leader-skill-cards">After the battle, place the leader (if still alive) and the Leader Skill Card in front of your faction shield.</p>
 </section>
 <section id="phase-collection-section" class="rulebook-phase" aria-labelledby="phase-collection">
 <h1 id="phase-collection" class="heading-with-icon"><img class="heading-icon" src="img/phase-collection-grey.png" alt="">Phase 8: Spice Collection</h1>
@@ -3098,9 +3131,9 @@ Weirding Way counts as a projectile weapon<br>Chemistry and Weirding Way’s alt
 <div><div class="faction-sheet__bar">Advantages</div>
 <div class="faction-sheet__advantage"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><p><strong>A.</strong> &ndash; <strong>BIDDING:</strong> During the Bidding Phase, you must auction one Richese Treachery Card of your choice from your cache in place of one normal Treachery Card (one fewer Treachery Card is put up for auction in the normal Bidding Round). At the start of Declaration, you must announce whether your Richese Treachery Card will be auctioned immediately or after the normal Treachery Cards up for bid. When you auction the card, reveal it and choose either a Once Around or Silent Auction method (see below). The winner of the bid pays spice to you (Karama Cards can’t be used); you pay spice to the Emperor (if in play) or Spice Bank if you win the bid or contribute to your ally’s payment. When discarded, Richese Treachery Cards are discarded to the Treachery Card discard pile.</p>
 <ul>
-<li>Once Around Auction&mdash;Cho ose a direction (clockwise or counterclockwise). Starting with the faction following you in that direction, each faction has a single opportunity to pass or raise the current bid. The highest bidder wins the bid. If everyone else passes, you may either gain the card for free or remove it from the game.</li></ul>
+<li><strong>Once Around Auction</strong>&mdash;Choose a direction (clockwise or counterclockwise). Starting with the faction following you in that direction, each faction has a single opportunity to pass or raise the current bid. The highest bidder wins the bid. If everyone else passes, you may either gain the card for free or remove it from the game.</li></ul>
 <ul>
-<li>Silent Auction&mdash;All factions able to bid place any amount of spice in one hand (including zero). Factions reveal your bids simultaneously and the faction with the most spice in hand wins the bid (ties break to the tied faction earliest in Storm order). Before revealing bids, factions may declare that the spice in your hand contributes to your ally’s bid. If everyone bids zero spice, you may either gain the card for free or remove it from the game.</li>
+<li><strong>Silent Auction</strong>&mdash;All factions able to bid place any amount of spice in one hand (including zero). Factions reveal your bids simultaneously and the faction with the most spice in hand wins the bid (ties break to the tied faction earliest in Storm order). Before revealing bids, factions may declare that the spice in your hand contributes to your ally’s bid. If everyone bids zero spice, you may either gain the card for free or remove it from the game.</li>
 </ul>
 </div>
 <div class="faction-sheet__advantage" style="display: flow-root;"><span class="karama-badge"><img class="circularize" src="img/RI-logo.png"></span><img class="circularize" src="img/token-no-field-back.png" alt="No-Field token" style="float: right; width: 2.5rem; height: auto; margin: 0 0 0.65rem 0.8rem;"><p><strong>B.</strong> &ndash; <strong>NO-FIELD:</strong> You have 3 No-Field Tokens representing 0, 3, or 5 forces. However, they are considered 1 force for all effects until revealed (including spice collection). There may never be more than 1 No-Field Token on the planet at a time. When you are in a Battle with a No-Field Token, Atreides may not use Prescience to see the number dialed on your Battle Plan.</p><p>In place of your normal Force Shipment, you may ship 1 No-Field Token from behind your Player Shield face down, paying only the cost of shipping a single force. During your Force Movement, you may move No-Field Tokens on the planet like they are forces.</p><p>A No-Field Token must be revealed when caught in a storm, by a worm, in a lasgun/shield explosion, and when revealing your Battle Plan, but you may optionally reveal a No-Field Token at any time before the Battle Phase. When a No-Field Token is revealed:</p>
@@ -3600,11 +3633,10 @@ Weirding Way counts as a projectile weapon<br>Chemistry and Weirding Way’s alt
 
     function updateModules() {
         const boxes = [...document.querySelectorAll('#module-selector input[type="checkbox"]')];
-        const hasSelection = boxes.some(checkbox => checkbox.checked);
         boxes.forEach(checkbox => {
             const moduleName = checkbox.dataset.module;
             document.querySelectorAll('.' + moduleName).forEach(element => {
-                element.hidden = hasSelection && !checkbox.checked;
+                element.hidden = !checkbox.checked;
             });
             document.querySelectorAll('.no-' + moduleName).forEach(element => {
                 element.hidden = checkbox.checked;
