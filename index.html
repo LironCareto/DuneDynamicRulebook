@@ -1544,6 +1544,14 @@
             column-span: all;
         }
 
+        #rulebook-content .rulebook-phase--single-column {
+            break-inside: avoid-column;
+        }
+
+        #rulebook-content .rulebook-phase--single-column > h1 {
+            column-span: none;
+        }
+
         #rulebook-content h2 {
             margin: 1.25rem 0 0.75rem;
         }
@@ -1939,7 +1947,7 @@
 <li style="list-style-type: none;">
     <ul>
     <li>
-    <span class="outlined">If it is the fourth Shai Hulud card revealed, the Shield Wall is destroyed. Place the Shield Wall token on top of the Shield Wall space on the map. All forces in the Shield Wall sector are removed to the Tleilaxu Tanks. From now on, the Shield Wall sector is treated as a sand territory and Carthag, Arrakeen, the Imperial Basin and the Rim Wall West are not protected from the storm or sandworm.</span></li>
+    <span class="outlined">If it is the fourth Shai Hulud card revealed, the Shield Wall is destroyed. Place the Shield Wall token on top of the Shield Wall space on the map. All forces in the Shield Wall sector are removed to the Tleilaxu Tanks. From now on, the Shield Wall sector is treated as a sand territory and <strong>Carthag</strong>, <strong>Arrakeen</strong>, and the <strong>Imperial Basin</strong> are not protected from the storm or sandworm.</span></li>
     <li>All spice and forces in the territory shown on the card now face up in discard pile A are removed to the Spice Bank and Tleilaxu Tanks, respectively. Place the Shai-Hulud card face up on Spice discard pile A. <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">C,J</sub> Fremen forces are not devoured. They can ride the worm to any sector of any territory <span class="IX">(including HMS), </span>subject to storm and occupancy rules. Fremen can also protect their allies from sandworm.</span><span class="RI"><img class="circularize" src="img/RI-logo.png"><sub class="logo-sub">D</sub> A No-Field token must be revealed when caught by a worm.</span></li>
     <li>Reveal the top card of the Spice Deck. If it is another Shai-Hulud it is immediately discarded to Spice discard pile A, and another card is revealed. This continues until a Territory Card appears and is resolved. The Territory Card is then placed face up on Spice discard pile A. <span class="FR"><span class="karama-badge"><img class="circularize" src="img/FR-logo.png"></span><sub class="logo-sub">B</sub> For each consecutive sandworm drawn, the Fremen may choose the territory where it appears.</span></li>
     <li><span class="no-discovery-tokens">R</span><span class="discovery-tokens"><strong>The Great Maker</strong> is treated like a normal Shau Hulud card; however, a vote is held to determine whether or not a Nexus occurs. In storm order, each player votes yes or no. Unless a majority vote yes, no Nexus occurs. With a regular <strong>Shau Hulud</strong> card, r</span>esolve a Nexus. During a Nexus, all players have a chance to make or break Alliances. Once players have had a chance to do so, play continues (see section Alliances (Nexus)). </li>
@@ -1951,8 +1959,8 @@
 <h3>Spice Blow B</h3>
 <p>Reveal the top card of the Spice Deck and repeat the above procedures using Spice discard pile B.</p>
 </section>
-<section id="phase-charity-section" class="rulebook-phase" aria-labelledby="phase-charity">
-<h2 id="phase-charity" class="heading-with-icon"><img class="heading-icon" src="img/phase-charity-grey.png" alt="">Phase 3: CHOAM Charity</h2>
+<section id="phase-charity-section" class="rulebook-phase rulebook-phase--single-column" aria-labelledby="phase-charity">
+<h1 id="phase-charity" class="heading-with-icon"><img class="heading-icon" src="img/phase-charity-grey.png" alt="">Phase 3: CHOAM Charity</h1>
 <p class="CH"><span class="karama-badge"><img class="circularize" src="img/CH-logo.png"></span><sub class="logo-sub">A</sub> CHOAM Collect <span class="two-times-faction-count">0</span> spice; (2 per faction) other factions collect CHOAM Charity from CHOAM.</p>
 <p>Beginning with the First Player and proceeding in counterclockwise order, each player with 0 or 1 spice may reveal the spice behind their Player Shield to collect spice from <span class="no-CH">the Spice Bank</span><span class="CH">CHOAM</span>, to bring their total to 2 by calling out &ldquo;CHOAM Charity.&rdquo;</p>
 <p class="BG"><span class="karama-badge"><img class="circularize" src="img/BG-logo.png"></span><sub class="logo-sub">C</sub> Bene Gesserit always receive 2 spice of CHOAM charity.</p>
@@ -2005,7 +2013,7 @@
 <p>In addition to force revivals, if all of their leaders are in the Tleilaxu Tanks or you have no leaders in their leader pool, you may revive 1 leader per turn until all of their killed leaders have been revived. <span class="AT"><img class="circularize" src="img/AT-logo.png"><sub class="logo-sub">D</sub> Atreides an revive Kwisatz Haderach token before all leaders die.</span> Doesn’t affect other leader revival. <span class="CH"><img class="circularize" src="img/CH-logo.png"><sub class="logo-sub">E</sub> The Auditor is eligible to be revived every turn.</span> <span class="EZ"><img class="circularize" src="img/EZ-logo.png"><sub class="logo-sub">C</sub> Ecaz may always revive Duke Vidal for 5 spice, no matter how many of their leaders are in the Tleilaxu Tanks.</span> <span class="TX"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png"></span><sub class="logo-sub">B</sub> Each faction can request Tleilaxu to revive 1 leader per phase at a price set by Tleilaxu.</span> <span class="TX"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png"></span><sub class="logo-sub">E</sub> Tleilaxu may revive other factions’ dead leaders and add them to Tleilaxu leader pool to a maximum pool size of 5.</span></p>
 <h4>Fighting Strength</h4>
 <p>To revive a leader, you must pay that leader&rsquo;s fighting strength in spice to <span class="no-TX">the Spice Bank</span><span class="TX"><span class="karama-badge"><img class="circularize" src="img/TX-logo.png"></span><sub class="logo-sub">B</sub> Tleilaxu</span>.</p>
-<p class="TX"><img class="circularize" src="img/TX-logo.png"><sub class="logo-sub">F</sub> Zoal revival cost is 3</p>
+<p class="TX"><img class="circularize" src="img/TX-logo.png"><sub class="logo-sub">F</sub> Zoal revival cost is 3.</p>
 <p>A revived leader can be played normally and is still subject to being a traitor.</p>
 <p class="leader-skill-cards">After reviving a leader if you have no Leader Skill Card, you may draw two Leader Skill Cards, and then choose one to play face up in front of your shield and assign the newly revived leader to that skill.</p>
 <h4>Dead Again</h4>
