@@ -3745,7 +3745,7 @@ Weirding Way counts as a projectile weapon<br>Chemistry and Weirding Way’s alt
         const limitReached = [...boxes].filter(checkbox => checkbox.checked).length >= 6;
         boxes.forEach(checkbox => { checkbox.disabled = limitReached && !checkbox.checked; });
         const notice = document.getElementById('faction-limit-notice');
-        const message = limitReached ? 'You cannot select more than 6 factions at a time. Deselect a faction to choose another.' : '';
+        const message = limitReached ? 'Maximum number of factions selected (6). Deselect a faction to choose another.' : '';
         if (notice.textContent !== message) notice.textContent = message;
     }
 
